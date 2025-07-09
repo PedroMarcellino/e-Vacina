@@ -9,5 +9,5 @@ import { routes } from './app.routes';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'evacina';
+  title = 'e-Vacina';
 }
