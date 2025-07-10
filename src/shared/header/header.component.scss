@@ -1,0 +1,38 @@
+.navbar {
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+}
+
+.btn-infos-person {
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.social-icon i {
+  font-size: 18px;
+  color: #333;
+}
+
+.social-icon i:hover {
+  color: #007bff;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: #222 !important;
+}
+
+.nav-link:hover {
+  color: #007bff !important;
+}
+
+#logo {
+  max-height: 50px;
+
+}
+
+.btn-primary {
+  font-weight: 500;
+  padding: 7px;
+}
