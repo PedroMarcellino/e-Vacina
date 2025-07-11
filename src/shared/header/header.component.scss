@@ -1,5 +1,5 @@
 .navbar {
-  background-color: white;
+  background-color: #111F36;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   z-index: 10;
 }
@@ -11,7 +11,7 @@
 
 .social-icon i {
   font-size: 18px;
-  color: #333;
+  color: white;
 }
 
 .social-icon i:hover {
@@ -20,7 +20,7 @@
 
 .nav-link {
   font-weight: 500;
-  color: #222 !important;
+  color: white !important;
 }
 
 .nav-link:hover {

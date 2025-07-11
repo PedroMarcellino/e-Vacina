@@ -1,22 +1,46 @@
+    section {
+      background-color: #f5faff;
+    }
+
     .initial-section {
-        margin-top: 8rem;
+        margin-top: 6rem;
     }
 
     #hero {
-        width: 100%;
-        height: 90vh;
-        background-image: url("../../../assets/img/evacina_inicio.png");
-        background-size: cover;
-        background-position: center;
-    }
+  width: 100%;
+  height: 90vh;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1),), 
+                    url("../../../assets/img/logo_inicio_do_site.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
 
-    .title-initial {
-        font-size: 48px;
-        color: blue;
-        font-weight: 700;
-        line-height: 58px;
-        text-transform: uppercase;
-    }
+#hero > * {
+  position: relative;
+  z-index: 2;
+  color: #0a2c49; /* Azul escuro para contraste */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  #hero {
+    height: 60vh;
+    background-position: top;
+    padding: 1rem;
+  }
+
+  #hero > * {
+    font-size: 1.2rem;
+  }
+}
 
 .sobre {
   background-color: #fff; /* ou outra cor */
@@ -41,21 +65,21 @@
 
 .sobre-nos {
   .video-box {
-    background-image: url("../../../assets/img/foto_sobre.png")
-    ;
-    background-size: cover;
-    min-height: 100px;
-    border-radius: 170px;
+  background-image: url("../../../assets/img/foto_sobre.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 300px;
+  border-radius: 170px;
+}
 
-
+@media (max-width: 768px) {
+  .video-box {
+    min-height: 200px;
+    border-radius: 80px;
+    margin-bottom: 1.5rem; 
   }
-
-  @media (min-width: 992px) {
-    .pl-lg-5,
-    .px-lg-5 {
-      padding-left: 3rem !important;
-    }
-  }
+}
 
   @media (min-width: 992px) {
     .pr-lg-5,
@@ -79,6 +103,7 @@
 
   .icon-box-about {
     margin-top: 40px;
+    color: blue;
   }
 
   .icon {
@@ -88,13 +113,15 @@
     justify-content: center;
     width: 64px;
     height: 64px;
-    border: 2px solid white;
+    color: #15304b;
+    border: 2px solid #15304b;
+    background-color: white;
     border-radius: 50px;
     transition: 0.5s;
   }
 
   .icon i {
-    color: #111F36;
+    color: lawngreen;
     font-size: 32px;
   }
 
@@ -103,7 +130,7 @@
   .icon-box-about {
     &:hover {
       .icon {
-        background-color: #111F36 ;
+        background-color:  #15304b;
       }
 
       i {
@@ -153,7 +180,7 @@
     left: 50%;
     transform: translateX(-50%);
     font-size: 20px;
-    background: #111F36;
+    background: red;
     color: white;
     border-radius: 50px;
     display: inline-flex;
@@ -185,20 +212,47 @@
   }
 }
 
-#id {
-  background-color: forestgreen;
-}
+#info {
+  background-color: #f5faff;
+  padding: 20px 0;
 
-.info {
-  background-color: #e6f0f7;
-}
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #15304b;
 
-.title-info {
-  font-size: 24px;
-  font-weight: bold;
-  color: black;
-  display: flex;
-  justify-content: center; /* horizontal */
-      align-items: center;
+    .highlight {
+      color: #007bff;
+    }
+  }
+
+  .info-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease;
+
+    h4 {
+      margin-top: 1rem;
+      font-weight: 600;
+      color: #15304b;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    &:hover {
+      transform: translateY(-6px);
+    }
+  }
+
+  .icon-info {
+    font-size: 2.5rem;
+    color: #007bff;
+  }
 }
 
