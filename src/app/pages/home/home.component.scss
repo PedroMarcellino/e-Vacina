@@ -256,3 +256,52 @@
   }
 }
 
+#contact {
+  background-color: #111F36;
+  color: white;
+  padding: 60px 0;
+  text-align: center;
+
+  h3 {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 16px;
+    color: #dcdcdc;
+    margin-bottom: 40px;
+  }
+
+  form {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+
+    .form-control {
+      border-radius: 8px;
+      border: none;
+      padding: 10px;
+      margin-top: 8px;
+    }
+
+    label {
+      display: block;
+      margin-top: 16px;
+      color: #dcdcdc;
+      font-weight: 500;
+      text-align: left;
+    }
+
+    .btn-primary {
+      background-color: #08152A;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+
+    
+    }
+  }
+}
+
+
