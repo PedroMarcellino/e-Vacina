@@ -1,0 +1,65 @@
+#login {
+  background-color: #0D1B2A;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+
+  .card-login {
+    background-color: #1B2631;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 440px;
+    margin: auto;
+  }
+
+  h2 {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: #dcdcdc;
+    margin-bottom: 30px;
+  }
+
+  .login-form {
+    max-width: 400px;
+    width: 100%;
+
+    .form-control {
+      border-radius: 8px;
+      padding: 10px;
+      border: none;
+      margin-bottom: 16px;
+    }
+
+    label {
+      margin-bottom: 5px;
+      color: #dcdcdc;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px;
+      font-weight: bold;
+    }
+
+    .text-link {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 14px;
+
+      &:hover {
+        text-decoration: underline;
+        color: #fff;
+      }
+    }
+  }
+}
