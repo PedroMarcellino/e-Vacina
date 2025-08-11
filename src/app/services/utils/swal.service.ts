@@ -2,28 +2,28 @@ import { Injectable } from '@angular/core';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 type SwalProps = {
-  title: string
-  message: string
+  title: string;
+  message: string;
 };
 
 type CallbackPopup = {
-  title: string
-  message: string
-  onApprove: () => SwalProps | Promise<void>
-  onDecline?: () => SwalProps | Promise<void>
-}
+  title: string;
+  message: string;
+  onApprove: () => SwalProps | Promise<SwalProps>;
+  onDecline?: () => SwalProps | Promise<SwalProps>;
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class SwalService {
 
-  customSweetAlert;
+  private customSweetAlert: ReturnType<typeof Swal.mixin>;
 
   constructor() {
     this.customSweetAlert = Swal.mixin({
       confirmButtonColor: '#111F36'
-    })
+    });
   }
 
   public info(title: string, message: string) {
@@ -51,24 +51,20 @@ export class SwalService {
       confirmButtonText: 'Confirmar',
       cancelButtonText: 'Cancelar',
       reverseButtons: true,
-    }).then(({ isConfirmed }) => {
+    }).then(async ({ isConfirmed }) => {
       if (isConfirmed) {
-        let props = onApprove();
-        if (!(props instanceof Promise)) {
-          if (props) {
-            this.success(props.title, props.message);
-          } else {
-            this.success('Deletado!', 'A operação foi concluída!');
-          }
+        let props = await onApprove();
+        if (props) {
+          this.success(props.title, props.message);
+        } else {
+          this.success('Deletado!', 'A operação foi concluída!');
         }
       } else {
         if (onDecline) {
-          let props = onDecline();
-          if (!(props instanceof Promise)) {
-            if (props) {
-              this.info(props.title, props.message);
-              return;
-            }
+          let props = await onDecline();
+          if (props) {
+            this.info(props.title, props.message);
+            return;
           }
         }
         this.info('Cancelado com sucesso!', 'Você cancelou esta operação');

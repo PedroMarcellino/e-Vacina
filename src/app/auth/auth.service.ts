@@ -20,7 +20,9 @@ export class AuthService {
     private router: Router,
     private swalService: SwalService
   ) {}
-  
+
+
+
   register(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, data);
   }
@@ -28,5 +30,17 @@ export class AuthService {
   login(data:any): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, data);
   }
-  
+
+  saveToken(token: string) {
+    localStorage.setItem(this.tokenKey, token);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem(this.tokenKey);
+  }
+
+  logout() {
+    localStorage.removeItem(this.tokenKey);
+  }
+
 }
