@@ -7,6 +7,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { routes } from './app.routes';
 import { TokenInterceptor } from './auth/token.interceptor';
 
+
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),

@@ -24,23 +24,40 @@ export class AuthService {
 
 
   register(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, data);
+    return this.http.post(`${this.apiUrl}/register`, data).pipe(
+      tap(() => {
+        this.router.navigate(['/login']);
+      })
+    );
   }
 
-  login(data:any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, data);
-  }
-
-  saveToken(token: string) {
-    localStorage.setItem(this.tokenKey, token);
-  }
-
-  getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
+  login(email: string, password: string): Observable<any> {
+    return new Observable(observer => {
+      this.http.post(`${this.apiUrl}/login`, { email, password }).subscribe({
+        next: (res: any) => {
+          if (res.token) {
+            localStorage.setItem('token', res.token);
+          }
+          observer.next(res);
+          observer.complete();
+        },
+        error: (err) => {
+          observer.error(err);
+        }
+      });
+    });
   }
 
   logout() {
-    localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem('token');
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  isAuthenticated(): boolean {
+    return !!this.getToken();
   }
 
 }

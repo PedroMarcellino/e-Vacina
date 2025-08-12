@@ -1,78 +1,49 @@
 import { Injectable } from '@angular/core';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 
-type SwalProps = {
-  title: string;
-  message: string;
-};
-
-type CallbackPopup = {
-  title: string;
-  message: string;
-  onApprove: () => SwalProps | Promise<SwalProps>;
-  onDecline?: () => SwalProps | Promise<SwalProps>;
-};
-
 @Injectable({
   providedIn: 'root'
 })
 export class SwalService {
 
-  private customSweetAlert: ReturnType<typeof Swal.mixin>;
-
-  constructor() {
-    this.customSweetAlert = Swal.mixin({
-      confirmButtonColor: '#111F36'
-    });
-  }
-
-  public info(title: string, message: string) {
-    this.spawnAlert('info', title, message);
-  }
-
-  public success(title: string, message: string) {
-    this.spawnAlert('success', title, message);
-  }
-
-  public warning(title: string, message: string) {
-    this.spawnAlert('warning', title, message);
-  }
-
-  public error(title: string, message: string) {
-    this.spawnAlert('error', title, message);
-  }
-
-  public popup({ title, message: text, onApprove, onDecline }: CallbackPopup) {
-    this.customSweetAlert.fire({
-      icon: 'question',
-      title,
-      text,
-      showCancelButton: true,
-      confirmButtonText: 'Confirmar',
-      cancelButtonText: 'Cancelar',
-      reverseButtons: true,
-    }).then(async ({ isConfirmed }) => {
-      if (isConfirmed) {
-        let props = await onApprove();
-        if (props) {
-          this.success(props.title, props.message);
-        } else {
-          this.success('Deletado!', 'A operação foi concluída!');
-        }
-      } else {
-        if (onDecline) {
-          let props = await onDecline();
-          if (props) {
-            this.info(props.title, props.message);
-            return;
-          }
-        }
-        this.info('Cancelado com sucesso!', 'Você cancelou esta operação');
-      }
-    });
-  }
-
   private spawnAlert(icon: SweetAlertIcon, title: string, message: string) {
-    this.customSweetAlert.fire(title, message, icon);
+    Swal.fire({
+      icon,
+      title,
+      text: message,
+      confirmButtonText: 'OK'
+    });
+  }
+
+  public success(titleOrMessage: string, message?: string) {
+    if (!message) {
+      this.spawnAlert('success', 'Sucesso', titleOrMessage);
+    } else {
+      this.spawnAlert('success', titleOrMessage, message);
+    }
+  }
+
+  public error(titleOrMessage: string, message?: string) {
+    if (!message) {
+      this.spawnAlert('error', 'Erro', titleOrMessage);
+    } else {
+      this.spawnAlert('error', titleOrMessage, message);
+    }
+  }
+
+  public warning(titleOrMessage: string, message?: string) {
+    if (!message) {
+      this.spawnAlert('warning', 'Atenção', titleOrMessage);
+    } else {
+      this.spawnAlert('warning', titleOrMessage, message);
+    }
+  }
+
+  public info(titleOrMessage: string, message?: string) {
+    if (!message) {
+      this.spawnAlert('info', 'Informação', titleOrMessage);
+    } else {
+      this.spawnAlert('info', titleOrMessage, message);
+    }
   }
 }

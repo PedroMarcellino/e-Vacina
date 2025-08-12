@@ -3,6 +3,8 @@ import { AuthService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SwalService } from '../../services/utils/swal.service';
+import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -13,25 +15,32 @@ import { HttpClientModule } from '@angular/common/http';
 })
 
 export class RegisterComponent {
-  
-  form = {
-    name: '',
-    email: '',
-    phone: '',
-    password: '',
-  }
 
-  constructor(private auth: AuthService, private router: Router) {}
+  name = '';
+  email = '';
+  password = '';
+  password_confirmation = '';
 
-  register() {
-    this.auth.register(this.form).subscribe({
-      next: res => {
-        alert('Registro realizado com sucesso!');
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private swalservice: SwalService,
+  ) {}
+
+     register() {
+    this.auth.register({
+      name: this.name,
+      email: this.email,
+      password: this.password,
+      password_confirmation: this.password_confirmation
+    }).subscribe({
+      next: () => {
+        this.swalservice.success('Registro concluído!', 'Agora faça login para acessar o sistema.');
         this.router.navigate(['/login']);
       },
-      error: err => {
-        console.error(err);
-        alert('Erro ao registrar');
+      error: (err) => {
+        const msg = err.error?.message || 'Erro ao registrar usuário.';
+        this.swalservice.error('Ops!', msg);
       }
     });
   }
