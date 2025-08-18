@@ -37,13 +37,14 @@ interface MenuItem {
 export class SidemenuComponent implements OnInit {
 
    menuItems: MenuItem[] = [
+
     { label: 'Dashboard',
       icon: 'dashboard',
       route: '/dashboard'
     },
     { label: 'Minhas Vacinas',
       icon: 'vaccines',
-      route:'/my-accines'
+      route:'/dashboard/my-vaccines'
     },
     { label: 'Sobre as Vacinas',
       icon: 'vaccines',

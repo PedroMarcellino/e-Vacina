@@ -1,0 +1,108 @@
+.my-vacine-container {
+  height: 100%;
+  background-color: #f7f7f9; 
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+
+  .section-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #0047AB; 
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: -5px;
+  }
+
+  .filter-select {
+    min-width: 160px;
+    font-size: 0.85rem;
+    border-radius: 14px;
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    color: #444;
+  }
+
+  .btn-gold {
+        background-color: #0047AB;
+        color: #fff;
+        font-weight: 500;
+        padding: 6px 16px;
+        border-radius: 20px;
+        border: none;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: blue;
+        }
+  }
+
+
+  .btn-action-secondary {
+    background-color: #d4d4d4;
+    color: #444;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 4px 12px;
+    border: none;
+    border-radius: 18px;
+  }
+
+  .card-style {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  .vacina-table {
+    th {
+      color: #08152A;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-bottom: 1px solid #eee;
+    }
+
+    td {
+      font-size: 0.9rem;
+      padding: 0.75rem 0.5rem;
+      border-bottom: 1px solid #f0f0f0;
+      vertical-align: middle;
+    }
+  }
+
+  .status {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-weight: 500;
+    font-size: 0.8rem;
+    background-color: #d1f3da;
+    color: #2f9252;
+
+    &.inactive {
+      background-color: #f9d4d4;
+      color: #c93030;
+    }
+  }
+
+    .action-icons {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .btn-action {
+        
+        color: #333;
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 6px;
+        border: none;
+        border-radius: 50%;
+        margin-right: 6px;
+        transition: background-color 0.3s;
+
+    }
+}

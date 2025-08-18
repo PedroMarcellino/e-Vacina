@@ -49,10 +49,10 @@ export const routes: Routes = [
           import('./dashboard/dashboard.component').then((c) => c.DashboardComponent)
       },
       {
-        path: 'my-vaccines',
-        loadComponent: () =>
-          import('./dashboard/my-vaccines/my-vaccines.component').then((c) => c.MyVaccinesComponent)
-      },
+  path: 'my-vaccines',
+  loadComponent: () =>
+    import('./dashboard/my-vaccines/my-vaccines.component').then((c) => c.MyVaccinesComponent)
+}
     ]
    }
 
