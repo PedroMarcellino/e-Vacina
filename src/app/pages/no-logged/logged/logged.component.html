@@ -1,0 +1,10 @@
+<mat-sidenav-container class="sidenav-container" fxFlexFill style="overflow: visible">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <app-sidemenu></app-sidemenu>
+  </mat-sidenav>
+
+  <mat-sidenav-content style="height: 100dvh;">
+    <div class="px-4"><router-outlet></router-outlet></div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

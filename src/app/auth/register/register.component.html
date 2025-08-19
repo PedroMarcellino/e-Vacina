@@ -6,20 +6,16 @@
 
     <form class="login-form mx-auto">
       <div class="form-group text-start">
-        <label for="text">Nome</label>
+        <label for="text">Nome:</label>
         <input type="text" id="text" class="form-control" placeholder="Digite seu nome" [(ngModel)]="name" name="name">
       </div>
       <div class="form-group text-start">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" class="form-control" placeholder="Seu email" [(ngModel)]="email" name="email">
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" class="form-control" placeholder="Seu E-mail" [(ngModel)]="email" name="email">
       </div>
       <div class="form-group text-start">
-        <label for="senha">Senha</label>
+        <label for="senha">Senha:</label>
         <input type="password" id="text" class="form-control" placeholder="Sua senha" [(ngModel)]="password" name="password">
-      </div>
-       <div class="form-group text-start">
-        <label for="telefone">Confirmar Senha</label>
-        <input type="text" id="text" class="form-control" placeholder="Seu telefone" [(ngModel)]="password_confirmation" name="password_confirmation">
       </div>
       <button type="submit" class="btn btn-primary mt-3 w-100" (click)="register()" >Criar Conta</button>
       <a href="/forgot-my-password" class="d-block mt-3 text-link">Esqueceu sua senha?</a>

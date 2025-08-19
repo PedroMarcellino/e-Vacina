@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from '../../auth/auth.service';
+import { AuthService } from '../auth.service';
 import { SwalService } from '../../services/utils/swal.service';
 
 @Component({

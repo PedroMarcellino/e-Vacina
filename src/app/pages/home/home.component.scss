@@ -54,164 +54,6 @@
   color: #023;
 }
 
-#about {
-  background-color: #111F36;
-  padding: 30px;
-}
-
-.sub-title h2 {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-.sobre-nos {
-  .video-box {
-  background-image: url("../../../assets/img/foto_sobre.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 300px;
-  border-radius: 170px;
-}
-
-@media (max-width: 768px) {
-  .video-box {
-    min-height: 200px;
-    border-radius: 80px;
-    margin-bottom: 1.5rem;
-  }
-}
-
-  @media (min-width: 992px) {
-    .pr-lg-5,
-    .px-lg-5 {
-      padding-right: 3rem !important;
-    }
-  }
-
-  .icon-boxes h3 {
-    font-size: 28px;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 15px;
-  }
-
-  p {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    color: white;
-  }
-
-  .icon-box-about {
-    margin-top: 40px;
-    color: blue;
-  }
-
-  .icon {
-    float: left;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 64px;
-    height: 64px;
-    color: #15304b;
-    border: 2px solid #15304b;
-    background-color: white;
-    border-radius: 50px;
-    transition: 0.5s;
-  }
-
-  .icon i {
-    color: lawngreen;
-    font-size: 32px;
-  }
-
-  transition: 0.3s cubic-bezier(0.65, 0, 0.35, 1);
-
-  .icon-box-about {
-    &:hover {
-      .icon {
-        background-color:  #15304b;
-      }
-
-      i {
-        color: white;
-      }
-    }
-  }
-  .title {
-    margin-left: 85px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    font-size: 18px;
-    color: white;
-  }
-
-  .title a {
-    color: white;
-    transition: 0.3s;
-
-  }
-
-  .description {
-    margin-left: 85px;
-    line-height: 24px;
-    font-size: 14;
-    color: white;
-  }
-}
-
-.counts {
-  background: #08152A;
-  padding: 70px 0 60px;
-  margin-top: 8em;
-
-  .counts,
-  .count-box {
-    padding: 30px 30px 25px 30px;
-    width: 100%;
-    position: relative;
-    text-align: center;
-    background: white;
-  }
-
-  .count-box i {
-    position: absolute;
-    top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 20px;
-    background: red;
-    color: white;
-    border-radius: 50px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-  }
-
-  .fas {
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-  }
-
-  .count-box span {
-    font-size: 36px;
-    display: block;
-    font-weight: 500;
-    color: BLACK;
-    margin-top: 0.5em;
-  }
-
-  .count-box p {
-    padding: 0;
-    margin: 0;
-    font-size: 16px;
-    font-weight: lighter;
-    color: white;
-  }
-}
 
 #info {
   background-color: #f5faff;
@@ -265,6 +107,7 @@
 
   h3 {
     font-weight: bold;
+    font-size: 23px;
     margin-bottom: 10px;
   }
 
@@ -305,5 +148,94 @@
     }
   }
 }
+
+
+#about {
+  padding: 80px 0;
+  background-color: #111F36; 
+  text-align: center;
+}
+
+#about h3 {
+  font-size: 38px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #ffffff; 
+  position: relative;
+  display: inline-block;
+}
+
+#about h3::after {
+  content: "";
+  width: 60px;
+  height: 4px;
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+
+#about > .sobre-nos p {
+  font-size: 18px;
+  color: #d1d5db;
+  max-width: 750px;
+  margin: 0 auto 50px;
+  line-height: 1.8;
+}
+
+.icon-box-about {
+  margin-bottom: 25px;
+  padding: 20px 18px;   
+  border-radius: 16px;
+  max-width: 500px;     
+  margin-left: auto;
+  margin-right: auto;
+  background: #1c2a45;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s ease;
+}
+
+.icon-box-about:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+}
+
+
+.icon-box-about .icon {
+  font-size: 40px;  
+  margin-bottom: 12px;
+}
+
+.icon-box-about:hover .icon {
+  color: #4fd1c5; 
+}
+
+
+.icon-box-about .title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.icon-box-about .title a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.icon-box-about .title a:hover {
+  color: #00c3ff;
+}
+
+
+.icon-box-about .description {
+  font-size: 16px;
+  color: #d1d5db; 
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 
 

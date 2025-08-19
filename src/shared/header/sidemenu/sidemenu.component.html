@@ -1,21 +1,24 @@
-<mat-sidenav-container class="sidemenu-container">
-  <mat-sidenav mode="side" opened>
-    <mat-toolbar color="primary" class="sidemenu-header">
-      <mat-icon>menu</mat-icon>
-      <span class="title"> Sistema E-vacina</span>
-    </mat-toolbar>
+<div class="vertical-nav-wrapper d-flex flex-column justify-content-between h-100">
+  <div class="nav-top">
+    <div class="nav-section mt-4">
+      <div *ngFor="let menu of menus" class="menu-group">
+        <div class="menu-title">{{ menu.title }}</div>
 
-    <mat-nav-list>
-      <a mat-list-item *ngFor="let item of menuItems" [routerLink]="item.route" routerLinkActive="active-link">
-        <mat-icon matListIcon>{{ item.icon }}</mat-icon>
-        <span>{{ item.label }}</span>
-      </a>
-    </mat-nav-list>
-  </mat-sidenav>
-
-  <mat-sidenav-content>
-    <div class="sidemenu-content">
-      <router-outlet></router-outlet>
+        <div *ngFor="let submenu of menu.contentMenus" class="submenu-item">
+          <a *ngIf="submenu.route" [routerLink]="submenu.route" routerLinkActive="active">
+            <span class="me-2">
+              <i [class]="submenu.icon"></i>
+            </span>
+            {{ submenu.label }}
+          </a>
+        </div>
+      </div>
     </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  </div>
+  <div class="nav-footer text-center py-3">
+    <mat-divider class="my-2"></mat-divider>
+    <button mat-button class="logout-button" (click)="confirmLogout()">
+      <mat-icon class="me-1">logout</mat-icon> Sair
+    </button>
+  </div>
+</div>
