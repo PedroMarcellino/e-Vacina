@@ -7,12 +7,12 @@
         </h4>
         <p class="section-subtitle">Monitore suas vacinas com facilidade</p>
       </div>
-      <button class="btn btn-gold" >+ Cadastrar Vacina</button>
+      <button class="btn btn-gold" (click)="openDialog()">+ Cadastrar Vacina</button>
     </div>
 
     <div class="card-style p-3">
       <div class="table-responsive">
-        <table mat-table  matSort class="table table-borderless vacina-table mb-0">
+        <table mat-table [dataSource]="dataSource" matSort class="table table-borderless vacina-table mb-0">
 
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome da Vacina</th>
@@ -21,22 +21,30 @@
 
         <ng-container matColumnDef="age_range">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Faixa Etária</th>
-            <td mat-cell *matCellDef="let vacine"> {{vacine.agerange}}</td>
+            <td mat-cell *matCellDef="let vacine"> {{vacine.age_range}}</td>
         </ng-container>
 
         <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-            <td mat-cell *matCellDef="let vacine"> {{vacine.status}}</td>
+    <th mat-header-cell *matHeaderCellDef> Status </th>
+    <td mat-cell *matCellDef="let vacine">
+      <span class="status-badge"
+            [ngClass]="{
+              'status-tomada': vacine.status === 'Tomada',
+              'status-a-tomar': vacine.status === 'A Tomar'
+            }">
+        {{ vacine.status }}
+      </span>
+    </td>
         </ng-container>
 
-        <ng-container matColumnDef="date">
+        <ng-container matColumnDef="application_date">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Data da Aplicação</th>
-            <td mat-cell *matCellDef="let vacine"> {{vacine.date}}</td>
+            <td mat-cell *matCellDef="let vacine"> {{vacine.application_date}}</td>
         </ng-container>
 
                 <ng-container matColumnDef="actions">
                         <th mat-header-cell *matHeaderCellDef>Ações</th>
-                        <td mat-cell *matCellDef="let user">
+                        <td mat-cell *matCellDef="let vacine">
                             <div class="action-icons">
                                 <button class="btn btn-action"  title="Editar">
                                     ✏️
