@@ -64,6 +64,21 @@ export const routes: Routes = [
           ),
       },
    ]
+   },
+
+    {
+    path: '',
+    component: LoggedComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'about-vaccines',
+        loadComponent: () =>
+          import('./dashboard/about-vaccines/about-vaccines.component').then(
+            (c) => c.AboutVaccinesComponent
+          ),
+      },
+   ]
    }
 
 

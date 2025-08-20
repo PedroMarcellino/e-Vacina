@@ -50,7 +50,7 @@ export class SidemenuComponent implements OnInit {
         {
           label: 'Sobre as Vacinas',
           icon: 'bi bi-heart-pulse-fill',
-          route: '/my-vaccines',
+          route: '/about-vaccines',
         },
         {
           label: 'Leads',

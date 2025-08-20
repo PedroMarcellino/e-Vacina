@@ -1,0 +1,97 @@
+.about-vaccines-container {
+  height: 100%;
+  background-color: #e9f1f5; 
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  border-radius: 30px;
+  margin-top: 7px;
+
+ 
+  .section-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #0047AB; 
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: -5px;
+  }
+
+  .card-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+mat-card.card {
+  width: 160px;
+  padding: 20px 10px;
+  border: 1px solid #71a7f3;
+  box-shadow: 1px 1px 1px #71a7f3;
+  border-radius: 12px;
+  text-align: center;
+  background-color: #ccffd2;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+mat-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 15px auto;
+  display: block;
+}
+
+mat-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(4, 70, 136, 0.85);
+  margin: 5px 0;
+}
+
+mat-card p {
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+}
+
+mat-card.card:hover {
+  border-color: #007bff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+mat-card.card.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+mat-card.card.active h3,
+mat-card.card.active p {
+  color: #fff;
+}
+
+.criança-title {
+  margin-top: 50px;
+  margin-left: 10px;
+  color: black;
+  text-align: start;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.criança-subtilte {
+  margin-left: 10px;
+  margin-top: -10px;
+}
+
+.section-vaccines{
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+}
