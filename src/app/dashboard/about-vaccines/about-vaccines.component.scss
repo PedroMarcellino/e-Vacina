@@ -19,11 +19,81 @@
     margin-top: -5px;
   }
 
-  .card-container {
+ .card-container {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  gap: 16px;
+  height: 100%;
+  margin-left: 330px;
+}
+
+.card {
+  width: 180px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, border 0.2s;
+  border: 2px solid transparent;
+  border-radius: 12px;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  &.selected {
+    border: 3px solid #1976d2; 
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    transform: translateY(-8px);
+  }
+}
+
+.conteudo {
+  margin-top: 20px;
+  padding: 16px 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.conteudo h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #0d47a1;
+  margin-bottom: 12px;
+}
+
+.vacina-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 13px;
+}
+
+.vacina-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+
+  .emoji {
+    font-size: 1.3rem;
+    margin-top: 2px;
+  }
+
+  strong {
+    font-size: 1rem;
+    color: #1a237e;
+  }
+
+  p {
+    margin: 2px 0;
+    font-size: 0.9rem;
+    color: #444;
+  }
+
+  small {
+    font-size: 0.85rem;
+    color: #000;
+  }
 }
 
 mat-card.card {

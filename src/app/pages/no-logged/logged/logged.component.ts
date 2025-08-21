@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { ToolbarComponent } from '../../../../shared/toolbar/toolbar.component';
 import { SidemenuComponent } from '../../../../shared/header/sidemenu/sidemenu.component';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
@@ -12,6 +13,7 @@ import { map, shareReplay } from 'rxjs/operators';
   standalone: true,
   imports: [
     SidemenuComponent,
+    ToolbarComponent,
     RouterOutlet,
     CommonModule,
     MatSidenavModule,

@@ -35,5 +35,55 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './about-vaccines.component.scss'
 })
 export class AboutVaccinesComponent {
+   selectedGroup: any = null;
+
+  groups = [
+    {
+      title: 'Criança',
+      age: 'Entre 0 e 10 anos',
+      image: 'assets/img/criança.png',
+      content: `
+        A vacinação deve ser realizada em um posto de saúde ou UBS, 
+        com todas as doses aplicadas nas idades previstas pelo calendário vacinal.
+      `
+    },
+    {
+      title: 'Adolescente',
+      age: 'Entre 11 e 19 anos',
+      image: 'assets/img/jovem.png',
+      content: `
+        Adolescentes precisam manter em dia vacinas como HPV, meningocócica e dT (tríplice bacteriana).
+      `
+    },
+    {
+      title: 'Adulto',
+      age: 'Entre 20 e 59 anos',
+      image: 'assets/img/adulto.png',
+      content: `
+        Adultos devem atualizar vacinas como hepatite B, influenza anual e dT reforço a cada 10 anos.
+      `
+    },
+    {
+      title: 'Gestante',
+      age: 'Período gestacional',
+      image: 'assets/img/gestante.png',
+      content: `
+        Gestantes devem tomar vacinas específicas como dTpa (proteção contra coqueluche) e influenza.
+      `,
+      
+    },
+    {
+      title: 'Idoso',
+      age: '60+ anos',
+      image: 'assets/img/idoso.png',
+      content: `
+        Idosos devem se vacinar contra influenza, pneumococo e manter atualizadas as demais vacinas do calendário.
+      `
+    }
+  ];
+
+  selecionarGrupo(group: any) {
+    this.selectedGroup = group;
+  }
 
 }

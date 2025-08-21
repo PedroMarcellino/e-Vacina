@@ -1,6 +1,7 @@
-import { Injectable } from "@angular/core";
+import { Inject, Injectable, PLATFORM_ID } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
+import { isPlatformBrowser } from "@angular/common";
 import { Observable, tap } from "rxjs";
 import { SwalService } from "../services/utils/swal.service";
 
@@ -18,7 +19,8 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private swalService: SwalService
+    private swalService: SwalService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
 
@@ -59,5 +61,12 @@ export class AuthService {
   isAuthenticated(): boolean {
     return !!this.getToken();
   }
-
+   
+    getUser() {
+    if (isPlatformBrowser(this.platformId)) {
+      const user = localStorage.getItem(this.userKey);
+      return user ? JSON.parse(user) : null;
+    }
+    return null;
+  }
 }

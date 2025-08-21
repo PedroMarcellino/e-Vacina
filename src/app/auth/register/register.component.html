@@ -17,6 +17,10 @@
         <label for="senha">Senha:</label>
         <input type="password" id="text" class="form-control" placeholder="Sua senha" [(ngModel)]="password" name="password">
       </div>
+      <div class="form-group text-start">
+        <label for="senha">Confirmar senha:</label>
+        <input type="password" id="text" class="form-control" placeholder="Confirme sua senha" [(ngModel)]="password_confirmation" name="password_confirmation">
+      </div>
       <button type="submit" class="btn btn-primary mt-3 w-100" (click)="register()" >Criar Conta</button>
       <a href="/forgot-my-password" class="d-block mt-3 text-link">Esqueceu sua senha?</a>
 

@@ -8,65 +8,26 @@
         <p class="section-subtitle">Um guia de cada vacina e de cada faixa etária </p>
       </div>
     </div>
-
-    <div class="card-container">
-  <mat-card class="card">
-    <img mat-card-image src="assets/img/criança.jpg" alt="Criança" />
+    
+<div class="card-container">
+  <mat-card 
+    class="card" 
+    *ngFor="let group of groups" 
+    (click)="selecionarGrupo(group)"
+    [class.selected]="selectedGroup?.title === group.title">
+    
+    <img mat-card-image [src]="group.image" [alt]="group.title" />
     <mat-card-content>
-      <h3>Criança</h3>
-      <p>Entre 0 e 10 anos</p>
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card class="card">
-    <img mat-card-image src="assets/img/jovem.jpg" alt="Adolescente" />
-    <mat-card-content>
-      <h3>Adolescente</h3>
-      <p>Entre 11 e 19 anos</p>
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card class="card">
-    <img mat-card-image src="adulto.png" alt="Adulto" />
-    <mat-card-content>
-      <h3>Adulto</h3>
-      <p>Entre 20 e 59 anos</p>
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card class="card">
-    <img mat-card-image src="gestante.png" alt="Gestante" />
-    <mat-card-content>
-      <h3>Gestante</h3>
-      <p>Período gestacional</p>
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card class="card">
-    <img mat-card-image src="idoso.png" alt="Idoso" />
-    <mat-card-content>
-      <h3>Idoso</h3>
-      <p>60+ anos</p>
+      <h3>{{ group.title }}</h3>
+      <p>{{ group.age }}</p>
     </mat-card-content>
   </mat-card>
 </div>
-        
-        <div>
-          <h4 class="criança-title">
-             Vacinas em Crianças
-          </h4>
-          <p class="criança-subtilte">
-            A vacinação deve ser realizada em um posto de saúde ou Unidade Básica de Saúde (UBS), 
-            mediante apresentação do cartão de vacinação da criança. Recomenda-se que todas as doses sejam aplicadas nas idades previstas pelo calendário vacinal. 
-            Entretanto, caso algum prazo tenha sido ultrapassado, é essencial dirigir-se à unidade de saúde para a devida atualização.
-          </p>
-        </div>
 
-        <div class="section-vaccines">
-          <div class="vaccine-tilte">
-            <i class="fa-solid fa-syringe"></i> oii
-          </div>
-        </div>
+<div class="conteudo" *ngIf="selectedGroup">
+  <h3>Vacinas em {{ selectedGroup.title }}</h3>
+  <p [innerHTML]="selectedGroup.content"></p>
+</div>
 
     </div>
 </div>

@@ -5,6 +5,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content style="height: 100dvh;">
+    <app-toolbar (hasChanged)="drawer.toggle()"></app-toolbar>
     <div class="px-4"><router-outlet></router-outlet></div>
   </mat-sidenav-content>
 </mat-sidenav-container>

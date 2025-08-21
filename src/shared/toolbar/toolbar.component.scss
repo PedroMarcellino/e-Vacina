@@ -1,0 +1,31 @@
+.profile{
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
+
+.navbar-toolbar {
+  background-color: rgba(4, 70, 136, 0.85);
+  padding-inline: 25px;
+  
+}
+
+.div-imagem {
+  border-left: 1px solid rgba(4, 70, 136, 0.85);
+  padding-inline: 10px;
+}
+
+.title-name {
+  color: white;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+
+.div-profile {
+  line-height: 4px;
+  color: rgba(4, 70, 136, 0.85);
+  margin-bottom: 1em;
+}
