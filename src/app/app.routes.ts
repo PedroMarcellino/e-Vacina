@@ -79,6 +79,21 @@ export const routes: Routes = [
           ),
       },
    ]
+   },
+
+   {
+    path: '',
+    component: LoggedComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'leads',
+        loadComponent: () =>
+          import('./dashboard/leads/leads.component').then(
+            (c) => c.LeadsComponent
+          ),
+      },
+   ]
    }
 
 

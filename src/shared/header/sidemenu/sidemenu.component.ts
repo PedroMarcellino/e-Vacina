@@ -53,16 +53,16 @@ export class SidemenuComponent implements OnInit {
           route: '/about-vaccines',
         },
         {
-          label: 'Leads',
+          label: 'Caixa de Mensagem',
           icon: 'bi bi-envelope-at-fill',
-          route: '/my-vaccines',
+          route: '/leads',
         },
         {
           label: 'Configurações e Perfil',
           icon: 'bi bi-gear-fill',
           route: '/my-vaccines',
         },
-        
+
       ],
     },
   ];
@@ -100,7 +100,7 @@ export class SidemenuComponent implements OnInit {
       }
     });
   }
-  
+
 
 
 }

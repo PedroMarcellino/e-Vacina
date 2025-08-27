@@ -1,33 +1,45 @@
 <div class="about-vaccines-container p-4">
-    <div class="section mb-3">
-         <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+  <div class="section mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
       <div>
         <h4 class="section-title">
           <i class="bi bi-people-fill me-2"></i> Sobre as Vacinas
         </h4>
-        <p class="section-subtitle">Um guia de cada vacina e de cada faixa etária </p>
+        <p class="section-subtitle">Um guia de cada vacina e de cada faixa etária</p>
       </div>
     </div>
-    
-<div class="card-container">
-  <mat-card 
-    class="card" 
-    *ngFor="let group of groups" 
-    (click)="selecionarGrupo(group)"
-    [class.selected]="selectedGroup?.title === group.title">
-    
-    <img mat-card-image [src]="group.image" [alt]="group.title" />
-    <mat-card-content>
-      <h3>{{ group.title }}</h3>
-      <p>{{ group.age }}</p>
-    </mat-card-content>
-  </mat-card>
-</div>
 
-<div class="conteudo" *ngIf="selectedGroup">
-  <h3>Vacinas em {{ selectedGroup.title }}</h3>
-  <p [innerHTML]="selectedGroup.content"></p>
-</div>
+    <!-- Cards -->
+    <div class="card-container">
+      <mat-card
+        class="card"
+        *ngFor="let group of groups"
+        (click)="selecionarGrupo(group)"
+        [class.selected]="selectedGroup?.title === group.title">
 
+        <img mat-card-image [src]="group.image" [alt]="group.title" />
+        <mat-card-content>
+          <h3>{{ group.title }}</h3>
+          <p>{{ group.age }}</p>
+        </mat-card-content>
+      </mat-card>
     </div>
+
+    <!-- Conteúdo do grupo selecionado -->
+    <div class="conteudo mt-4" *ngIf="selectedGroup">
+      <h3>Vacinas em {{ selectedGroup.title }}</h3>
+      <p [innerHTML]="selectedGroup.content"></p>
+
+      <!-- Lista de vacinas -->
+      <div class="vaccines-list mt-3">
+        <mat-card *ngFor="let vaccine of selectedGroup.vaccines" class="vaccine-card mb-3">
+          <mat-card-content>
+            <h5> 💉 {{ vaccine.name }}</h5>
+            <p>{{ vaccine.description }}</p>
+            <small class="text-muted">{{ vaccine.dose }}</small>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
 </div>

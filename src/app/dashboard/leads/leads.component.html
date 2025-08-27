@@ -1,0 +1,38 @@
+<div class="my-vacine-container p-4">
+  <div class="section mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+      <div>
+        <h4 class="section-title">
+          <i class="bi bi-people-fill me-2"></i> Caixa de Mensagem
+        </h4>
+        <p class="section-subtitle">Monitore as mensagens com facilidade</p>
+      </div>
+    </div>
+
+    <div class="card-style p-3">
+      <div class="table-responsive">
+        <table mat-table  matSort class="table table-borderless vacina-table mb-0">
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
+            <td mat-cell *matCellDef="let leads"> {{leads.name}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>E-mail</th>
+            <td mat-cell *matCellDef="let leads"> {{leads.email}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="mensage">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mensagem</th>
+            <td mat-cell *matCellDef="let leads"> {{leads.mensage}}</td>
+        </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
