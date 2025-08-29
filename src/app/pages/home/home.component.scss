@@ -183,18 +183,18 @@
   line-height: 1.8;
 }
 
-/* ==== Wrapper dos cards lado a lado ==== */
 .cards-wrapper {
   display: flex;
   justify-content: center;
   gap: 25px;
-  flex-wrap: wrap; /* quebra em telas menores */
+  flex-wrap: wrap; 
 }
 
-/* ==== Card Style ==== */
+
 .icon-box-about {
-  flex: 1 1 300px; /* largura mínima e flexível */
+  flex: 1 1 300px; 
   max-width: 350px;
+  max-height: 400px;
   background: #1c2a45;
   border-radius: 20px;
   padding: 35px 25px;
@@ -208,7 +208,6 @@
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
 }
 
-/* Ícone destacado */
 .icon-box-about .icon {
   width: 70px;
   height: 70px;
