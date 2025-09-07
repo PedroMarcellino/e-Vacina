@@ -25,38 +25,25 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
       //   margin-bottom: 16px;
       // }
 
-      .loader {
-  width: 64px;
-  height: 48px;
-  position: relative;
-  animation: split 1s ease-in infinite alternate;
-}
-.loader::before , .loader::after {
-  content: '';
-  position: absolute;
-  height: 48px;
-  width: 48px;
-  border-radius: 50%;
-  left: 0;
-  top: 0;
-  transform: translateX(-10px);
-  background: #FF3D00;
-  opacity: 0.75;
-  backdrop-filter: blur(20px);
-}
+    .loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #FFF;
+    border-bottom-color: #0048ffff;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
 
-.loader::after {
-  left: auto;
-  right: 0;
-  background: #193a85;
-  transform: translateX(10px);
-}
-
-@keyframes split {
- 0% , 25%{ width: 64px }
- 100%{ width: 148px }
-}
-  
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
     `,
   ],
 })

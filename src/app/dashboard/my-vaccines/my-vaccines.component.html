@@ -44,13 +44,13 @@
 
                 <ng-container matColumnDef="actions">
                         <th mat-header-cell *matHeaderCellDef>Ações</th>
-                        <td mat-cell *matCellDef="let vacine">
+                        <td mat-cell *matCellDef="let user">
                             <div class="action-icons">
-                                <button class="btn btn-action"  title="Editar">
-                                    ✏️
+                                <button class="btn btn-action" (click)="openDialog(user)" title="Editar">
+                                    <i class="bi bi-pencil-fill"></i>
                                 </button>
-                                <button class="btn btn-action" title="Excluir">
-                                    🗑️
+                                <button class="btn btn-action" (click)="forceDeleteUser(user)" title="Excluir">
+                                    <i class="bi bi-trash-fill"></i>
                                 </button>
                             </div>
                         </td>

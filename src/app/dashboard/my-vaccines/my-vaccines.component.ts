@@ -64,9 +64,9 @@ export class MyVaccinesComponent implements OnInit {
     private authService: AuthService,
     private vaccinesservice: VaccinesService,
     private swalService: SwalService,
-    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -111,4 +111,24 @@ export class MyVaccinesComponent implements OnInit {
           }
         });
       }
+
+  editUser(vaccine: any) {
+    this.router.navigate([`/form-vaccines/${vaccine.id}`]);
+  }
+
+  forceDeleteUser(vacine: any) {
+    this.swalService.popup({
+      title: 'Excluir Vacina',
+      message: `Deseja excluir permanentemente ${vacine.name}? Essa ação não poderá ser desfeita.`,
+      onApprove: async (): Promise<void> => {
+        try {
+          await this.vaccinesservice.forceDelete(vacine.id).toPromise();
+          this.swalService.success('Excluído', 'Vacina excluída com sucesso.');
+          this.findAllVaccines();
+        } catch (error) {
+          this.swalService.error('Erro', 'Erro ao excluir a vacina.');
+        }
+      }
+    });
+  }
 }
