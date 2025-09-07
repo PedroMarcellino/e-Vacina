@@ -6,6 +6,7 @@ import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/c
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { routes } from './app.routes';
 import { TokenInterceptor } from './auth/token.interceptor';
+import { provideNgxMask } from 'ngx-mask';
 
 
 
@@ -15,6 +16,8 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideAnimationsAsync(),
     provideHttpClient(withFetch(), withInterceptorsFromDi()),
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, provideAnimationsAsync()
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, provideAnimationsAsync(),
+
+    provideNgxMask()
   ]
 };

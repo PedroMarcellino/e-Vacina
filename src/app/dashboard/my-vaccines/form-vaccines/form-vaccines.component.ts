@@ -46,7 +46,7 @@ import { text } from 'stream/consumers';
   styleUrl: './form-vaccines.component.scss'
 })
 export class FormVaccinesComponent {
-      form!: FormGroup;
+  form!: FormGroup;
   cardTitle: string = 'Cadastro de Vacina'
   formLabels: any[] = [
     {

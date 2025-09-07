@@ -7,15 +7,16 @@
         </h4>
         <p class="section-subtitle">Monitore as mensagens com facilidade</p>
       </div>
+      <a (click)="openDialog()" class="btn btn-gold">+ Novo Recado </a>
     </div>
 
     <div class="card-style p-3">
-      <div class="table-responsive">
-        <table mat-table  matSort class="table table-borderless vacina-table mb-0">
+      <div class="table-responsive ">
+        <table mat-table [dataSource]="dataSource" matSort class="table table-borderless vacina-table mb-0">
 
-        <ng-container matColumnDef="name">
+        <ng-container matColumnDef="full_name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
-            <td mat-cell *matCellDef="let leads"> {{leads.name}}</td>
+            <td mat-cell *matCellDef="let leads"> {{leads.full_name}}</td>
         </ng-container>
 
         <ng-container matColumnDef="email">
@@ -23,10 +24,30 @@
             <td mat-cell *matCellDef="let leads"> {{leads.email}}</td>
         </ng-container>
 
-        <ng-container matColumnDef="mensage">
+        <ng-container matColumnDef="phone">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header > Telefone</th>
+                        <td mat-cell *matCellDef="let leads"> {{ (leads.phone | mask: '(00) 00000-0000' )
+                            || '-' }} </td>
+                    </ng-container>
+
+        <ng-container matColumnDef="message">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Mensagem</th>
-            <td mat-cell *matCellDef="let leads"> {{leads.mensage}}</td>
+            <td mat-cell *matCellDef="let leads"> {{leads.message}}</td>
         </ng-container>
+
+        <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef>Ações</th>
+                        <td mat-cell *matCellDef="let user">
+                            <div class="action-icons">
+                                <button class="btn btn-action" (click)="openDialog(user)" title="Editar">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </button>
+                                <button class="btn btn-action" (click)="forceDeleteUser(user)" title="Excluir">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
