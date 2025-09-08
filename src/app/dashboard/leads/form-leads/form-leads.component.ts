@@ -60,6 +60,7 @@ export class FormLeadsComponent {
         type: 'text',
         placeholder: 'Informe o nome',
         control: 'full_name',
+        colClass: 'col-md-6 col-sm-12'
       },
       {
         label: 'E-mail',
@@ -67,6 +68,7 @@ export class FormLeadsComponent {
         type: 'email',
         placeholder: 'Informe o e-mail',
         control: 'email',
+        colClass: 'col-md-6 col-sm-12'
       },
       {
         label: 'Telefone',
@@ -74,6 +76,7 @@ export class FormLeadsComponent {
         type: 'text',
         placeholder: 'Informe o telefone',
         control: 'phone',
+        colClass: 'col-md-6 col-sm-12'
       },
       {
         label: 'Mensagem',
@@ -81,6 +84,7 @@ export class FormLeadsComponent {
         type: 'text',
         placeholder: 'Informe a mensagem',
         control: 'message',
+        colClass: 'col-md-6 col-sm-12'
       }
     ];
 

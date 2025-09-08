@@ -2,39 +2,42 @@
 
 <mat-dialog-content>
   <form [formGroup]="form" class="form-container" (keydown.enter)="handleEnter($any($event))">
-    <div *ngFor="let label of formLabels" class="form-field">
+    <div class="row">
+      <div *ngFor="let label of formLabels" [ngClass]="label.colClass + ''">
 
-      <div *ngIf="label.fieldtype === 'select'; else textField">
-        <mat-label class="ng-label">{{ label.label }} *</mat-label>
+        <div *ngIf="label.fieldtype === 'select'; else textField">
+          <mat-label class="ng-label-select">{{ label.label }} *</mat-label>
 
-        <ng-select class="ng-select-custom"
-          [items]="label.options"
-          [formControlName]="label.control"
-          [placeholder]="label.placeholder"
-          [searchable]="false"
-          [clearable]="true">
-        </ng-select>
+          <ng-select
+            appendTo="body"
+            class="ng-select-custom"
+            [items]="label.options"
+            [formControlName]="label.control"
+            [placeholder]="label.placeholder"
+            [clearable]="true">
+          </ng-select>
 
-        
-        <mat-error *ngIf="form.get(label.control)?.hasError('required') && form.get(label.control)?.touched">
-          Campo obrigatório
-        </mat-error>
+          <mat-error *ngIf="form.get(label.control)?.hasError('required') && form.get(label.control)?.touched">
+            Campo obrigatório
+          </mat-error>
+        </div>
+
+        <ng-template #textField>
+          <label class="ng-label">{{ label.label }} *</label>
+          <input
+            class="ng-input mb-1"
+            appendTo="body"
+            [type]="label.type || 'text'"
+            [formControlName]="label.control"
+            [placeholder]="label.placeholder"
+            mask="(00) 0000-0000||(00) 00000-0000"
+            />
+
+          <mat-error *ngIf="form.get(label.control)?.hasError('required') && form.get(label.control)?.touched">
+            Campo obrigatório
+          </mat-error>
+        </ng-template>
       </div>
-
-      <ng-template #textField>
-        <label class="ng-label">{{ label.label }} *</label>
-        <input
-          class="ng-input"
-          [type]="label.type || 'text'"
-          [formControlName]="label.control"
-          [placeholder]="label.placeholder" />
-
-        
-        <mat-error *ngIf="form.get(label.control)?.hasError('required') && form.get(label.control)?.touched">
-          Campo obrigatório
-        </mat-error>
-      </ng-template>
-
     </div>
 
     <mat-dialog-actions align="end">

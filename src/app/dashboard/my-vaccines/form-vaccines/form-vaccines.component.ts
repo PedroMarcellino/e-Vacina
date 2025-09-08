@@ -26,22 +26,22 @@ import { text } from 'stream/consumers';
   selector: 'app-form-vaccines',
   standalone: true,
   imports: [
-      FormsModule,
-      ReactiveFormsModule,
-      RouterModule,
-      MatFormFieldModule,
-      CommonModule,
-      MatTableModule,
-      MatPaginatorModule,
-      MatSortModule,
-      MatButtonModule,
-      MatIconModule,
-      NgxMaskPipe,
-      MatInputModule,
-      MatDialogModule,
-      NgSelectModule,
-
-  ],
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    MatFormFieldModule,
+    CommonModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatButtonModule,
+    MatIconModule,
+    NgxMaskPipe,
+    MatInputModule,
+    MatDialogModule,
+    NgSelectModule,
+    NgxMaskDirective
+],
   templateUrl: './form-vaccines.component.html',
   styleUrl: './form-vaccines.component.scss'
 })
@@ -54,27 +54,31 @@ export class FormVaccinesComponent {
       fieldtype: 'input',
       type: 'text',
       placeholder: 'Informe o nome da vacina',
-      control: 'name'
+      control: 'name',
+      colClass: 'col-md-7 col-sm-12'
     },
     {
       label: 'Faixa Etária',
       fieldtype: 'select',
       placeholder: '',
       control: 'age_range',
-      options: ['Adulto', 'Bebe','Idoso', 'Jovem']
+      options: ['Adulto', 'Bebe','Idoso', 'Jovem'],
+      colClass: 'col-md-5 col-sm-12'
     },
     {
       label: 'Status',
       fieldtype: 'select',
       control: 'status',
-      options: ['Tomada', 'A Tomar', 'A Guardando Aplicação']
+      options: ['Tomada', 'A Tomar', 'Aguardando Aplicação'],
+      colClass: 'col-md-6 col-sm-12'
     },
     {
       label: 'Data da Aplicação',
       fieldtype: 'input',
       type: 'date',
       placeholder: 'Informe a Data',
-      control: 'application_date'
+      control: 'application_date',
+      colClass: 'col-md-6 col-sm-12'
     },
   ];
 
