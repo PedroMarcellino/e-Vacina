@@ -94,6 +94,51 @@ export const routes: Routes = [
           ),
       },
    ]
+   },
+
+   {
+    path: '',
+    component: LoggedComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'family',
+        loadComponent: () =>
+          import('./dashboard/family/family.component').then(
+            (c) => c.FamilyComponent
+          ),
+      },
+   ]
+   },
+
+    {
+    path: '',
+    component: LoggedComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'agenda',
+        loadComponent: () =>
+          import('./dashboard/agenda/agenda.component').then(
+            (c) => c.AgendaComponent
+          ),
+      },
+   ]
+   },
+
+    {
+    path: '',
+    component: LoggedComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'my-profile',
+        loadComponent: () =>
+          import('./dashboard/my-profile/my-profile.component').then(
+            (c) => c.MyProfileComponent
+          ),
+      },
+   ]
    }
 
 

@@ -28,23 +28,24 @@ import { text } from 'stream/consumers';
   selector: 'app-form-leads',
   standalone: true,
   imports: [
-    
-      FormsModule,
-      ReactiveFormsModule,
-      RouterModule,
-      MatFormFieldModule,
-      CommonModule,
-      MatTableModule,
-      MatPaginatorModule,
-      MatSortModule,
-      MatButtonModule,
-      MatIconModule,
-      NgxMaskPipe,
-      MatInputModule,
-      MatDialogModule,
-      NgSelectModule,
 
-  ],
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    MatFormFieldModule,
+    CommonModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatButtonModule,
+    MatIconModule,
+    NgxMaskPipe,
+    MatInputModule,
+    MatDialogModule,
+    NgSelectModule,
+    NgxMaskDirective
+],
+
   templateUrl: './form-leads.component.html',
   styleUrl: './form-leads.component.scss'
 })
@@ -56,7 +57,7 @@ export class FormLeadsComponent {
     formLabels: any[] = [
       {
         label: 'Nome',
-        field_type: 'input',
+        fieldtype: 'input',
         type: 'text',
         placeholder: 'Informe o nome',
         control: 'full_name',
@@ -64,15 +65,15 @@ export class FormLeadsComponent {
       },
       {
         label: 'E-mail',
-        field_type: 'input',
-        type: 'email',
+        fieldtype: 'input',
+        type: 'text',
         placeholder: 'Informe o e-mail',
         control: 'email',
         colClass: 'col-md-6 col-sm-12'
       },
       {
         label: 'Telefone',
-        field_type: 'input',
+        fieldtype: 'input',
         type: 'text',
         placeholder: 'Informe o telefone',
         control: 'phone',
@@ -80,7 +81,7 @@ export class FormLeadsComponent {
       },
       {
         label: 'Mensagem',
-        field_type: 'input',
+        fieldtype: 'input',
         type: 'text',
         placeholder: 'Informe a mensagem',
         control: 'message',
@@ -96,7 +97,7 @@ export class FormLeadsComponent {
           private swalService: SwalService,
         ) { }
 
-         ngOnInit(): void {
+    ngOnInit(): void {
       this.initializeForm();
   
       if (this.data) {
@@ -129,7 +130,7 @@ export class FormLeadsComponent {
             this.LeadsService.create(leadsData).subscribe({
               next: res => {
                 this.swalService.success('Sucesso!', 'Lead cadastrado com sucesso.');
-             //   this.dialogRef.close(res);
+                this.dialogRef.close(res);
               },
               error: () => {
                 this.swalService.error('Erro!', 'Erro ao cadastrar o lead.');
@@ -139,7 +140,7 @@ export class FormLeadsComponent {
             this.LeadsService.update(leadsData.id!, leadsData).subscribe({
               next: res => {
                 this.swalService.success('Sucesso!', 'Lead atualizado com sucesso.');
-          //      this.dialogRef.close(res);
+                this.dialogRef.close(res);
               },
               error: () => {
                 this.swalService.error('Erro!', 'Erro ao atualizar o lead.');

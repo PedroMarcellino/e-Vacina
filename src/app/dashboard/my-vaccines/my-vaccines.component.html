@@ -7,7 +7,10 @@
         </h4>
         <p class="section-subtitle">Monitore suas vacinas com facilidade</p>
       </div>
-      <button class="btn btn-gold" (click)="openDialog()">+ Cadastrar Vacina</button>
+      <button class="btn btn-gold" (click)="openDialog()">
+        <i class="bi bi-plus-square icon-add"></i>
+        Vacina
+      </button>
     </div>
 
     <div class="card-style p-3">
@@ -30,7 +33,8 @@
       <span class="status-badge"
             [ngClass]="{
               'status-tomada': vacine.status === 'Tomada',
-              'status-a-tomar': vacine.status === 'A Tomar'
+              'status-a-tomar': vacine.status === 'A Tomar',
+              'status-aguardando-aplicacao': vacine.status === 'Aguardando Aplicação'
             }">
         {{ vacine.status }}
       </span>

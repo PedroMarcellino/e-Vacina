@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 import { LeadsService } from '../../services/leads/leads.service';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { FormLeadsComponent } from './form-leads/form-leads.component';
+import { ViewLeadsComponent } from './view-leads/view-leads.component';
 
 interface LeadsData {
   full_name: string;
@@ -85,6 +86,17 @@ export class LeadsComponent {
       }
     });
   }
+
+  openViewDialog(leads?: LeadsData) {
+    const dialogRef = this.dialog.open(ViewLeadsComponent, {
+    width: '700px',
+    height: '490px',
+    panelClass: 'mat-dialog-content',
+    data: leads, 
+    autoFocus: false,
+    disableClose: true
+  });
+}
 
   loadUsers(): void {
     this.leadsService.findAll().subscribe({

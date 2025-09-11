@@ -7,7 +7,10 @@
         </h4>
         <p class="section-subtitle">Monitore as mensagens com facilidade</p>
       </div>
-      <a (click)="openDialog()" class="btn btn-gold">+ Novo Recado </a>
+      <button class="btn btn-gold" (click)="openDialog()">
+        <i class="bi bi-plus-square icon-add"></i>
+        Recado
+      </button>
     </div>
 
     <div class="card-style p-3">
@@ -41,6 +44,9 @@
                             <div class="action-icons">
                                 <button class="btn btn-action" (click)="openDialog(user)" title="Editar">
                                     <i class="bi bi-pencil-fill"></i>
+                                </button>
+                                <button class="btn btn-action"  (click)="openViewDialog(user)"  title="Visualizar">
+                                <i class="bi bi-eye"></i>
                                 </button>
                                 <button class="btn btn-action" (click)="forceDeleteUser(user)" title="Excluir">
                                     <i class="bi bi-trash-fill"></i>

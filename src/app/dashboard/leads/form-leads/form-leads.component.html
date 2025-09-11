@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>{{ cardTitle }}</h2>
+<h2 mat-dialog-title class="mat-dialog-title">{{ cardTitle }}</h2>
 
 <mat-dialog-content>
   <form [formGroup]="form" class="form-container" (keydown.enter)="handleEnter($any($event))">
@@ -6,7 +6,9 @@
       <div *ngFor="let label of formLabels" [ngClass]="label.colClass + ''">
 
         <div *ngIf="label.fieldtype === 'select'; else textField">
-          <mat-label class="ng-label-select">{{ label.label }} *</mat-label>
+          <mat-label class="ng-label-select">
+            {{ label.label }} <div class="required">*</div>
+          </mat-label>
 
           <ng-select
             appendTo="body"
@@ -30,6 +32,7 @@
             [type]="label.type || 'text'"
             [formControlName]="label.control"
             [placeholder]="label.placeholder"
+            [mask]="label.control === 'phone' ? '(00) 00000-0000' : null"
             />
 
           <mat-error *ngIf="form.get(label.control)?.hasError('required') && form.get(label.control)?.touched">

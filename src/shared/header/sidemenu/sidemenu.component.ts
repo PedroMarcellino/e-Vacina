@@ -53,6 +53,16 @@ export class SidemenuComponent implements OnInit {
           route: '/about-vaccines',
         },
         {
+          label: 'Familiares',
+          icon: 'bi bi-people-fill',
+          route: '/family',
+        },
+        {
+          label: 'Agendamentos',
+          icon: 'bi bi-clipboard-plus-fill',
+          route: '/agenda',
+        },
+        {
           label: 'Caixa de Mensagem',
           icon: 'bi bi-envelope-at-fill',
           route: '/leads',
@@ -60,7 +70,15 @@ export class SidemenuComponent implements OnInit {
         {
           label: 'Configurações e Perfil',
           icon: 'bi bi-gear-fill',
-          route: '/my-vaccines',
+          route: '/my-profile',
+        },
+        {
+          label: 'Sair',
+          icon: 'bi bi-box-arrow-right',
+          // route: '/',
+          handler: () => {
+            this.confirmLogout();
+          },
         },
 
       ],

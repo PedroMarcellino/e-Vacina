@@ -30,7 +30,7 @@
             [type]="label.type || 'text'"
             [formControlName]="label.control"
             [placeholder]="label.placeholder"
-            mask="(00) 0000-0000||(00) 00000-0000"
+            [mask]="label.control === 'phone' ? '(00) 00000-0000' : null"
             />
 
           <mat-error *ngIf="form.get(label.control)?.hasError('required') && form.get(label.control)?.touched">

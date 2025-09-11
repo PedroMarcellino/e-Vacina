@@ -4,7 +4,7 @@
   background-color: #fff;
   font-family: 'Poppins', sans-serif;
   color: #333;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgb(43, 137, 245);
   max-width: 500px;
   width: 100%; 
 }
@@ -29,14 +29,14 @@
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 6px;
-  color: #333;
+  color: #0339d8;
 }
 
 .ng-label-select {
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 6px;
-  color: #333;
+  color: #0339d8;
 }
 
 .ng-input {
@@ -96,6 +96,7 @@ mat-dialog-title {
 mat-dialog-content {
   padding-top: 8px;
   padding-bottom: 16px;
+  background-color: #e9f1f5;
 }
 
 button[mat-button] {

@@ -11,14 +11,19 @@
             </span>
             {{ submenu.label }}
           </a>
+          <a (click)="confirmLogout()" *ngIf="submenu.handler" style="color: #fff">
+            <span class="me-2">
+              <i [class]="submenu.icon"></i>
+            </span> Sair
+          </a>
         </div>
       </div>
     </div>
   </div>
   <div class="nav-footer text-center py-3">
-    <mat-divider class="my-2"></mat-divider>
+     <!-- <mat-divider class="my-2"></mat-divider>
     <button mat-button class="logout-button" (click)="confirmLogout()">
-      <mat-icon class="me-1"></mat-icon> Sair
-    </button>
+      <mat-icon class="me-1">logout</mat-icon> Sair
+    </button> -->
   </div>
 </div>
