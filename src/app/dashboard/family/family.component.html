@@ -1,1 +1,64 @@
-<p>family works!</p>
+<div class="family-container p-4">
+  <div class="section mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+      <div>
+        <h4 class="section-title">
+          <i class="bi bi-people-fill me-2"></i> Familiares
+        </h4>
+        <p class="section-subtitle">Monitore sua família com facilidade</p>
+      </div>
+      <button class="btn btn-gold" (click)="openDialog()">
+        <i class="bi bi-plus-square icon-add"></i>
+        Família
+      </button>
+    </div>
+
+    <div class="card-style p-3">
+      <div class="table-responsive ">
+        <table mat-table [dataSource]="dataSource" matSort class="table table-borderless family-table mb-0">
+
+        <ng-container matColumnDef="relative_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
+            <td mat-cell *matCellDef="let family"> {{family.relative_name}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="age">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Idade</th>
+            <td mat-cell *matCellDef="let family"> {{family.age}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="name_vaccine">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header > Nome da Vacina</th>
+                        <td mat-cell *matCellDef="let family"> {{ family.name_vaccine }} </td>
+                    </ng-container>
+
+        <ng-container matColumnDef="application_date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Data da Aplicação</th>
+            <td mat-cell *matCellDef="let family"> {{family.application_date}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef>Ações</th>
+                        <td mat-cell *matCellDef="let family">
+                            <div class="action-icons">
+                                <button class="btn btn-action" (click)="openDialog(family)" title="Editar">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </button>
+                                <button class="btn btn-action" (click)="openViewDialog(family)"  title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                                </button>
+                                <button class="btn btn-action" (click)="forceDeleteUser(family)" title="Excluir">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

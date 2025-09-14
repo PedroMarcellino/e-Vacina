@@ -1,1 +1,48 @@
-<p>view-vaccines works!</p>
+<h2 mat-dialog-title>Detalhes sobre a vacina: {{vaccine.name}}</h2>
+
+<mat-dialog-content>
+    
+    
+<div class="field">
+    <span class="title">Nome da vacina:</span>
+  <div class="content">
+    <span class="info">{{vaccine.name}}</span>
+  </div>
+</div>
+
+<div class="field">
+    <span class="title">Faixa etária:</span>
+  <div class="content">
+    <span class="info">{{vaccine.age_range}}</span>
+  </div>
+</div>
+
+<div class="field">
+    <span class="title">Status:</span>
+  <div class="content">
+        <span class="status-badge"
+            [ngClass]="{
+              'status-tomada': vaccine.status === 'Tomada',
+              'status-a-tomar': vaccine.status === 'A Tomar',
+              'status-aguardando-aplicacao': vaccine.status === 'Aguardando Aplicação'
+            }">
+        {{ vaccine.status }}
+      </span>
+  </div>
+</div>
+
+<div class="field">
+    <span class="title">Data da aplicação</span>
+  <div class="content">
+    <span class="info">{{vaccine.application_date}}</span>
+  </div>
+</div>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button class="button-close" (click)="close()">Fechar</button>
+</mat-dialog-actions>
+
+

@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { Vaccines } from '../../../models/vaccines.model';
 import { FormVaccinesComponent } from './form-vaccines/form-vaccines.component';
+import { ViewVaccinesComponent } from './view-vaccines/view-vaccines.component';
 
 interface VaccinesData {
   name: string;
@@ -109,6 +110,17 @@ export class MyVaccinesComponent implements OnInit {
           if (result) {
             this.findAllVaccines();
           }
+        });
+      }
+
+      openViewDialog(vaccine?: VaccinesData) {
+          const dialogRef = this.dialog.open(ViewVaccinesComponent, {
+          width: '700px',
+          height: '490px',
+          panelClass: 'mat-dialog-content',
+          data: vaccine, 
+          autoFocus: false,
+          disableClose: true
         });
       }
 

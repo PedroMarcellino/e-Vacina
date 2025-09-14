@@ -111,20 +111,6 @@ export const routes: Routes = [
    ]
    },
 
-    {
-    path: '',
-    component: LoggedComponent,
-    canActivate: [AuthGuard],
-    children: [
-      {
-        path: 'agenda',
-        loadComponent: () =>
-          import('./dashboard/agenda/agenda.component').then(
-            (c) => c.AgendaComponent
-          ),
-      },
-   ]
-   },
 
     {
     path: '',

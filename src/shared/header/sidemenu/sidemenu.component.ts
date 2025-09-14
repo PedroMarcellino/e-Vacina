@@ -58,11 +58,6 @@ export class SidemenuComponent implements OnInit {
           route: '/family',
         },
         {
-          label: 'Agendamentos',
-          icon: 'bi bi-clipboard-plus-fill',
-          route: '/agenda',
-        },
-        {
           label: 'Caixa de Mensagem',
           icon: 'bi bi-envelope-at-fill',
           route: '/leads',
