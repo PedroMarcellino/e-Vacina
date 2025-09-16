@@ -168,4 +168,29 @@
   .icon-add {
     margin-right: 3px;
   }
+
+  .status-a-tomar {
+    background-color: #dc2626;
+    border-radius: 10px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+  }
+   .status-vacinado {
+    background-color: #09af00;
+    border-radius: 10px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+  }
+   .status-aguardando-aplicacao {
+    background-color: #fff70c;
+    border-radius: 10px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: black;
+  }
 }

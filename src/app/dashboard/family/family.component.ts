@@ -23,6 +23,7 @@ interface FamilyData {
  // name: string;
   relative_name: string;
   age: string;
+  status: string;
   name_vaccine: string;
   application_date: string;
   actions: string,
@@ -56,6 +57,7 @@ export class FamilyComponent {
           'relative_name',
           'age',
           'name_vaccine',
+          'status',
           'application_date',
           'actions'
         ];
@@ -92,8 +94,8 @@ export class FamilyComponent {
   
     openViewDialog(family?: FamilyData) {
       const dialogRef = this.dialog.open(ViewFamilyComponent, {
-      width: '700px',
-      height: '490px',
+      width: '800px',
+      height: '570px',
       panelClass: 'mat-dialog-content',
       data: family, 
       autoFocus: false,

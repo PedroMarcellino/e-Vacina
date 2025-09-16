@@ -68,6 +68,13 @@ export class FormFamilyComponent {
       colClass: 'col-md-5 col-sm-12'
     },
     {
+      label: 'Status',
+      fieldtype: 'select',
+      control: 'status',
+      options: ['Vacinado', 'A Tomar', 'Aguardando Aplicação'],
+      colClass: 'col-md-6 col-sm-12'
+    },
+    {
       label: 'Nome da vacina',
       fieldtype: 'input',
       type: 'text',
@@ -162,6 +169,7 @@ save(): void {
      // name: [null, Validators.required],
       relative_name: [null, Validators.required],
       name_vaccine: [null, Validators.required],
+      status: [null, Validators.required],
       age: [null, Validators.required],
       application_date: [null, Validators.required],
     });

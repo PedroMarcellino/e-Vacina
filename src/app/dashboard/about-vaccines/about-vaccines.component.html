@@ -34,9 +34,9 @@
       <div class="vaccines-list mt-3">
         <mat-card *ngFor="let vaccine of selectedGroup.vaccines" class="vaccine-card mb-3">
           <mat-card-content>
-            <h5> 💉 {{ vaccine.name }}</h5>
+            <h3> 💉 {{ vaccine.name }}</h3>
             <p>{{ vaccine.description }}</p>
-            <small class="text-muted">{{ vaccine.dose }}</small>
+            <p class="text-muted">{{ vaccine.dose }}</p>
           </mat-card-content>
         </mat-card>
       </div>

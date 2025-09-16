@@ -119,14 +119,18 @@ mat-card img {
 mat-card h3 {
   font-size: 16px;
   font-weight: 600;
+  font-family: 'Poppins', sans-serif;
   color: rgba(4, 70, 136, 0.85);
   margin: 5px 0;
 }
 
 mat-card p {
-  font-size: 14px;
+  font-size: 17px;
+  font-weight: 400;
   color: #555;
+  font-family: 'Poppins', sans-serif;
   margin: 0;
+  margin-top: 10px;
 }
 
 mat-card.card:hover {
@@ -162,6 +166,15 @@ mat-card.card.active p {
 .section-vaccines{
   margin-top: 30px;
   margin-left: 10px;
+}
+
+.idade {
+  font-size: 17px;
+  font-weight: 400;
+  color: red;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  margin-top: 10px;
 }
 
 }

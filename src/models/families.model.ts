@@ -4,6 +4,7 @@ export interface Families {
   relative_name: string;
   age: string;
   name_vaccine: string;
+  status: string;
   application_date: string;
   createdAt?: Date;
   updatedAt?: Date;
