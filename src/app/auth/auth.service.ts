@@ -16,6 +16,8 @@ export class AuthService {
 
   private apiUrl = 'http://localhost:8000/api';
 
+  private user: any = null;
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -62,11 +64,22 @@ export class AuthService {
     return !!this.getToken();
   }
    
-    getUser() {
+   getUser() {
     if (isPlatformBrowser(this.platformId)) {
       const user = localStorage.getItem(this.userKey);
-      return user ? JSON.parse(user) : null;
+      this.user = user ? JSON.parse(user) : null; 
+      return this.user;
     }
     return null;
+  }
+
+  setUser(user: any) {
+    this.user = user;
+    localStorage.setItem(this.userKey, JSON.stringify(user));
+  }
+
+  clearUser() {
+    this.user = null;
+    localStorage.removeItem(this.userKey);
   }
 }

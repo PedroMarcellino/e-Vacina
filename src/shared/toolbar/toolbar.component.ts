@@ -19,7 +19,7 @@ import { AuthService } from '../../app/auth/auth.service';
   styleUrl: './toolbar.component.scss'
 })
 export class ToolbarComponent implements OnInit {
-
+  previewUrl: string | ArrayBuffer | null = null;
   hidden = true;
   @Input() drawer: any;
   @Output() hasChanged: EventEmitter<any> = new EventEmitter();

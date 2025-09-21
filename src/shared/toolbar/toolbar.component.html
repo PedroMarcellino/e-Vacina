@@ -3,7 +3,10 @@
     <mat-icon class="menu-header-icon text-white">menu_open</mat-icon>
   </button>
   <div class="div-imagem d-flex gap-2 align-items-center justify-content-center">
-    <img class="profile" src="assets/img/adulto.png" alt="Foto" />
+    <img
+     class="profile" 
+     [src]="previewUrl || user.photo_url " 
+     alt="Foto" />
     <div class="div-profile align-items-center justify-content-center">
       <h2 class="title-name mb-0">{{ user?.name }}</h2>
     </div>

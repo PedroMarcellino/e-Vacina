@@ -24,4 +24,16 @@ export class VaccinesService extends HttpRestfulService {
     public override forceDelete(id: number): Observable<any> {
       return this.http.delete(`${this.apiUrl}/vaccines/${id}`);
   }
+
+  getVaccinesCount(): Observable<{ total: number }> {
+  return this.http.get<{ total: number }>(
+    `${this.apiUrl}/vaccines/count?ts=${Date.now()}`
+  );
+}
+
+getLastVaccine(): Observable<any> {
+    return this.http.get<any>(
+      `${this.apiUrl}/vaccines/last?ts=${Date.now()}`
+    );
+  }
 }

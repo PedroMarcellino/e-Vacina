@@ -52,11 +52,11 @@ export class SidemenuComponent implements OnInit {
           icon: 'bi bi-heart-pulse-fill',
           route: '/about-vaccines',
         },
-        {
-          label: 'Familiares',
-          icon: 'bi bi-people-fill',
-          route: '/family',
-        },
+       // {
+      //    label: 'Familiares',
+      //    icon: 'bi bi-people-fill',
+       //   route: '/family',
+    //    },
         {
           label: 'Caixa de Mensagem',
           icon: 'bi bi-envelope-at-fill',

@@ -1,1 +1,60 @@
-<p>my-profile works!</p>
+<div class="profile-container">
+  <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+    <div>
+      <h4 class="section-title">
+        <i class="bi bi-gear-wide-connected"></i> Configurações e Meu perfil
+      </h4>
+      <p class="section-subtitle">Configurações da sua conta</p>
+    </div>
+  </div>
+
+  <div class="profile-header text-center mb-4">
+    <div class="profile-avatar position-relative d-inline-block">
+      <img 
+        [src]="previewUrl || user.photo_url " 
+        alt="Foto de perfil" 
+        class="rounded-circle border" 
+        width="120" height="120"
+      >
+
+      <input 
+        type="file" 
+        #fileInput 
+        accept="image/*" 
+        (change)="onFileSelected($event)" 
+        hidden
+      >
+
+      <button class="btn-avatar" (click)="fileInput.click()">
+        <i class="bi bi-camera-fill"></i>
+      </button>
+    </div>
+
+    <h4 class="profile-name mt-3">{{ user?.name }}</h4>
+    <p class="profile-role">Usuário do sistema</p>
+
+    
+    <button 
+      class="btn btn-edit mt-3" 
+      *ngIf="selectedFile" 
+      (click)="uploadPhoto()"
+    >
+      <i class="bi bi-check-circle"></i> Salvar foto
+    </button>
+  </div>
+
+  <button class="btn-edit">
+    <i class="bi bi-pencil-square"></i> Editar perfil
+  </button>
+
+  <div class="profile-info">
+    <div class="profile-card">
+      <h5><i class="bi bi-person-fill"></i> Nome</h5>
+      <p>{{ user?.name }}</p>
+    </div>
+    <div class="profile-card">
+      <h5><i class="bi bi-envelope-fill"></i> E-mail</h5>
+      <p>{{ user?.email }}</p>
+    </div>
+  </div>
+</div>
