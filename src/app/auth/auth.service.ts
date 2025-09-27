@@ -60,6 +60,14 @@ export class AuthService {
   });
 }
 
+ forgotPassword(email: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/forgot-password`, { email });
+  }
+
+  resetPassword(data: { email: string; token: string; password: string; password_confirmation: string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/reset-password`, data);
+  }
+
   logout() {
   localStorage.removeItem(this.tokenKey);
   localStorage.removeItem(this.userKey);
