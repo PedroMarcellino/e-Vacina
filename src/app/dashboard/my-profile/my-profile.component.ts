@@ -3,6 +3,7 @@ import { AuthService } from '../../auth/auth.service';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { UsersService } from '../../services/users/users.service';
+import { SwalService } from '../../services/utils/swal.service';
 @Component({
   selector: 'app-my-profile',
   standalone: true,
@@ -19,7 +20,8 @@ export class MyProfileComponent {
 
   constructor(
     private authService: AuthService,
-    private http: HttpClient
+    private http: HttpClient,
+    private swalService: SwalService,
   ) {}
 
   onFileSelected(event: Event): void {
@@ -35,7 +37,7 @@ export class MyProfileComponent {
     }
   }
 
-  uploadPhoto(): void {
+uploadPhoto(): void {
   if (!this.selectedFile) return;
 
   const formData = new FormData();
@@ -49,15 +51,18 @@ export class MyProfileComponent {
       console.log('Upload feito com sucesso', res);
 
       this.previewUrl = res.photo_url;
+      this.authService.setUser(res.user);
+      this.user = res.user;
 
-      this.authService.setUser(res.user); 
-      this.user = res.user;               
+      this.swalService.success('Sucesso!', 'Foto enviada com sucesso!')
+        .then(() => {
+          window.location.reload();
+        });
     },
     error: (err) => {
       console.error('Erro no upload', err);
+      this.swalService.error('Erro!', 'Não foi possível enviar a foto.');
     }
   });
 }
-
-
 }
