@@ -46,7 +46,7 @@ interface VaccinesData {
   styleUrls: ['./my-vaccines.component.scss']
 })
 export class MyVaccinesComponent implements OnInit {
-  vaccines: VaccinesData[] = []; 
+  vaccines: VaccinesData[] = [];
   routeData!: { title: string; subtitle: string; showButtons: boolean };
   dataSource!: MatTableDataSource<VaccinesData>;
 
@@ -57,6 +57,8 @@ export class MyVaccinesComponent implements OnInit {
     'application_date',
     'actions'
   ];
+
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -74,35 +76,35 @@ export class MyVaccinesComponent implements OnInit {
     this.findAllVaccines();
   }
 
-  findAllVaccines() {
-    this.vaccinesservice.findAll().subscribe({
-      next: (response: any) => {
-        const vaccinesResponse = response.data;
+ findAllVaccines() {
+  this.vaccinesservice.findAll().subscribe({
+    next: (response: any) => {
+      const vaccinesResponse = Array.isArray(response) ? response : response.data;
 
-        if (Array.isArray(vaccinesResponse)) {
-          this.vaccines = vaccinesResponse;
-          this.dataSource = new MatTableDataSource(this.vaccines); 
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
-        } else {
-          console.error('A resposta da API não é um array:', vaccinesResponse);
-        }
-      },
-      error: (error) => {
-        console.error(error);
-        this.swalService.error(
-          'Erro ao carregar as vacinas',
-          'Não foi possível carregar as vacinas da API.'
-        );
+      if (Array.isArray(vaccinesResponse)) {
+        this.vaccines = vaccinesResponse;
+        this.dataSource = new MatTableDataSource(this.vaccines);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      } else {
+        console.error('A resposta da API não é um array:', vaccinesResponse);
       }
-    });
-  }
+    },
+    error: (error) => {
+      console.error(error);
+      this.swalService.error(
+        'Erro ao carregar as vacinas',
+        'Não foi possível carregar as vacinas da API.'
+      );
+    }
+  });
+}
 
    openDialog(vaccine?: Vaccines) {
         const dialogRef = this.dialog.open(FormVaccinesComponent, {
           data: vaccine,
-          width: '650px',   
-          panelClass: 'mat-dialog-content', 
+          width: '650px',
+          panelClass: 'mat-dialog-content',
           autoFocus: false,
           disableClose: true
         });
@@ -118,7 +120,7 @@ export class MyVaccinesComponent implements OnInit {
           width: '700px',
           height: '490px',
           panelClass: 'mat-dialog-content',
-          data: vaccine, 
+          data: vaccine,
           autoFocus: false,
           disableClose: true
         });

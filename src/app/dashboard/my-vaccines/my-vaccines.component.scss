@@ -1,16 +1,16 @@
 .my-vacine-container {
   height: 100%;
-  background-color: #e9f1f5; 
+  background-color: #e9f1f5;
   font-family: 'Poppins', sans-serif;
   color: #333;
   border-radius: 30px;
   margin-top: 7px;
 
- 
+
   .section-title {
     font-size: 1.4rem;
     font-weight: 600;
-    color: #0047AB; 
+    color: #0047AB;
   }
 
   .section-subtitle {
@@ -19,7 +19,7 @@
     margin-top: -5px;
   }
 
-  
+
   .filter-select {
     min-width: 160px;
     font-size: 0.85rem;
@@ -37,7 +37,7 @@
     }
   }
 
- 
+
   .btn-gold {
     background-color: #0047AB;
     color: #fff;
@@ -87,7 +87,7 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 
     th {
-      background-color: #f0f6ff; 
+      background-color: #f0f6ff;
       color: #1e40af;
       font-size: 0.8rem;
       font-weight: 600;
@@ -193,4 +193,86 @@
   .icon-add {
     margin-right: 3px;
   }
+
+ .vacina-cards-container .card {
+  border-radius: 14px;
+  border: none;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transition: all 0.25s ease-in-out;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  }
+
+  .card-body {
+    padding: 1.25rem;
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1f2937; // cinza escuro elegante
+      margin-bottom: 0.5rem;
+    }
+
+    .card-text {
+      font-size: 0.9rem;
+      color: #374151; // cinza médio
+      line-height: 1.5;
+
+      strong {
+        color: #111827; // labels mais fortes
+      }
+    }
+  }
+
+  .card-footer {
+    background: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    padding: 0.7rem 1rem;
+
+    .btn-action {
+      background: transparent;
+      border: none;
+      color: #2563eb; // azul consistente
+      transition: color 0.2s;
+
+      &:hover {
+        color: #1e40af; // azul mais forte
+      }
+
+      i {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
+
+/* badges de status */
+.status-badge {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.status-tomada {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status-a-tomar {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.status-aguardando-aplicacao {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
 }

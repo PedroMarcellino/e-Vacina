@@ -35,27 +35,37 @@ export class AuthService {
     );
   }
 
-  login(email: string, password: string): Observable<any> {
-    return new Observable(observer => {
-      this.http.post(`${this.apiUrl}/login`, { email, password }).subscribe({
-        next: (res: any) => {
-          if (res.token) {
-            localStorage.setItem('token', res.token);
-          }
-          observer.next(res);
-          observer.complete();
-        },
-        error: (err) => {
-          observer.error(err);
+ login(email: string, password: string): Observable<any> {
+  return new Observable(observer => {
+    this.http.post(`${this.apiUrl}/login`, { email, password }).subscribe({
+      next: (res: any) => {
+        this.clearUser();
+        localStorage.removeItem(this.tokenKey);
+
+        if (res.token) {
+          localStorage.setItem(this.tokenKey, res.token);
         }
-      });
+
+        if (res.user) {
+          this.setUser(res.user);
+        }
+
+        observer.next(res);
+        observer.complete();
+      },
+      error: (err) => {
+        observer.error(err);
+      }
     });
-  }
+  });
+}
 
   logout() {
-    localStorage.removeItem('token');
-  }
-
+  localStorage.removeItem(this.tokenKey);
+  localStorage.removeItem(this.userKey);
+  this.user = null;
+  this.router.navigate(['/login']);
+}
   getToken(): string | null {
     return localStorage.getItem('token');
   }
@@ -63,11 +73,11 @@ export class AuthService {
   isAuthenticated(): boolean {
     return !!this.getToken();
   }
-   
+
    getUser() {
     if (isPlatformBrowser(this.platformId)) {
       const user = localStorage.getItem(this.userKey);
-      this.user = user ? JSON.parse(user) : null; 
+      this.user = user ? JSON.parse(user) : null;
       return this.user;
     }
     return null;
