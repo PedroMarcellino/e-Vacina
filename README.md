@@ -46,3 +46,12 @@ export const environment = {
   production: false,
   apiUrl: 'http://localhost:8000/api'
 };
+
+Baixar as dependências:
+npm install
+
+Iniciar o servidor:
+ng serve
+
+Acesse no navegador:
+http://localhost:4200
