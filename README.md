@@ -55,3 +55,12 @@ ng serve
 
 Acesse no navegador:
 http://localhost:4200
+```
+
+👨‍💻 Autor: Pedro Marcellino – Desenvolvedor
+
+
+📜 Licença:
+
+© 2025 Pedro Marcellino. Licenciado sob a MIT License.
+Consulte o arquivo LICENSE para o texto completo.
