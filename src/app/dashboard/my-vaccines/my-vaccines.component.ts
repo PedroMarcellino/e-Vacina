@@ -1,5 +1,5 @@
 import { VaccinesService } from './../../services/vaccines/vaccines.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild, OnInit  } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
@@ -15,6 +15,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { Vaccines } from '../../../models/vaccines.model';
+import { DragDropModule, CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { MatTabsModule } from '@angular/material/tabs';
 import { FormVaccinesComponent } from './form-vaccines/form-vaccines.component';
 import { ViewVaccinesComponent } from './view-vaccines/view-vaccines.component';
 
@@ -41,12 +43,16 @@ interface VaccinesData {
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTabsModule
   ],
   templateUrl: './my-vaccines.component.html',
   styleUrls: ['./my-vaccines.component.scss']
 })
 export class MyVaccinesComponent implements OnInit {
   vaccines: VaccinesData[] = [];
+  vacinasTomadas: VaccinesData[] = [];
+vacinasATomar: VaccinesData[] = [];
+vacinasAguardando: VaccinesData[] = [];
   routeData!: { title: string; subtitle: string; showButtons: boolean };
   dataSource!: MatTableDataSource<VaccinesData>;
 
@@ -58,8 +64,10 @@ export class MyVaccinesComponent implements OnInit {
     'actions'
   ];
 
-
-
+ 
+  @Input() items: any[] = [];
+  @Input() status: string = '';
+  @Output() refreshTasks = new EventEmitter<void>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -76,6 +84,10 @@ export class MyVaccinesComponent implements OnInit {
     this.findAllVaccines();
   }
 
+  listItems() {
+    return this.items.filter(item => item.status === this.status);
+  }
+
  findAllVaccines() {
   this.vaccinesservice.findAll().subscribe({
     next: (response: any) => {
@@ -86,6 +98,9 @@ export class MyVaccinesComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.vaccines);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+         this.vacinasTomadas = this.vaccines.filter(v => v.status === 'Tomada');
+         this.vacinasATomar = this.vaccines.filter(v => v.status === 'A Tomar');
+         this.vacinasAguardando = this.vaccines.filter(v => v.status === 'Aguardando Aplicação');
       } else {
         console.error('A resposta da API não é um array:', vaccinesResponse);
       }
