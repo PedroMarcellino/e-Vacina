@@ -59,8 +59,9 @@ http://localhost:4200
 
 👨‍💻 Autor: Pedro Marcellino – Desenvolvedor
 
+## 📜 Licença
 
-📜 Licença:
+© 2025 Pedro Marcellino. Este projeto está licenciado sob a **MIT License**.  
+Permissão é concedida para usar, copiar, modificar e distribuir o software, desde que o aviso de copyright e esta permissão sejam incluídos.
 
-© 2025 Pedro Marcellino. Licenciado sob a MIT License.
-Consulte o arquivo LICENSE para o texto completo.
+Para o texto completo da licença, consulte o arquivo `LICENSE` neste repositório.
