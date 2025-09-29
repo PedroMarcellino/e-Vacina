@@ -103,7 +103,7 @@ export class SidemenuComponent implements OnInit {
       text: 'Você realmente deseja sair?',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#107C41',
+      confirmButtonColor: '#0047AB',
       cancelButtonColor: '#d33',
       confirmButtonText: 'SIM, SAIR!',
       cancelButtonText: 'CANCELAR',

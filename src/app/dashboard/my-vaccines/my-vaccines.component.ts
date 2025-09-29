@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 import { Vaccines } from '../../../models/vaccines.model';
 import { DragDropModule, CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatMenuModule } from '@angular/material/menu';
 import { FormVaccinesComponent } from './form-vaccines/form-vaccines.component';
 import { ViewVaccinesComponent } from './view-vaccines/view-vaccines.component';
 
@@ -43,7 +44,8 @@ interface VaccinesData {
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatTabsModule
+    MatTabsModule,
+    MatMenuModule
   ],
   templateUrl: './my-vaccines.component.html',
   styleUrls: ['./my-vaccines.component.scss']
