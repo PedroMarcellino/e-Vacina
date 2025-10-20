@@ -62,6 +62,7 @@ vacinasATomar: VaccinesData[] = [];
 vacinasAguardando: VaccinesData[] = [];
 filteredVaccines: any[] = [];
 user = this.authService.getUser();
+previewUrl: string | ArrayBuffer | null = null;
   routeData!: { title: string; subtitle: string; showButtons: boolean };
   dataSource!: MatTableDataSource<VaccinesData>;
 

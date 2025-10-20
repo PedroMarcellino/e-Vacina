@@ -350,7 +350,7 @@
   margin-bottom: 20px;
   margin-left: 5px;
 
-  .username{
+  .span{
     color: #0047AB;
   }
 }
@@ -359,6 +359,14 @@
   align-self: end;
   justify-self: end;
 
+}
+
+.pfp {
+  align-self: center;
+  justify-self: center;
+  align-content: center;
+  justify-items: center;
+  justify-content: center;
 }
 
 
