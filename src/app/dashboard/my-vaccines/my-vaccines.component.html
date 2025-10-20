@@ -5,7 +5,7 @@
         <h4 class="section-title">
           <i class="bi bi-people-fill me-2"></i> Minhas Vacinas
         </h4>
-        <p class="section-subtitle">Cadastre sua vacina e monitore com facilidade</p>
+        <p class="section-subtitle">Vacinas sugeridas conforme sua faixa etária</p>
       </div>
       <button class="btn btn-gold" (click)="openDialog()">
         <i class="bi bi-plus-square icon-add"></i>
@@ -14,186 +14,51 @@
     </div>
 
     <div class="card-style p-3">
-      <div class="table-responsive">
-        <div class="card-style p-3">
-  <mat-tab-group>
-    <!-- Aba A Tomar -->
-    <mat-tab label="A Tomar">
-      <div class="table-responsive">
-        <table mat-table [dataSource]="vacinasATomar" matSort class="table table-borderless vacina-table mb-0">
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome da Vacina</th>
-            <td mat-cell *matCellDef="let vacine">{{vacine.name}}</td>
-          </ng-container>
-          <!-- repetir as mesmas colunas -->
-          <ng-container matColumnDef="age_range">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Faixa Etária</th>
-            <td mat-cell *matCellDef="let vacine">{{vacine.age_range}}</td>
-          </ng-container>
-          <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef>Status</th>
-            <td mat-cell *matCellDef="let vacine">
-              <span class="status-badge"
-                [ngClass]="{
-                  'status-tomada': vacine.status === 'Tomada',
-                  'status-a-tomar': vacine.status === 'A Tomar',
-                  'status-aguardando-aplicacao': vacine.status === 'Aguardando Aplicação'
-                }">
-                {{ vacine.status }}
-              </span>
-            </td>
-          </ng-container>
-          <ng-container matColumnDef="application_date">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Data da Aplicação</th>
-            <td mat-cell *matCellDef="let vacine">{{vacine.application_date}}</td>
-          </ng-container>
-          <ng-container matColumnDef="actions">
-  <th mat-header-cell *matHeaderCellDef>Ações</th>
-  <td mat-cell *matCellDef="let user">
-    <button mat-icon-button [matMenuTriggerFor]="actionMenu" matTooltip="Ações">
-      <i class="bi bi-three-dots-vertical"></i>
-    </button>
+      <mat-tab-group  (selectedTabChange)="filterByTab($event)">
+        <mat-tab label="A Tomar"></mat-tab>
+        <mat-tab label="Aguardando Aplicação"></mat-tab>
+        <mat-tab label="Tomadas"></mat-tab>
+      </mat-tab-group>
 
-     <mat-menu #actionMenu="matMenu">
-  <button mat-menu-item (click)="openDialog(user)">
-    <mat-icon color="primary">edit</mat-icon>
-    <span>Editar</span>
-  </button>
-  <button mat-menu-item (click)="openViewDialog(user)">
-    <mat-icon color="primary">visibility</mat-icon>
-    <span>Visualizar</span>
-  </button>
-  <button mat-menu-item (click)="forceDeleteUser(user)">
-    <mat-icon color="primary">delete</mat-icon>
-    <span>Excluir</span>
-  </button>
-</mat-menu>
-  </td>
-</ng-container>
+      <div class="vaccine-cards mt-4">
+        <div *ngFor="let vacine of filteredVaccines" class="vaccine-card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="fw-bold mb-0">{{ vacine.name }}</h5>
+            <span
+              class="badge"
+              [ngClass]="{
+                'bg-warning text-dark': vacine.status === 'A Tomar',
+                'bg-info text-dark': vacine.status === 'Aguardando Aplicação',
+                'bg-success': vacine.status === 'Tomada'
+              }"
+            >
+              {{ vacine.status }}
+            </span>
+          </div>
 
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-      </div>
-    </mat-tab>
+          <div class="card-body mt-2">
+            <p class="text-muted mb-1">
+              <i class="bi bi-person-badge me-2"></i>Faixa etária: {{ vacine.age_range }}
+            </p>
+            <p class="text-muted mb-1">
+              <i class="bi bi-calendar-event me-2"></i>Data da aplicação:
+              {{ vacine.application_date || '—' }}
+            </p>
 
-     <!-- Aba Aguardando Aplicação -->
-    <mat-tab label="Aguardando Aplicações">
-      <div class="table-responsive">
-        <table mat-table [dataSource]="vacinasAguardando" matSort class="table table-borderless vacina-table mb-0">
-          <!-- mesmas colunas -->
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome da Vacina</th>
-            <td mat-cell *matCellDef="let vacine">{{vacine.name}}</td>
-          </ng-container>
-          <ng-container matColumnDef="age_range">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Faixa Etária</th>
-            <td mat-cell *matCellDef="let vacine">{{vacine.age_range}}</td>
-          </ng-container>
-          <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef>Status</th>
-            <td mat-cell *matCellDef="let vacine">
-              <span class="status-badge"
-                [ngClass]="{
-                  'status-tomada': vacine.status === 'Tomada',
-                  'status-a-tomar': vacine.status === 'A Tomar',
-                  'status-aguardando-aplicacao': vacine.status === 'Aguardando Aplicação'
-                }">
-                {{ vacine.status }}
-              </span>
-            </td>
-          </ng-container>
-          <ng-container matColumnDef="application_date">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Data da Aplicação</th>
-            <td mat-cell *matCellDef="let vacine">{{vacine.application_date}}</td>
-          </ng-container>
-           <ng-container matColumnDef="actions">
-  <th mat-header-cell *matHeaderCellDef>Ações</th>
-  <td mat-cell *matCellDef="let user">
-    <button mat-icon-button [matMenuTriggerFor]="actionMenu" matTooltip="Ações">
-      <i class="bi bi-three-dots-vertical"></i>
-    </button>
-
-    <mat-menu #actionMenu="matMenu">
-  <button mat-menu-item (click)="openDialog(user)">
-    <mat-icon color="primary">edit</mat-icon>
-    <span>Editar</span>
-  </button>
-  <button mat-menu-item (click)="openViewDialog(user)">
-    <mat-icon color="primary">visibility</mat-icon>
-    <span>Visualizar</span>
-  </button>
-  <button mat-menu-item (click)="forceDeleteUser(user)">
-    <mat-icon color="primary">delete</mat-icon>
-    <span>Excluir</span>
-  </button>
-</mat-menu>
-  </td>
-</ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-      </div>
-    </mat-tab>
-
-    <mat-tab label="Tomadas">
-      <div class="table-responsive">
-        <table mat-table [dataSource]="vacinasTomadas" matSort class="table table-borderless vacina-table mb-0">
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome da Vacina</th>
-            <td mat-cell *matCellDef="let vacine">{{vacine.name}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="age_range">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Faixa Etária</th>
-            <td mat-cell *matCellDef="let vacine">{{vacine.age_range}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef>Status</th>
-            <td mat-cell *matCellDef="let vacine">
-              <span class="status-badge"
-                [ngClass]="{
-                  'status-tomada': vacine.status === 'Tomada',
-                  'status-a-tomar': vacine.status === 'A Tomar',
-                  'status-aguardando-aplicacao': vacine.status === 'Aguardando Aplicação'
-                }">
-                {{ vacine.status }}
-              </span>
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="application_date">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Data da Aplicação</th>
-            <td mat-cell *matCellDef="let vacine">{{vacine.application_date}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef>Ações</th>
-            <td mat-cell *matCellDef="let user">
-              <button mat-icon-button [matMenuTriggerFor]="actionMenu" matTooltip="Ações">
-                <i class="bi bi-three-dots-vertical"></i>
+            <div class="actions mt-3">
+              <button class="btn btn-action" (click)="openDialog(vacine)" title="Editar">
+                <i class="bi bi-pencil-fill"></i>
               </button>
-  <mat-menu #actionMenu="matMenu">
-  <button mat-menu-item (click)="openViewDialog(user)">
-    <mat-icon color="primary">visibility</mat-icon>
-    <span>Visualizar</span>
-  </button>
-  <button mat-menu-item (click)="forceDeleteUser(user)">
-    <mat-icon color="primary">delete</mat-icon>
-    <span>Excluir</span>
-  </button>
-</mat-menu>
-  </td>
-</ng-container>
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-      </div>
-    </mat-tab>
-          </mat-tab-group>
+              <button class="btn btn-action" (click)="openViewDialog(vacine)"  title="Visualizar">
+                <i class="bi bi-eye"></i>
+              </button>
+              <button class="btn btn-action" (click)="forceDeleteUser(vacine)" title="Excluir">
+                <i class="bi bi-trash-fill"></i>
+              </button>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   </div>

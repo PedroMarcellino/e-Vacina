@@ -20,8 +20,11 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormVaccinesComponent } from './form-vaccines/form-vaccines.component';
 import { ViewVaccinesComponent } from './view-vaccines/view-vaccines.component';
-
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+import { UsersService } from '../../services/users/users.service';
 interface VaccinesData {
+  id: number;
   name: string;
   age_range: string;
   status: string;
@@ -45,7 +48,9 @@ interface VaccinesData {
     MatFormFieldModule,
     MatInputModule,
     MatTabsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSelectModule,
+    FormsModule
   ],
   templateUrl: './my-vaccines.component.html',
   styleUrls: ['./my-vaccines.component.scss']
@@ -55,6 +60,8 @@ export class MyVaccinesComponent implements OnInit {
   vacinasTomadas: VaccinesData[] = [];
 vacinasATomar: VaccinesData[] = [];
 vacinasAguardando: VaccinesData[] = [];
+filteredVaccines: any[] = [];
+user = this.authService.getUser();
   routeData!: { title: string; subtitle: string; showButtons: boolean };
   dataSource!: MatTableDataSource<VaccinesData>;
 
@@ -64,7 +71,10 @@ vacinasAguardando: VaccinesData[] = [];
     'status',
     'application_date',
     'actions'
+
   ];
+
+  selectedTabIndex = 0;
 
  
   @Input() items: any[] = [];
@@ -89,6 +99,33 @@ vacinasAguardando: VaccinesData[] = [];
   listItems() {
     return this.items.filter(item => item.status === this.status);
   }
+  
+
+  onStatusChange(vaccine: VaccinesData): void {
+  this.vaccinesservice.updateStatus(vaccine.id, vaccine.status).subscribe({
+    next: () => {
+      this.swalService.success('Status atualizado', 'O status da vacina foi atualizado com sucesso.');
+      this.findAllVaccines();
+    },
+    error: () => {
+      this.swalService.error('Erro', 'Não foi possível atualizar o status da vacina.');
+    }
+  });
+}
+
+
+ filterByTab(event: any): void {
+    const index = event.index;
+
+    if (index === 0) {
+      this.filteredVaccines = this.vacinasATomar;
+    } else if (index === 1) {
+      this.filteredVaccines = this.vacinasAguardando;
+    } else if (index === 2) {
+      this.filteredVaccines = this.vacinasTomadas;
+    }
+  }
+  
 
  findAllVaccines() {
   this.vaccinesservice.findAll().subscribe({
@@ -100,9 +137,9 @@ vacinasAguardando: VaccinesData[] = [];
         this.dataSource = new MatTableDataSource(this.vaccines);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-         this.vacinasTomadas = this.vaccines.filter(v => v.status === 'Tomada');
-         this.vacinasATomar = this.vaccines.filter(v => v.status === 'A Tomar');
-         this.vacinasAguardando = this.vaccines.filter(v => v.status === 'Aguardando Aplicação');
+        this.vacinasTomadas = this.vaccines.filter(v => v.status === 'Tomada');
+        this.vacinasATomar = this.vaccines.filter(v => v.status === 'A Tomar');
+        this.vacinasAguardando = this.vaccines.filter(v => v.status === 'Aguardando Aplicação');
       } else {
         console.error('A resposta da API não é um array:', vaccinesResponse);
       }

@@ -31,6 +31,16 @@ export class VaccinesService extends HttpRestfulService {
   );
 }
 
+updateStatus(id: number, status: string): Observable<any> {
+  const url = `${this.apiUrl}/vaccines/update/${id}`;
+  return this.http.put(url, { status }).pipe(
+    tap({
+      next: () => this.swalService.success('Status atualizado', 'O status da vacina foi atualizado com sucesso.'),
+      error: () => this.swalService.error('Erro', 'Não foi possível atualizar o status da vacina.')
+    })
+  );
+}
+
 getLastVaccine(): Observable<any> {
     return this.http.get<any>(
       `${this.apiUrl}/vaccines/last?ts=${Date.now()}`
