@@ -5,46 +5,59 @@
         <h4 class="section-title">
           <i class="bi bi-people-fill me-2"></i> Minhas Vacinas
         </h4>
-        <p class="section-subtitle">Vacinas sugeridas conforme sua faixa etária</p>
+        <p class="section-subtitle">Cadastre suas vacinas aqui</p>
       </div>
-      <button class="btn btn-gold" (click)="openDialog()">
-        <i class="bi bi-plus-square icon-add"></i>
-        Vacina
-      </button>
+
+      <div class="d-flex align-items-center gap-2">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-outline-light btn-action" [class.active]="viewMode === 'cards'"
+            (click)="viewMode = 'cards'" title="Modo Cards">
+            <i class="bi bi-grid-3x3-gap-fill"></i>
+          </button>
+          <button type="button" class="btn btn-outline-light btn-action" [class.active]="viewMode === 'table'"
+            (click)="viewMode = 'table'" title="Modo Tabela">
+            <i class="bi bi-table"></i>
+          </button>
+        </div>
+
+        <button class="btn btn-gold" (click)="openDialog()">
+          <i class="bi bi-plus-square icon-add"></i>
+          Vacina
+        </button>
+      </div>
     </div>
 
     <div class="card-style p-3">
       <div class="header-title">
-        <h3>Vacinas do <span class="span">{{user.name}}</span></h3>
+        <h3>Vacinas do <span class="span">{{ user.name }}</span></h3>
       </div>
-      <mat-tab-group  (selectedTabChange)="filterByTab($event)">
+
+      <mat-tab-group (selectedTabChange)="filterByTab($event)">
         <mat-tab label="A Tomar"></mat-tab>
         <mat-tab label="Aguardando Aplicação"></mat-tab>
         <mat-tab label="Tomadas"></mat-tab>
       </mat-tab-group>
 
-      <div class="vaccine-cards mt-4">
+      <!-- === VISUALIZAÇÃO EM CARDS === -->
+      <div *ngIf="viewMode === 'cards'" class="vaccine-cards mt-4">
         <div *ngFor="let vacine of filteredVaccines" class="vaccine-card">
           <div class="card-header d-flex justify-content-between align-items-center">
             <h5 class="fw-bold mb-0">{{ vacine.name }}</h5>
-            <span
-              class="badge"
-              [ngClass]="{
-                'bg-warning text-dark': vacine.status === 'A Tomar',
-                'bg-info text-dark': vacine.status === 'Aguardando Aplicação',
-                'bg-success': vacine.status === 'Tomada'
-              }"
-            >
+            <span class="badge" [ngClass]="{
+                'status-a-tomar': vacine.status === 'A Tomar',
+                'status-aguardando-aplicacao': vacine.status === 'Aguardando Aplicação',
+                'status-tomada': vacine.status === 'Tomada'
+              }">
               {{ vacine.status }}
             </span>
           </div>
 
           <div class="card-body mt-2">
             <p class="text-muted mb-1">
-              <i class="bi bi-person-badge me-2"></i>Faixa etária: {{ vacine.age_range }}
+              <i class="btn-action bi bi-person-badge me-2"></i>Faixa etária: {{ vacine.age_range }}
             </p>
             <p class="text-muted mb-1">
-              <i class="bi bi-calendar-event me-2"></i>Data da aplicação:
+              <i class="btn-action bi bi-calendar-event me-2"></i>Data da aplicação:
               {{ vacine.application_date || '—' }}
             </p>
 
@@ -52,7 +65,7 @@
               <button class="btn btn-action" (click)="openDialog(vacine)" title="Editar">
                 <i class="bi bi-pencil-fill"></i>
               </button>
-              <button class="btn btn-action" (click)="openViewDialog(vacine)"  title="Visualizar">
+              <button class="btn btn-action" (click)="openViewDialog(vacine)" title="Visualizar">
                 <i class="bi bi-eye"></i>
               </button>
               <button class="btn btn-action" (click)="forceDeleteUser(vacine)" title="Excluir">
@@ -61,8 +74,58 @@
             </div>
           </div>
         </div>
-
       </div>
+
+      <div *ngIf="viewMode === 'table'" class="table-responsive mt-2">
+        <table class="vacina-table table-striped align-middle text-center">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Status</th>
+              <th>Faixa Etária</th>
+              <th>Data da Aplicação</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let vacine of filteredVaccines">
+              <td>{{ vacine.name }}</td>
+              <td>
+                <span class="badge" [ngClass]="{
+              'status-a-tomar': vacine.status === 'A Tomar',
+              'status-aguardando-aplicacao': vacine.status === 'Aguardando Aplicação',
+              'status-tomada': vacine.status === 'Tomada'
+            }">
+                  {{ vacine.status }}
+                </span>
+              </td>
+              <td>{{ vacine.age_range }}</td>
+              <td>{{ vacine.application_date || '—' }}</td>
+              <td>
+                <button mat-icon-button [matMenuTriggerFor]="actionMenu" matTooltip="Ações">
+                  <i class="bi bi-three-dots-vertical"></i>
+                </button>
+
+                <mat-menu #actionMenu="matMenu">
+                  <button mat-menu-item (click)="openDialog(vacine)">
+                    <mat-icon color="primary">edit</mat-icon>
+                    <span>Editar</span>
+                  </button>
+                  <button mat-menu-item (click)="openViewDialog(vacine)">
+                    <mat-icon color="primary">visibility</mat-icon>
+                    <span>Visualizar</span>
+                  </button>
+                  <button mat-menu-item (click)="forceDeleteUser(vacine)">
+                    <mat-icon color="primary">delete</mat-icon>
+                    <span>Excluir</span>
+                  </button>
+                </mat-menu>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
     </div>
   </div>
 </div>

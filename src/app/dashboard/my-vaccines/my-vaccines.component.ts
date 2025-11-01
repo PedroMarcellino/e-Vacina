@@ -1,5 +1,5 @@
 import { VaccinesService } from './../../services/vaccines/vaccines.service';
-import { Component, EventEmitter, Input, Output, ViewChild, OnInit  } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild, OnInit } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
@@ -57,12 +57,13 @@ interface VaccinesData {
 })
 export class MyVaccinesComponent implements OnInit {
   vaccines: VaccinesData[] = [];
+  viewMode: 'cards' | 'table' = 'cards';
   vacinasTomadas: VaccinesData[] = [];
-vacinasATomar: VaccinesData[] = [];
-vacinasAguardando: VaccinesData[] = [];
-filteredVaccines: any[] = [];
-user = this.authService.getUser();
-previewUrl: string | ArrayBuffer | null = null;
+  vacinasATomar: VaccinesData[] = [];
+  vacinasAguardando: VaccinesData[] = [];
+  filteredVaccines: any[] = [];
+  user = this.authService.getUser();
+  previewUrl: string | ArrayBuffer | null = null;
   routeData!: { title: string; subtitle: string; showButtons: boolean };
   dataSource!: MatTableDataSource<VaccinesData>;
 
@@ -77,7 +78,7 @@ previewUrl: string | ArrayBuffer | null = null;
 
   selectedTabIndex = 0;
 
- 
+
   @Input() items: any[] = [];
   @Input() status: string = '';
   @Output() refreshTasks = new EventEmitter<void>();
@@ -91,7 +92,7 @@ previewUrl: string | ArrayBuffer | null = null;
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
     private router: Router,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.findAllVaccines();
@@ -100,86 +101,79 @@ previewUrl: string | ArrayBuffer | null = null;
   listItems() {
     return this.items.filter(item => item.status === this.status);
   }
-  
+
 
   onStatusChange(vaccine: VaccinesData): void {
-  this.vaccinesservice.updateStatus(vaccine.id, vaccine.status).subscribe({
-    next: () => {
-      this.swalService.success('Status atualizado', 'O status da vacina foi atualizado com sucesso.');
-      this.findAllVaccines();
-    },
-    error: () => {
-      this.swalService.error('Erro', 'Não foi possível atualizar o status da vacina.');
-    }
-  });
-}
-
-
- filterByTab(event: any): void {
-    const index = event.index;
-
-    if (index === 0) {
-      this.filteredVaccines = this.vacinasATomar;
-    } else if (index === 1) {
-      this.filteredVaccines = this.vacinasAguardando;
-    } else if (index === 2) {
-      this.filteredVaccines = this.vacinasTomadas;
-    }
+    this.vaccinesservice.updateStatus(vaccine.id, vaccine.status).subscribe({
+      next: () => {
+        this.swalService.success('Status atualizado', 'O status da vacina foi atualizado com sucesso.');
+        this.findAllVaccines();
+      },
+      error: () => {
+        this.swalService.error('Erro', 'Não foi possível atualizar o status da vacina.');
+      }
+    });
   }
-  
 
- findAllVaccines() {
-  this.vaccinesservice.findAll().subscribe({
-    next: (response: any) => {
-      const vaccinesResponse = Array.isArray(response) ? response : response.data;
 
-      if (Array.isArray(vaccinesResponse)) {
-        this.vaccines = vaccinesResponse;
-        this.dataSource = new MatTableDataSource(this.vaccines);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-        this.vacinasTomadas = this.vaccines.filter(v => v.status === 'Tomada');
-        this.vacinasATomar = this.vaccines.filter(v => v.status === 'A Tomar');
-        this.vacinasAguardando = this.vaccines.filter(v => v.status === 'Aguardando Aplicação');
-      } else {
-        console.error('A resposta da API não é um array:', vaccinesResponse);
+
+
+  findAllVaccines() {
+    this.vaccinesservice.findAll().subscribe({
+      next: (response: any) => {
+        const vaccinesResponse = Array.isArray(response) ? response : response.data;
+
+        if (Array.isArray(vaccinesResponse)) {
+          this.vaccines = vaccinesResponse;
+          this.dataSource = new MatTableDataSource(this.vaccines);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+          this.vacinasTomadas = this.vaccines.filter(v => v.status === 'Tomada');
+          this.vacinasATomar = this.vaccines.filter(v => v.status === 'A Tomar');
+          this.vacinasAguardando = this.vaccines.filter(v => v.status === 'Aguardando Aplicação');
+
+          const statusMap = ['A Tomar', 'Aguardando Aplicação', 'Tomada'];
+          const initialStatus = statusMap[this.selectedTabIndex] || 'A Tomar';
+          this.filteredVaccines = this.vaccines.filter(v => v.status === initialStatus);
+        } else {
+          console.error('A resposta da API não é um array:', vaccinesResponse);
+        }
+      },
+      error: (error) => {
+        console.error(error);
+        this.swalService.error(
+          'Erro ao carregar as vacinas',
+          'Não foi possível carregar as vacinas da API.'
+        );
       }
-    },
-    error: (error) => {
-      console.error(error);
-      this.swalService.error(
-        'Erro ao carregar as vacinas',
-        'Não foi possível carregar as vacinas da API.'
-      );
-    }
-  });
-}
+    });
+  }
 
-   openDialog(vaccine?: Vaccines) {
-        const dialogRef = this.dialog.open(FormVaccinesComponent, {
-          data: vaccine,
-          width: '650px',
-          panelClass: 'mat-dialog-content',
-          autoFocus: false,
-          disableClose: true
-        });
-        dialogRef.afterClosed().subscribe(result => {
-          if (result) {
-            this.findAllVaccines();
-          }
-        });
+  openDialog(vaccine?: Vaccines) {
+    const dialogRef = this.dialog.open(FormVaccinesComponent, {
+      data: vaccine,
+      width: '650px',
+      panelClass: 'mat-dialog-content',
+      autoFocus: false,
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.findAllVaccines();
       }
+    });
+  }
 
-      openViewDialog(vaccine?: VaccinesData) {
-          const dialogRef = this.dialog.open(ViewVaccinesComponent, {
-          width: '700px',
-          height: '490px',
-          panelClass: 'mat-dialog-content',
-          data: vaccine,
-          autoFocus: false,
-          disableClose: true
-        });
-      }
+  openViewDialog(vaccine?: VaccinesData) {
+    const dialogRef = this.dialog.open(ViewVaccinesComponent, {
+      width: '700px',
+      height: '490px',
+      panelClass: 'mat-dialog-content',
+      data: vaccine,
+      autoFocus: false,
+      disableClose: true
+    });
+  }
 
   editUser(vaccine: any) {
     this.router.navigate([`/form-vaccines/${vaccine.id}`]);
@@ -199,5 +193,11 @@ previewUrl: string | ArrayBuffer | null = null;
         }
       }
     });
+  }
+
+  filterByTab(event: any): void {
+    const tabIndex = event.index;
+    const statusMap = ['A Tomar', 'Aguardando Aplicação', 'Tomada'];
+    this.filteredVaccines = this.vaccines.filter(v => v.status === statusMap[tabIndex]);
   }
 }
