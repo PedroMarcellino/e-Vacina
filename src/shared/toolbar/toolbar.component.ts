@@ -9,7 +9,7 @@ import { AuthService } from '../../app/auth/auth.service';
 @Component({
   selector: 'app-toolbar',
   standalone: true,
-  imports: [ 
+  imports: [
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
@@ -24,9 +24,13 @@ export class ToolbarComponent implements OnInit {
   @Input() drawer: any;
   @Output() hasChanged: EventEmitter<any> = new EventEmitter();
   user = this.authService.getUser();
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.authService.user$.subscribe(user => {
+      this.user = user;
+    });
+  }
 
   toggleBadgeVisibilty() {
     this.hidden = !this.hidden;

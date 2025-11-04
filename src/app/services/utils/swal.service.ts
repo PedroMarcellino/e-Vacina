@@ -26,30 +26,30 @@ export class SwalService {
     })
   }
 
- private spawnAlert(icon: SweetAlertIcon, title: string, message: string) {
-  return Swal.fire({
-    icon,
-    title,
-    text: message,
-    confirmButtonText: 'OK'
-  });
-}
-
-public success(titleOrMessage: string, message?: string) {
-  if (!message) {
-    return this.spawnAlert('success', 'Sucesso', titleOrMessage);
-  } else {
-    return this.spawnAlert('success', titleOrMessage, message);
+  private spawnAlert(icon: SweetAlertIcon, title: string, message: string) {
+    return Swal.fire({
+      icon,
+      title,
+      text: message,
+      confirmButtonText: 'OK'
+    });
   }
-}
 
-public error(titleOrMessage: string, message?: string) {
-  if (!message) {
-    return this.spawnAlert('error', 'Erro', titleOrMessage);
-  } else {
-    return this.spawnAlert('error', titleOrMessage, message);
+  public success(titleOrMessage: string, message?: string) {
+    if (!message) {
+      return this.spawnAlert('success', 'Sucesso', titleOrMessage);
+    } else {
+      return this.spawnAlert('success', titleOrMessage, message);
+    }
   }
-}
+
+  public error(titleOrMessage: string, message?: string) {
+    if (!message) {
+      return this.spawnAlert('error', 'Erro', titleOrMessage);
+    } else {
+      return this.spawnAlert('error', titleOrMessage, message);
+    }
+  }
 
   public warning(titleOrMessage: string, message?: string) {
     if (!message) {
@@ -67,7 +67,21 @@ public error(titleOrMessage: string, message?: string) {
     }
   }
 
-   public popup({ title, message: text, onApprove, onDecline }: CallbackPopup) {
+  public loading(message: string = 'Carregando...') {
+    Swal.fire({
+      title: message,
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+  }
+
+  public close() {
+    Swal.close();
+  }
+
+  public popup({ title, message: text, onApprove, onDecline }: CallbackPopup) {
     this.customSweetAlert.fire({
       icon: 'question',
       title,

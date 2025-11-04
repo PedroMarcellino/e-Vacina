@@ -10,20 +10,10 @@
 
   <div class="profile-header text-center mb-4">
     <div class="profile-avatar position-relative d-inline-block">
-      <img
-        [src]="previewUrl || user.photo_url "
-        alt="Foto de perfil"
-        class="rounded-circle border"
-        width="120" height="120"
-      >
+      <img [src]="previewUrl || user.photo_url " alt="Foto de perfil" class="rounded-circle border" width="120"
+        height="120">
 
-      <input
-        type="file"
-        #fileInput
-        accept="image/*"
-        (change)="onFileSelected($event)"
-        hidden
-      >
+      <input type="file" #fileInput accept="image/*" (change)="onFileSelected($event)" hidden>
 
       <button class="btn-avatar" (click)="fileInput.click()">
         <i class="bi bi-camera-fill"></i>
@@ -34,11 +24,7 @@
     <p class="profile-role">Usuário cadastrado no sistema</p>
 
 
-    <button
-      class="btn btn-edit mt-3"
-      *ngIf="selectedFile"
-      (click)="uploadPhoto()"
-    >
+    <button class="btn btn-edit mt-3" *ngIf="selectedFile" (click)="uploadPhoto()">
       <i class="bi bi-check-circle"></i> Salvar foto
     </button>
   </div>
@@ -53,4 +39,8 @@
       <p>{{ user?.email }}</p>
     </div>
   </div>
+
+  <button class="btn-gold mt-3" (click)="openDialog(user)">
+    <span>Editar</span>
+  </button>
 </div>

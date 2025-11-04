@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { isPlatformBrowser } from "@angular/common";
 import { Observable, tap } from "rxjs";
 import { SwalService } from "../services/utils/swal.service";
+import { BehaviorSubject } from 'rxjs';
 
 
 
@@ -11,6 +12,8 @@ import { SwalService } from "../services/utils/swal.service";
   providedIn: 'root'
 })
 export class AuthService {
+  private userSubject = new BehaviorSubject<any>(this.getStoredUser());
+  user$ = this.userSubject.asObservable();
   private tokenKey = 'token';
   private userKey = 'user';
 
@@ -23,9 +26,12 @@ export class AuthService {
     private router: Router,
     private swalService: SwalService,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  ) { }
 
 
+  private getStoredUser() {
+    return JSON.parse(localStorage.getItem('user') || 'null');
+  }
 
   register(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, data).pipe(
@@ -35,32 +41,32 @@ export class AuthService {
     );
   }
 
- login(email: string, password: string): Observable<any> {
-  return new Observable(observer => {
-    this.http.post(`${this.apiUrl}/login`, { email, password }).subscribe({
-      next: (res: any) => {
-        this.clearUser();
-        localStorage.removeItem(this.tokenKey);
+  login(email: string, password: string): Observable<any> {
+    return new Observable(observer => {
+      this.http.post(`${this.apiUrl}/login`, { email, password }).subscribe({
+        next: (res: any) => {
+          this.clearUser();
+          localStorage.removeItem(this.tokenKey);
 
-        if (res.token) {
-          localStorage.setItem(this.tokenKey, res.token);
+          if (res.token) {
+            localStorage.setItem(this.tokenKey, res.token);
+          }
+
+          if (res.user) {
+            this.setUser(res.user);
+          }
+
+          observer.next(res);
+          observer.complete();
+        },
+        error: (err) => {
+          observer.error(err);
         }
-
-        if (res.user) {
-          this.setUser(res.user);
-        }
-
-        observer.next(res);
-        observer.complete();
-      },
-      error: (err) => {
-        observer.error(err);
-      }
+      });
     });
-  });
-}
+  }
 
- forgotPassword(email: string): Observable<any> {
+  forgotPassword(email: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/forgot-password`, { email });
   }
 
@@ -69,11 +75,11 @@ export class AuthService {
   }
 
   logout() {
-  localStorage.removeItem(this.tokenKey);
-  localStorage.removeItem(this.userKey);
-  this.user = null;
-  this.router.navigate(['/login']);
-}
+    localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem(this.userKey);
+    this.user = null;
+    this.router.navigate(['/login']);
+  }
   getToken(): string | null {
     return localStorage.getItem('token');
   }
@@ -82,10 +88,11 @@ export class AuthService {
     return !!this.getToken();
   }
 
-   getUser() {
+  getUser() {
     if (isPlatformBrowser(this.platformId)) {
       const user = localStorage.getItem(this.userKey);
       this.user = user ? JSON.parse(user) : null;
+      this.userSubject.next(user);
       return this.user;
     }
     return null;
@@ -94,6 +101,7 @@ export class AuthService {
   setUser(user: any) {
     this.user = user;
     localStorage.setItem(this.userKey, JSON.stringify(user));
+    this.userSubject.next(user);
   }
 
   clearUser() {

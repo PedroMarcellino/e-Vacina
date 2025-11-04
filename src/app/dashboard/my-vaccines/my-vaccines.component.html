@@ -29,7 +29,7 @@
 
     <div class="card-style p-3">
       <div class="header-title">
-        <h3>Vacinas do <span class="span">{{ user.name }}</span></h3>
+        <h3><span class="span">{{ user?.name }}</span></h3>
       </div>
 
       <mat-tab-group (selectedTabChange)="filterByTab($event)">

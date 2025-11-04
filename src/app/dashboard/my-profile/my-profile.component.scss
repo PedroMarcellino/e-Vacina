@@ -143,3 +143,20 @@
   font-size: 0.95rem;
   color: #444;
 }
+
+
+.btn-gold {
+  background-color: #0047AB;
+    color: #fff;
+    font-weight: 500;
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: none;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #003080;
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(0, 71, 171, 0.3);
+    }
+}

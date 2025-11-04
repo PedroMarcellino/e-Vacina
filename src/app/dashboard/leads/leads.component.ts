@@ -54,7 +54,7 @@ export class LeadsComponent {
         'email',
         'phone',
         'message',
-        'actions'
+       // 'actions'
       ];
 
       @ViewChild(MatPaginator) paginator!: MatPaginator;
