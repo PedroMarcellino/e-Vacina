@@ -90,13 +90,14 @@ export class AuthService {
 
   getUser() {
     if (isPlatformBrowser(this.platformId)) {
-      const user = localStorage.getItem(this.userKey);
-      this.user = user ? JSON.parse(user) : null;
-      this.userSubject.next(user);
-      return this.user;
+      const userString = localStorage.getItem(this.userKey);
+      const user = userString ? JSON.parse(userString) : null;
+      this.user = user;
+      return user;
     }
     return null;
   }
+
 
   setUser(user: any) {
     this.user = user;

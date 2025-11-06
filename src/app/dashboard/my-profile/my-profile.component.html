@@ -10,7 +10,7 @@
 
   <div class="profile-header text-center mb-4">
     <div class="profile-avatar position-relative d-inline-block">
-      <img [src]="previewUrl || user.photo_url " alt="Foto de perfil" class="rounded-circle border" width="120"
+      <img [src]="previewUrl || user?.photo_url " alt="Foto de perfil" class="rounded-circle border" width="120"
         height="120">
 
       <input type="file" #fileInput accept="image/*" (change)="onFileSelected($event)" hidden>
@@ -40,7 +40,7 @@
     </div>
   </div>
 
-  <button class="btn-gold mt-3" (click)="openDialog(user)">
+  <button *ngIf="user" class="btn-gold mt-3" (click)="openDialog(user)">
     <span>Editar</span>
   </button>
 </div>

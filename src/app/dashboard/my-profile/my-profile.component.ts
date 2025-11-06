@@ -22,9 +22,9 @@ import { LoadingService } from '../../../shared/header/utils/loading';
   styleUrl: './my-profile.component.scss'
 })
 export class MyProfileComponent implements OnInit {
-  previewUrl: string | ArrayBuffer | null = null;
+  previewUrl: string | null = null;
   selectedFile: File | null = null;
-  user = this.authService.getUser();
+  user: Users | null = null;
 
   constructor(
     private authService: AuthService,
@@ -40,8 +40,14 @@ export class MyProfileComponent implements OnInit {
 
 
   getAll(): void {
-    const userId = this.authService.getUser()?.id;
-    if (!userId) return;
+    const storedUser = this.authService.getUser();
+    const userId = storedUser?.id;
+
+    if (!userId) {
+      this.swalService.error('Erro!', 'Usuário não encontrado. Faça login novamente.');
+      this.authService.logout();
+      return;
+    }
 
     const loadingDialog = this.dialog.open(LoadingSpinnerComponent, {
       disableClose: true,
@@ -50,17 +56,25 @@ export class MyProfileComponent implements OnInit {
 
     this.usersService.getById(userId).subscribe({
       next: (res: Users) => {
-        this.user = res;
-        this.authService.setUser(res); // 🔹 Atualiza o AuthService
+        if (res) {
+          this.user = res;
+          this.authService.setUser(res);
+        } else {
+          this.swalService.warning('Aviso!', 'Nenhum dado de usuário encontrado.');
+        }
         loadingDialog.close();
       },
       error: (err) => {
         console.error('Erro ao buscar usuário:', err);
         loadingDialog.close();
-        this.swalService.error('Erro!', 'Não foi possível carregar os dados do usuário.');
+        this.swalService.error('Erro!', 'Não foi possível carregar os dados do usuário. Tente novamente mais tarde.');
+      },
+      complete: () => {
+        if (loadingDialog) loadingDialog.close();
       }
     });
   }
+
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -69,7 +83,7 @@ export class MyProfileComponent implements OnInit {
 
       const reader = new FileReader();
       reader.onload = () => {
-        this.previewUrl = reader.result;
+        this.previewUrl = reader.result as string;
       };
       reader.readAsDataURL(this.selectedFile);
     }
@@ -104,7 +118,8 @@ export class MyProfileComponent implements OnInit {
     });
   }
 
-  openDialog(user?: Users): void {
+  openDialog(user?: Users | null): void {
+    if (!user) return;
     const dialogRef = this.dialog.open(FormMyProfileComponent, {
       data: user,
       width: '650px',
@@ -114,9 +129,10 @@ export class MyProfileComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.getAll();
-      }
+      if (result) this.getAll();
     });
   }
+
+
+
 }
