@@ -37,7 +37,7 @@
         <h3><span class="span">{{ user?.name }}</span></h3>
       </div>
 
-      <mat-tab-group (selectedTabChange)="filterByTab($event)">
+      <mat-tab-group (selectedTabChange)="filterByTab($event)" [(selectedIndex)]="selectedTabIndex">
         <mat-tab label="A Tomar"></mat-tab>
         <mat-tab label="Aguardando Aplicação"></mat-tab>
         <mat-tab label="Aplicadas"></mat-tab>

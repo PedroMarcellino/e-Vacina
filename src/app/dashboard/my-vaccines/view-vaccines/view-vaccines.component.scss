@@ -2,11 +2,11 @@
   border-radius: 16px;
   padding: 24px;
   background-color: #e9f1f5;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #333;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   max-width: 500px;
-  width: 100%; 
+  width: 100%;
 }
 
 mat-dialog-content {
@@ -15,13 +15,12 @@ mat-dialog-content {
 
 mat-dialog-actions {
   display: flex;
-  gap: 12px; 
+  gap: 12px;
   margin-right: 40px;
 }
 
-
 button[mat-button] {
-  background-color: #08152A;
+  background-color: #08152a;
   color: #fff;
   font-weight: 500;
   border-radius: 20px;
@@ -35,19 +34,19 @@ button[mat-button] {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  margin-bottom: 12px; 
+  margin-bottom: 12px;
 }
 
 .title {
-  color: #08152A;
+  color: #08152a;
   font-size: 0.95rem;
   font-weight: 500;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .content {
   font-size: 17px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   border: 1.5px solid #ccc;
   border-radius: 8px;
   background-color: #e9f1f5;
@@ -60,17 +59,17 @@ button[mat-button] {
 
 .info {
   font-size: 14px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #555;
   flex: 1;
 }
 
-h2{ 
-    color: #08152A ;
-    margin-top: 15px;
-    margin-left: 22px;
-    font-size: 1.3rem;
-    font-weight: 600;
+h2 {
+  color: #08152a;
+  margin-top: 15px;
+  margin-left: 22px;
+  font-size: 1.3rem;
+  font-weight: 600;
 }
 
 .button-close {
@@ -84,27 +83,26 @@ h2{
   display: flex;
 }
 
- .status-a-tomar {
-    background-color: #dc2626;
-    border-radius: 10px;
-    padding: 4px 10px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #fff;
-  }
-   .status-aplicada {
-    background-color: #09af00;
-    border-radius: 10px;
-    padding: 4px 10px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #fff;
-  }
-   .status-aguardando-aplicacao {
-    background-color: #fff70c;
-    border-radius: 10px;
-    padding: 4px 10px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: black;
-  }
+.status-badge {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.status-aplicada {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status-a-tomar {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.status-aguardando-aplicacao {
+  background: #dbeafe;
+  color: #1e40af;
+}
