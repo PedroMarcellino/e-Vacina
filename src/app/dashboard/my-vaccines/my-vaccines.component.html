@@ -20,7 +20,12 @@
           </button>
         </div>
 
-        <button class="btn btn-gold" (click)="openDialog()">
+        <button mat-raised-button class="btn-gold" (click)="downloadVaccinesPdf()">
+          <mat-icon>picture_as_pdf</mat-icon>
+          Gerar Relatório
+        </button>
+
+        <button mat-raised-button class="btn-gold"  (click)="openDialog()">
           <i class="bi bi-plus-square icon-add"></i>
           Vacina
         </button>
@@ -35,7 +40,7 @@
       <mat-tab-group (selectedTabChange)="filterByTab($event)">
         <mat-tab label="A Tomar"></mat-tab>
         <mat-tab label="Aguardando Aplicação"></mat-tab>
-        <mat-tab label="Tomadas"></mat-tab>
+        <mat-tab label="Aplicadas"></mat-tab>
       </mat-tab-group>
 
       <!-- === VISUALIZAÇÃO EM CARDS === -->
@@ -46,7 +51,7 @@
             <span class="badge" [ngClass]="{
                 'status-a-tomar': vacine.status === 'A Tomar',
                 'status-aguardando-aplicacao': vacine.status === 'Aguardando Aplicação',
-                'status-tomada': vacine.status === 'Tomada'
+                'status-aplicada': vacine.status === 'Aplicada'
               }">
               {{ vacine.status }}
             </span>
@@ -94,7 +99,7 @@
                 <span class="badge" [ngClass]="{
               'status-a-tomar': vacine.status === 'A Tomar',
               'status-aguardando-aplicacao': vacine.status === 'Aguardando Aplicação',
-              'status-tomada': vacine.status === 'Tomada'
+              'status-aplicada': vacine.status === 'Aplicada'
             }">
                   {{ vacine.status }}
                 </span>

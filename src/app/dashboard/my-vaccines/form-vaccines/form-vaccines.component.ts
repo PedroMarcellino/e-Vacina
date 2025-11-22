@@ -41,7 +41,7 @@ import { text } from 'stream/consumers';
     MatDialogModule,
     NgSelectModule,
     NgxMaskDirective
-],
+  ],
   templateUrl: './form-vaccines.component.html',
   styleUrl: './form-vaccines.component.scss'
 })
@@ -62,14 +62,14 @@ export class FormVaccinesComponent {
       fieldtype: 'select',
       placeholder: '',
       control: 'age_range',
-      options: ['Adulto', 'Bebe','Idoso', 'Jovem'],
+      options: ['Adulto', 'Bebe', 'Idoso', 'Jovem'],
       colClass: 'col-md-5 col-sm-12'
     },
     {
       label: 'Status',
       fieldtype: 'select',
       control: 'status',
-      options: ['Tomada', 'A Tomar', 'Aguardando Aplicação'],
+      options: ['Aplicada', 'A Tomar', 'Aguardando Aplicação'],
       colClass: 'col-md-6 col-sm-12'
     },
     {
@@ -82,7 +82,7 @@ export class FormVaccinesComponent {
     },
   ];
 
-    constructor(
+  constructor(
     public dialogRef: MatDialogRef<FormVaccinesComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Vaccines | null,
     private fb: FormBuilder,
@@ -90,28 +90,28 @@ export class FormVaccinesComponent {
     private swal: SwalService
   ) { }
 
-    handleEnter(event: KeyboardEvent) {
-  event.preventDefault();
+  handleEnter(event: KeyboardEvent) {
+    event.preventDefault();
 
-  const target = event.target as HTMLElement;
-  const form = target.closest('form');
-  if (!form) return;
+    const target = event.target as HTMLElement;
+    const form = target.closest('form');
+    if (!form) return;
 
-  const focusable = Array.from(
-    form.querySelectorAll<HTMLElement>('input, select, textarea, ng-select, button')
-  ).filter(el => !el.hasAttribute('disabled'));
+    const focusable = Array.from(
+      form.querySelectorAll<HTMLElement>('input, select, textarea, ng-select, button')
+    ).filter(el => !el.hasAttribute('disabled'));
 
-  const index = focusable.indexOf(target);
+    const index = focusable.indexOf(target);
 
-  if (index > -1 && index < focusable.length - 1) {
-    focusable[index + 1].focus();
-  } else {
-    const submit = form.querySelector<HTMLElement>('button[color=primary]');
-    submit?.focus();
+    if (index > -1 && index < focusable.length - 1) {
+      focusable[index + 1].focus();
+    } else {
+      const submit = form.querySelector<HTMLElement>('button[color=primary]');
+      submit?.focus();
+    }
   }
-}
 
-save(): void {
+  save(): void {
     if (this.form.invalid) {
       this.swal.info('Atenção', 'Preencha os Campos Obrigatórios para Prosseguir');
       return;

@@ -50,6 +50,7 @@ export class LeadsComponent {
      routeData!: { title: string; subtitle: string; showButtons: boolean };
      dataSource!: MatTableDataSource<LeadsData>;
       displayedColumns: string[] = [
+        'id',
         'full_name',
         'email',
         'phone',

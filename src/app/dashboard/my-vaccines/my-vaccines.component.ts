@@ -58,7 +58,7 @@ interface VaccinesData {
 export class MyVaccinesComponent implements OnInit {
   vaccines: VaccinesData[] = [];
   viewMode: 'cards' | 'table' = 'cards';
-  vacinasTomadas: VaccinesData[] = [];
+  vacinasAplicadas: VaccinesData[] = [];
   vacinasATomar: VaccinesData[] = [];
   vacinasAguardando: VaccinesData[] = [];
   filteredVaccines: any[] = [];
@@ -115,8 +115,21 @@ export class MyVaccinesComponent implements OnInit {
     });
   }
 
-
-
+  downloadVaccinesPdf() {
+    this.vaccinesservice.generateVaccinesPdf().subscribe({
+      next: (blob: Blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'relatorio_vacinas.pdf';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      },
+      error: () => {
+        this.swalService.error('Erro', 'Não foi possível gerar o PDF.');
+      }
+    });
+  }
 
   findAllVaccines() {
     this.vaccinesservice.findAll().subscribe({
@@ -128,11 +141,11 @@ export class MyVaccinesComponent implements OnInit {
           this.dataSource = new MatTableDataSource(this.vaccines);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
-          this.vacinasTomadas = this.vaccines.filter(v => v.status === 'Tomada');
+          this.vacinasAplicadas = this.vaccines.filter(v => v.status === 'Aplicada');
           this.vacinasATomar = this.vaccines.filter(v => v.status === 'A Tomar');
           this.vacinasAguardando = this.vaccines.filter(v => v.status === 'Aguardando Aplicação');
 
-          const statusMap = ['A Tomar', 'Aguardando Aplicação', 'Tomada'];
+          const statusMap = ['A Tomar', 'Aguardando Aplicação', 'Aplicada'];
           const initialStatus = statusMap[this.selectedTabIndex] || 'A Tomar';
           this.filteredVaccines = this.vaccines.filter(v => v.status === initialStatus);
         } else {
@@ -197,7 +210,7 @@ export class MyVaccinesComponent implements OnInit {
 
   filterByTab(event: any): void {
     const tabIndex = event.index;
-    const statusMap = ['A Tomar', 'Aguardando Aplicação', 'Tomada'];
+    const statusMap = ['A Tomar', 'Aguardando Aplicação', 'Aplicada'];
     this.filteredVaccines = this.vaccines.filter(v => v.status === statusMap[tabIndex]);
   }
 }
