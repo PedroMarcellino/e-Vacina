@@ -4,11 +4,12 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AppIconComponent } from '../../../shared/icon/icon.component';
 
 @Component({
   selector: 'app-reset-password',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, AppIconComponent],
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.scss'],
 })
