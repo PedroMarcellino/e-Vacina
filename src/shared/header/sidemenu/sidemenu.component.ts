@@ -33,13 +33,13 @@ export class SidemenuComponent implements OnInit {
   isOrganizer: boolean = false;
 
 
-   menus = [
+  menus = [
     {
       title: 'Sistema E-Vacina',
       contentMenus: [
         {
           label: 'Dashboard',
-          icon: 'bi bi-graph-up	',
+          icon: 'bi bi-graph-up',
           route: '/dashboard',
         },
         {
@@ -50,69 +50,73 @@ export class SidemenuComponent implements OnInit {
         {
           label: 'Sobre as Vacinas',
           icon: 'bi bi-heart-pulse-fill',
-          route: '/about-vaccines',
+          children: [
+            { label: 'Vacinas Disponíveis', route: '/about-vaccines/available', icon: 'bi bi-check-circle' },
+            { label: 'Histórico de Vacinação', route: '/about-vaccines/history', icon: 'bi bi-journal-text' }
+          ],
+          open: false
         },
-       // {
-      //    label: 'Familiares',
-      //    icon: 'bi bi-people-fill',
-       //   route: '/family',
-    //    },
-        {
-          label: 'Caixa de Mensagem',
-          icon: 'bi bi-envelope-at-fill',
-          route: '/leads',
-        },
-        {
-          label: 'Configurações e Perfil',
-          icon: 'bi bi-gear-fill',
-          route: '/my-profile',
-        },
-        {
-          label: 'Sair',
-          icon: 'bi bi-box-arrow-right',
-          // route: '/',
-          handler: () => {
-            this.confirmLogout();
-          },
-        },
-
-      ],
+      //  // outros itens...
+      {
+      label: 'Familiares',
+      icon: 'bi bi-people-fill',
+      route: '/family',
     },
-  ];
+    {
+      label: 'Caixa de Mensagem',
+      icon: 'bi bi-envelope-at-fill',
+      route: '/leads',
+    },
+    {
+      label: 'Configurações e Perfil',
+      icon: 'bi bi-gear-fill',
+      route: '/my-profile',
+    },
+    {
+      label: 'Sair',
+      icon: 'bi bi-box-arrow-right',
+      handler: () => {
+        this.confirmLogout();
+      },
+    },
+  ],
+},
+];
 
-  constructor(private AuthService: AuthService, private router: Router) {
-    this.user = this.AuthService.getToken();
-    this.isAdmin = this.user?.is_admin;
-    this.isOrganizer = this.user?.is_organizer;
-  }
+
+constructor(private AuthService: AuthService, private router: Router) {
+  this.user = this.AuthService.getToken();
+  this.isAdmin = this.user?.is_admin;
+  this.isOrganizer = this.user?.is_organizer;
+}
 
 
 
-  ngOnInit(): void { }
+ngOnInit(): void {}
 
-  logout() {
-    this.AuthService.logout();
-    sessionStorage.clear();
-    localStorage.removeItem('authToken');
-    this.router.navigate(['/login']);
-  }
+logout() {
+  this.AuthService.logout();
+  sessionStorage.clear();
+  localStorage.removeItem('authToken');
+  this.router.navigate(['/login']);
+}
 
-  confirmLogout() {
-    Swal.fire({
-      title: 'Tem certeza?',
-      text: 'Você realmente deseja sair?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#0047AB',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'SIM, SAIR!',
-      cancelButtonText: 'CANCELAR',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.logout();
-      }
-    });
-  }
+confirmLogout() {
+  Swal.fire({
+    title: 'Tem certeza?',
+    text: 'Você realmente deseja sair?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#0047AB',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'SIM, SAIR!',
+    cancelButtonText: 'CANCELAR',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.logout();
+    }
+  });
+}
 
 
 

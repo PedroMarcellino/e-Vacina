@@ -41,9 +41,9 @@ export class AuthService {
     );
   }
 
-  login(email: string, password: string): Observable<any> {
+  login(cpf: string, password: string): Observable<any> {
     return new Observable(observer => {
-      this.http.post(`${this.apiUrl}/login`, { email, password }).subscribe({
+      this.http.post(`${this.apiUrl}/login`, { cpf, password }).subscribe({
         next: (res: any) => {
           this.clearUser();
           localStorage.removeItem(this.tokenKey);

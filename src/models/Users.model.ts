@@ -3,6 +3,7 @@ export interface Users {
     name: string;
     email: string;
     photo_url?: string;
+    cpf: string;
    // password?: string;
     createdAt?: Date;
     updatedAt?: Date;
