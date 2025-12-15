@@ -6,43 +6,43 @@ import { LoggedComponent } from './pages/no-logged/logged/logged.component';
 
 
 export const routes: Routes = [
-   {
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
-   },
+  },
 
-   {
-      path: 'home',
-         loadComponent: () =>
-            import ('./pages/home/home.component').then((c) => c.HomeComponent)
-   },
+  {
+    path: 'home',
+    loadComponent: () =>
+      import('./pages/home/home.component').then((c) => c.HomeComponent)
+  },
 
-     {
-      path: 'login',
-         loadComponent: () =>
-            import ('./auth/login/login.component').then((c) => c.LoginComponent)
-   },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./auth/login/login.component').then((c) => c.LoginComponent)
+  },
 
-     {
-      path: 'register',
-         loadComponent: () =>
-            import ('./auth/register/register.component').then((c) => c.RegisterComponent)
-   },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./auth/register/register.component').then((c) => c.RegisterComponent)
+  },
 
-    {
-      path: 'forgot-my-password',
-         loadComponent: () =>
-            import ('./auth/forgot-my-password/forgot-my-password.component').then((c) => c.ForgotMyPasswordComponent)
-   },
+  {
+    path: 'forgot-my-password',
+    loadComponent: () =>
+      import('./auth/forgot-my-password/forgot-my-password.component').then((c) => c.ForgotMyPasswordComponent)
+  },
 
-   {
-      path: 'reset-password',
-         loadComponent: () =>
-            import ('./auth/reset-password/reset-password.component').then((c) => c.ResetPasswordComponent)
-   },
+  {
+    path: 'reset-password',
+    loadComponent: () =>
+      import('./auth/reset-password/reset-password.component').then((c) => c.ResetPasswordComponent)
+  },
 
-   {
+  {
     path: '',
     component: LoggedComponent,
     canActivate: [AuthGuard],
@@ -54,10 +54,10 @@ export const routes: Routes = [
             (c) => c.DashboardComponent
           ),
       },
-   ]
-   },
+    ]
+  },
 
-   {
+  {
     path: '',
     component: LoggedComponent,
     canActivate: [AuthGuard],
@@ -69,10 +69,10 @@ export const routes: Routes = [
             (c) => c.MyVaccinesComponent
           ),
       },
-   ]
-   },
+    ]
+  },
 
-    {
+  {
     path: '',
     component: LoggedComponent,
     canActivate: [AuthGuard],
@@ -84,10 +84,10 @@ export const routes: Routes = [
             (c) => c.AboutVaccinesComponent
           ),
       },
-   ]
-   },
+    ]
+  },
 
-   {
+  {
     path: '',
     component: LoggedComponent,
     canActivate: [AuthGuard],
@@ -99,10 +99,10 @@ export const routes: Routes = [
             (c) => c.LeadsComponent
           ),
       },
-   ]
-   },
+    ]
+  },
 
-   {
+  {
     path: '',
     component: LoggedComponent,
     canActivate: [AuthGuard],
@@ -114,11 +114,11 @@ export const routes: Routes = [
             (c) => c.FamilyComponent
           ),
       },
-   ]
-   },
+    ]
+  },
 
 
-    {
+  {
     path: '',
     component: LoggedComponent,
     canActivate: [AuthGuard],
@@ -130,8 +130,8 @@ export const routes: Routes = [
             (c) => c.MyProfileComponent
           ),
       },
-   ]
-   }
+    ]
+  }
 
 
 

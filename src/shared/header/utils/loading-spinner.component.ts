@@ -26,8 +26,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
       // }
 
     .loader {
-    width: 48px;
-    height: 48px;
+    width: 60px;
+    height: 60px;
     border: 5px solid #FFF;
     border-bottom-color: #0048ffff;
     border-radius: 50%;
