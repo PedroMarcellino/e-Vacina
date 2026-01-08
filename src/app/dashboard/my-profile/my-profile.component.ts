@@ -8,8 +8,8 @@ import { FormMyProfileComponent } from './form-my-profile/form-my-profile.compon
 import { Users } from '../../../models/Users.model';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
-import { LoadingSpinnerComponent } from '../../../shared/header/utils/loading-spinner.component';
-import { LoadingService } from '../../../shared/header/utils/loading';
+import { LoadingSpinnerComponent } from '../../../shared/utils/loading-spinner.component';
+import { LoadingService } from '../../../shared/utils/loading';
 
 @Component({
   selector: 'app-my-profile',

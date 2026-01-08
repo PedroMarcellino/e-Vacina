@@ -1,4 +1,4 @@
-import { AuthService } from './../../../app/auth/auth.service';
+import { AuthService } from '../../app/auth/auth.service';
 
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -9,7 +9,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import Swal from 'sweetalert2';
-import { SwalService } from '../../../app/services/utils/swal.service';
+import { SwalService } from '../../app/services/utils/swal.service';
 
 
 @Component({

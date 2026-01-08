@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LoadingService } from '../../shared/header/utils/loading';
+import { LoadingService } from '../../shared/utils/loading';
 import { environment } from '../../environments/environment.develop';
-import { objectToFormData } from '../../shared/header/utils/functions';
+import { objectToFormData } from '../../shared/utils/functions';
 
 @Injectable({
   providedIn: 'root'

@@ -107,4 +107,20 @@
       opacity: 0.8;
     }
   }
+
+  .credits {
+    font-size: 0.85rem;
+    color: #aac4e0;
+    margin-bottom: 0.5rem;
+
+    a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }
