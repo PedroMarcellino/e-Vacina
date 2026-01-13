@@ -1,0 +1,26 @@
+<div class="form-box">
+   <label *ngIf="label">
+      {{ label }}
+      <small *ngIf="required" class="required">*</small>
+   </label>
+
+   <input [type]="type" [placeholder]="placeholder" [value]="value" [disabled]="disabled"
+      (input)="onChange($any($event.target).value)" (blur)="onTouched()" [class.field-error]="showError" />
+
+   <!-- ERROS -->
+   <div class="error-message" *ngIf="showError">
+      <app-icon name="error" [size]="20" [filled]="false" class="toast-icon"></app-icon>
+      <ng-container *ngIf="errors['required']">
+         {{ errorRequired }}
+      </ng-container>
+
+      <ng-container *ngIf="errors['minlength']">
+         {{ errorMinLength }}
+      </ng-container>
+
+      <ng-container *ngIf="errors['maxlength']">
+         {{ errorMaxLength }}
+      </ng-container>
+
+   </div>
+</div>

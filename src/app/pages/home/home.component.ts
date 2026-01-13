@@ -6,7 +6,9 @@ import { SwalService } from '../../services/utils/swal.service';
 import { LeadsService } from '../../services/leads/leads.service';
 import { FormsModule } from '@angular/forms';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
-
+import { AboutComponent } from './shared/about/about.component';
+import { InformationComponent } from './shared/information/information.component';
+import { GetInTouchComponent } from './shared/get-in-touch/get-in-touch.component';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -15,33 +17,18 @@ import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
     FooterComponent,
     FormsModule,
     NgxMaskDirective,
-    NgxMaskPipe],
+    NgxMaskPipe,
+    AboutComponent,
+    InformationComponent,
+    GetInTouchComponent
+
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-
-  form = {
-    full_name: '',
-    email: '',
-    phone: '',
-    message: ''
-  };
-
   constructor(
     private leadsService: LeadsService,
     private swal: SwalService
   ) { }
-
-  sendContactMessage() {
-    this.leadsService.create(this.form).subscribe({
-      next: () => {
-        this.swal.success('Mensagem enviada!', 'Entraremos em contato em breve.');
-        this.form = { full_name: '', email: '', phone: '', message: '' };
-      },
-      error: () => {
-        this.swal.error('Erro ao enviar', 'Não foi possível enviar a mensagem. Tente novamente.');
-      }
-    });
-  }
 }
