@@ -3,6 +3,7 @@
     <div class="nav-section mt-4">
       <div *ngFor="let menu of menus" class="menu-group">
         <div class="menu-title">{{ menu.title }}</div>
+        <span class="small"> {{ menu.subtitle }}</span>
 
         <div *ngFor="let submenu of menu.contentMenus" class="submenu-item">
           <!-- Item com rota e sem children -->
@@ -20,14 +21,22 @@
             </span> {{ submenu.label }}
           </a>
 
-          <!-- Item com children <div *ngIf="submenu.children?.length" class="submenu-children-wrapper">
-            <div class="submenu-toggle d-flex align-items-center" (click)="submenu.open = !submenu.open" style="cursor: pointer;">
+          <div *ngIf="submenu.children?.length" class="submenu-children-wrapper">
+
+            <div class="submenu-toggle d-flex align-items-center" (click)="submenu.open = !submenu.open"
+              style="cursor: pointer;">
               <span class="me-2">
                 <i [class]="submenu.icon"></i>
               </span>
+
               {{ submenu.label }}
-              <i class="bi ms-auto" [ngClass]="{'bi-caret-down': !submenu.open, 'bi-caret-up': submenu.open}"></i>
+
+              <i class="bi ms-auto" [ngClass]="{
+        'bi-caret-down': !submenu.open,
+        'bi-caret-up': submenu.open
+      }"></i>
             </div>
+
             <ul *ngIf="submenu.open" class="submenu-children">
               <li *ngFor="let child of submenu.children">
                 <a [routerLink]="child.route" routerLinkActive="active">
@@ -38,7 +47,8 @@
                 </a>
               </li>
             </ul>
-          </div>-->
+
+          </div>
 
 
         </div>

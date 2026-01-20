@@ -1,10 +1,10 @@
 .vertical-nav-wrapper {
-  background: rgba(4, 70, 136, 0.85); 
-  backdrop-filter: blur(12px); 
+  background: rgba(4, 70, 136, 0.85);
+  backdrop-filter: blur(12px);
   color: white;
-  width: 260px;
+  width: 285px;
   transition: width 0.3s ease;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -12,9 +12,11 @@
   border-right: 1px solid rgba(255, 255, 255, 0.1);
 
   &.collapsed {
-    width: 80px; 
-    .menu-title, .footer-text, .logout-label {
-      display: none; 
+    width: 80px;
+    .menu-title,
+    .footer-text,
+    .logout-label {
+      display: none;
     }
   }
 
@@ -22,7 +24,62 @@
     padding: 1.5rem 1rem;
 
     .menu-group {
-      margin-bottom: 2rem;
+      margin-bottom: 1.7rem;
+
+      .submenu-toggle {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px;
+        border-radius: 12px;
+        color: #eaf2fa;
+        font-size: 0.95rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.15);
+          color: #fff;
+          transform: translateX(6px);
+        }
+      }
+
+      .submenu-children {
+        list-style: none;
+        padding: 0;
+        margin: 8px 0 0 0;
+        margin-bottom: 7px;
+
+        li {
+          a {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px;
+            border-radius: 12px;
+            color: #eaf2fa;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+
+            &:hover,
+            &.active {
+              background: rgba(255, 255, 255, 0.15);
+              color: #fff;
+              transform: translateX(6px);
+            }
+
+            i {
+              font-size: 18px;
+              background: rgba(255, 255, 255, 0.15);
+              padding: 6px;
+              border-radius: 8px;
+            }
+          }
+        }
+      }
 
       .menu-title {
         font-size: 1rem;
@@ -31,7 +88,7 @@
         color: #e9ecff;
         margin-bottom: 0.8rem;
         margin-left: 10px;
-        font-family: 'Poppins', sans-serif;
+        font-family: "Poppins", sans-serif;
         letter-spacing: 1.1px;
       }
 
@@ -122,5 +179,10 @@
         text-decoration: underline;
       }
     }
+  }
+
+  .small{
+    margin-left: 10px;
+    margin-bottom: 25px;
   }
 }
