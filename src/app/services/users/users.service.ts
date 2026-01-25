@@ -23,7 +23,7 @@ export class UsersService extends HttpRestfulService {
   }
 
   getById(id: number): Observable<Users> {
-     return this.http.get<Users>('http://localhost:8000/api/user');
+    return this.http.get<Users>('http://localhost:8000/api/user');
   }
 
   updateUser(id: number, data: any): Observable<any> {

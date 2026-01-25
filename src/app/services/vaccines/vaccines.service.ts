@@ -52,4 +52,8 @@ export class VaccinesService extends HttpRestfulService {
       `${this.apiUrl}/vaccines/last?ts=${Date.now()}`
     );
   }
+
+  public override findAll(params?: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}/vaccines/all`, { params });
+  }
 }

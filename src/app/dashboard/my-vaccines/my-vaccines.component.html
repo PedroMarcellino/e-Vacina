@@ -25,7 +25,7 @@
           Gerar Relatório
         </button>
 
-        <button mat-raised-button class="btn-gold"  (click)="openDialog()">
+        <button mat-raised-button class="btn-gold" (click)="openDialog()">
           <i class="bi bi-plus-square icon-add"></i>
           Vacina
         </button>
@@ -33,9 +33,6 @@
     </div>
 
     <div class="card-style p-3">
-      <div class="header-title">
-        <h3><span class="span">{{ user?.name }}</span></h3>
-      </div>
 
       <mat-tab-group (selectedTabChange)="filterByTab($event)" [(selectedIndex)]="selectedTabIndex">
         <mat-tab label="A Tomar"></mat-tab>
@@ -93,44 +90,48 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let vacine of filteredVaccines">
-              <td>{{ vacine.name }}</td>
+            @for (item of vaccines; track item.id) {
+            <tr *ngFor="let item of filteredVaccines">
+              <td>{{ item.name }}</td>
               <td>
                 <span class="badge" [ngClass]="{
-              'status-a-tomar': vacine.status === 'A Tomar',
-              'status-aguardando-aplicacao': vacine.status === 'Aguardando Aplicação',
-              'status-aplicada': vacine.status === 'Aplicada'
+              'status-a-tomar': item.status === 'A Tomar',
+              'status-aguardando-aplicacao': item.status === 'Aguardando Aplicação',
+              'status-aplicada': item.status === 'Aplicada'
             }">
-                  {{ vacine.status }}
+                  {{ item.status }}
                 </span>
               </td>
-              <td>{{ vacine.age_range }}</td>
-              <td>{{ vacine.application_date || '—' }}</td>
+              <td>{{ item.age_range }}</td>
+              <td>{{ item.application_date || '—' }}</td>
               <td>
                 <button mat-icon-button [matMenuTriggerFor]="actionMenu" matTooltip="Ações">
                   <i class="bi bi-three-dots-vertical"></i>
                 </button>
 
                 <mat-menu #actionMenu="matMenu">
-                  <button mat-menu-item (click)="openDialog(vacine)">
+                  <button mat-menu-item (click)="openDialog(item)">
                     <mat-icon color="primary">edit</mat-icon>
                     <span>Editar</span>
                   </button>
-                  <button mat-menu-item (click)="openViewDialog(vacine)">
+                  <button mat-menu-item (click)="openViewDialog(item)">
                     <mat-icon color="primary">visibility</mat-icon>
                     <span>Visualizar</span>
                   </button>
-                  <button mat-menu-item (click)="forceDeleteUser(vacine)">
+                  <button mat-menu-item (click)="forceDeleteUser(item)">
                     <mat-icon color="primary">delete</mat-icon>
                     <span>Excluir</span>
                   </button>
                 </mat-menu>
               </td>
             </tr>
+            }
           </tbody>
         </table>
       </div>
-
+      <mat-paginator [length]="length" [pageIndex]="pageIndex" [pageSize]="pageSize"
+        [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons (page)="handlePageEvent($event)">
+      </mat-paginator>
     </div>
   </div>
 </div>

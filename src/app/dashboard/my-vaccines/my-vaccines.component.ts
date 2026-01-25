@@ -23,6 +23,9 @@ import { ViewVaccinesComponent } from './view-vaccines/view-vaccines.component';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { UsersService } from '../../services/users/users.service';
+import { PageEvent } from '@angular/material/paginator';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { HttpParams } from '@angular/common/http';
 interface VaccinesData {
   id: number;
   name: string;
@@ -49,6 +52,7 @@ interface VaccinesData {
     MatInputModule,
     MatTabsModule,
     MatMenuModule,
+    MatPaginatorModule,
     MatSelectModule,
     FormsModule
   ],
@@ -57,6 +61,9 @@ interface VaccinesData {
 })
 export class MyVaccinesComponent implements OnInit {
   vaccines: VaccinesData[] = [];
+  length = 0;
+  pageIndex = 0;
+  pageSize = 10;
   viewMode: 'cards' | 'table' = 'cards';
   vacinasAplicadas: VaccinesData[] = [];
   vacinasATomar: VaccinesData[] = [];
@@ -132,9 +139,16 @@ export class MyVaccinesComponent implements OnInit {
   }
 
   findAllVaccines() {
-    this.vaccinesservice.findAll().subscribe({
+    this.vaccinesservice.findAll({
+      page: this.pageIndex + 1,
+      per_page: this.pageSize,
+      ...HttpParams
+    }).subscribe({
       next: (response: any) => {
         const vaccinesResponse = Array.isArray(response) ? response : response.data;
+        const paginated = response.data;
+        this.length = paginated.total;
+        this.pageIndex = paginated.current_page - 1;
 
         if (Array.isArray(vaccinesResponse)) {
           this.vaccines = vaccinesResponse;
@@ -211,4 +225,10 @@ export class MyVaccinesComponent implements OnInit {
     this.filteredVaccines = this.vaccines.filter(v => v.status === statusMap[tabIndex]);
   }
 
+  handlePageEvent(event: PageEvent) {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+
+    this.findAllVaccines();
+  }
 }

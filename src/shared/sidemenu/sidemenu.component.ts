@@ -52,11 +52,7 @@ export class SidemenuComponent implements OnInit {
         {
           label: 'Sobre as Vacinas',
           icon: 'bi bi-heart-pulse-fill',
-          children: [
-            { label: 'Vacinas Disponíveis', route: '/about-vaccines/available', icon: 'bi bi-check-circle' },
-            { label: 'Histórico de Vacinação', route: '/about-vaccines/history', icon: 'bi bi-journal-text' }
-          ],
-          open: false
+          route: '/about-vaccines'
         },
         {
           label: 'Familiares',
@@ -72,7 +68,8 @@ export class SidemenuComponent implements OnInit {
               route: '',
               icon: 'bi bi-tools'
             }
-          ]
+          ], 
+          open: false
         },
         {
           label: 'Caixa de Mensagem',
