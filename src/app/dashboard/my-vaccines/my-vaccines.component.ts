@@ -69,6 +69,7 @@ export class MyVaccinesComponent implements OnInit {
   vacinasATomar: VaccinesData[] = [];
   vacinasAguardando: VaccinesData[] = [];
   filteredVaccines: any[] = [];
+  buttonFilters = false;
   user = this.authService.getUser();
   previewUrl: string | ArrayBuffer | null = null;
   routeData!: { title: string; subtitle: string; showButtons: boolean };
@@ -107,6 +108,30 @@ export class MyVaccinesComponent implements OnInit {
 
   listItems() {
     return this.items.filter(item => item.status === this.status);
+  }
+
+  toggleFilter() {
+    this.buttonFilters = !this.buttonFilters
+  }
+
+  filters = {
+    name: '',
+    status: '',
+    date: ''
+  };
+
+  clearFilters() {
+    this.filters = {
+      name: '',
+      status: '',
+      date: ''
+    };
+    this.applyFilters();
+  }
+
+  applyFilters() {
+    console.log('Filtros aplicados:', this.filters);
+    this.findAllVaccines();
   }
 
 
@@ -228,7 +253,6 @@ export class MyVaccinesComponent implements OnInit {
   handlePageEvent(event: PageEvent) {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
-
     this.findAllVaccines();
   }
 }

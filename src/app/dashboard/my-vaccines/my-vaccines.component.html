@@ -9,6 +9,45 @@
       </div>
 
       <div class="d-flex align-items-center gap-2">
+        <div class="filter position-relative">
+
+          <button class="btn btn-outline-light btn-action" (click)="toggleFilter()" title="Filtros">
+            <i class="bi bi-funnel"></i>
+          </button>
+
+          <!-- PAINEL DE FILTROS -->
+          <div class="filter-panel card shadow-sm p-3" *ngIf="buttonFilters">
+
+            <div class="row g-2">
+
+              <div class="col-md-4">
+                <label class="form-label">Buscar</label>
+                <input type="text" class="form-control" [(ngModel)]="filters.name" placeholder="Nome da vacina">
+              </div>
+
+              <div class="col-md-4">
+                <label class="form-label">Status</label>
+                <select class="form-select" [(ngModel)]="filters.status">
+                  <option value="">Todos</option>
+                  <option value="pending">Pendentes</option>
+                  <option value="done">Tomadas</option>
+                </select>
+              </div>
+
+              <div class="col-md-4">
+                <label class="form-label">Data</label>
+                <input type="date" class="form-control" [(ngModel)]="filters.date">
+              </div>
+
+            </div>
+
+            <div class="d-flex justify-content-end gap-2 mt-3">
+              <button class="btn btn-sm btn-secondary" (click)="clearFilters()">Limpar</button>
+              <button class="btn btn-sm btn-primary" (click)="applyFilters()">Aplicar</button>
+            </div>
+
+          </div>
+        </div>
         <div class="btn-group" role="group">
           <button type="button" class="btn btn-outline-light btn-action" [class.active]="viewMode === 'cards'"
             (click)="viewMode = 'cards'" title="Modo Cards">

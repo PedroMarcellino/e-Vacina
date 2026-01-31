@@ -8,7 +8,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 100vh;
+  height: 100%;
+  // min-height: 100vh;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
 
   &.collapsed {
@@ -181,7 +182,7 @@
     }
   }
 
-  .small{
+  .small {
     margin-left: 10px;
     margin-bottom: 25px;
   }
