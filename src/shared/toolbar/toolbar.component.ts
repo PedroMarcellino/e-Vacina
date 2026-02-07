@@ -19,7 +19,7 @@ import { AuthService } from '../../app/auth/auth.service';
   styleUrl: './toolbar.component.scss'
 })
 export class ToolbarComponent implements OnInit {
-  previewUrl: string | ArrayBuffer | null = null;
+  photoUrl: string = 'assets/img/pfp.svg';
   hidden = true;
   @Input() drawer: any;
   @Output() hasChanged: EventEmitter<any> = new EventEmitter();
@@ -29,6 +29,10 @@ export class ToolbarComponent implements OnInit {
   ngOnInit() {
     this.authService.user$.subscribe(user => {
       this.user = user;
+
+      this.photoUrl = user?.photo_url
+        ? `${user.photo_url}?v=${Date.now()}`
+        : 'assets/img/pfp.svg';
     });
   }
 

@@ -1,5 +1,18 @@
+<ng-template #noVaccines>
+  <div class="no-content">
+    <img src="assets/img/vaccine.svg" alt="No Data" class="no-data-image" style="max-width: 270px;">
+    <h2 class="title">Nenhuma vacina cadastrada</h2>
+
+    <p class="small">Adicione suas vacinas para acompanhar seu histórico de imunização.</p>
+    <button mat-raised-button class="btn-gold mt-3" (click)="openDialog()">
+      <i class="bi bi-plus-square icon-add"></i>
+      Vacina
+    </button>
+  </div>
+</ng-template>
+
 <div class="my-vacine-container p-4">
-  <div class="section mb-4">
+  <div class="section mb-4" *ngIf="vaccines.length > 0; else noVaccines">
     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
       <div>
         <h4 class="section-title">

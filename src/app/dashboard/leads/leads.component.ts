@@ -47,21 +47,22 @@ interface LeadsData {
   styleUrl: './leads.component.scss'
 })
 export class LeadsComponent {
-     routeData!: { title: string; subtitle: string; showButtons: boolean };
-     dataSource!: MatTableDataSource<LeadsData>;
-      displayedColumns: string[] = [
-        'id',
-        'full_name',
-        'email',
-        'phone',
-        'message',
-       // 'actions'
-      ];
+  leads: LeadsData[] = [];
+  routeData!: { title: string; subtitle: string; showButtons: boolean };
+  dataSource!: MatTableDataSource<LeadsData>;
+  displayedColumns: string[] = [
+    'id',
+    'full_name',
+    'email',
+    'phone',
+    'message',
+    // 'actions'
+  ];
 
-      @ViewChild(MatPaginator) paginator!: MatPaginator;
-      @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-      constructor(
+  constructor(
     private dialog: MatDialog,
     private leadsService: LeadsService,
     private swalService: SwalService,
@@ -90,14 +91,14 @@ export class LeadsComponent {
 
   openViewDialog(leads?: LeadsData) {
     const dialogRef = this.dialog.open(ViewLeadsComponent, {
-    width: '700px',
-    height: '490px',
-    panelClass: 'mat-dialog-content',
-    data: leads, 
-    autoFocus: false,
-    disableClose: true
-  });
-}
+      width: '700px',
+      height: '490px',
+      panelClass: 'mat-dialog-content',
+      data: leads,
+      autoFocus: false,
+      disableClose: true
+    });
+  }
 
   loadUsers(): void {
     this.leadsService.findAll().subscribe({

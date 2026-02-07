@@ -37,3 +37,154 @@ body {
   margin-left: 2px;
   color: #eb3d47;
 }
+
+/* ===========================
+   VARIÁVEIS DE TEMA
+=========================== */
+:root {
+  --primary-color: #4f46e5; /* Indigo */
+  --primary-light: #eef2ff;
+  --danger-color: #ef4444;
+  --success-color: #22c55e;
+  --text-color: #1f2937;
+  --muted-color: #6b7280;
+  --border-color: #d1d5db;
+  --bg-input: #ffffff;
+  --radius: 10px;
+  --transition: 0.25s ease;
+  --shadow-focus: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* ===========================
+   BASE DOS CAMPOS
+=========================== */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.95rem;
+  color: var(--text-color);
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  outline: none;
+  transition: var(--transition);
+}
+
+/* Placeholder */
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted-color);
+  opacity: 0.8;
+}
+
+/* ===========================
+   FOCUS
+=========================== */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-focus);
+}
+
+/* ===========================
+   SELECT CUSTOMIZADO
+=========================== */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg fill='none' stroke='%236b7280' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  padding-right: 2.2rem;
+}
+
+/* ===========================
+   TEXTAREA
+=========================== */
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* ===========================
+   CAMPOS DESABILITADOS
+=========================== */
+input:disabled,
+select:disabled,
+textarea:disabled {
+  background-color: #f3f4f6;
+  cursor: not-allowed;
+  color: var(--muted-color);
+}
+
+/* ===========================
+   ERRO (Angular Forms)
+=========================== */
+.ng-invalid.ng-touched:not(form) {
+  border-color: var(--danger-color);
+}
+
+.ng-invalid.ng-touched:not(form):focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+/* ===========================
+   SUCESSO (opcional)
+=========================== */
+.is-valid {
+  border-color: var(--success-color);
+}
+
+.is-valid:focus {
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.15);
+}
+
+/* ===========================
+   LABEL
+=========================== */
+label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+/* ===========================
+   GRUPO DE FORM
+=========================== */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+/* ===========================
+   MENSAGEM DE ERRO
+=========================== */
+.form-error {
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--danger-color);
+}
+
+/* ===========================
+   INPUT GROUP (ícones)
+=========================== */
+.input-icon {
+  position: relative;
+}
+
+.input-icon i,
+.input-icon .icon {
+  position: absolute;
+  top: 50%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+  color: var(--muted-color);
+}
+
+.input-icon input {
+  padding-left: 2.4rem;
+}
+

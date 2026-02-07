@@ -22,7 +22,7 @@ import { LoadingService } from '../../../shared/utils/loading';
   styleUrl: './my-profile.component.scss'
 })
 export class MyProfileComponent implements OnInit {
-  previewUrl: string | null = null;
+  photoUrl: string = 'assets/img/pfp.svg';
   selectedFile: File | null = null;
   user: Users | null = null;
 
@@ -59,9 +59,14 @@ export class MyProfileComponent implements OnInit {
         if (res) {
           this.user = res;
           this.authService.setUser(res);
+
+          this.photoUrl = res.photo_url
+            ? `${res.photo_url}?v=${Date.now()}`
+            : 'assets/img/pfp.svg';
         } else {
           this.swalService.warning('Aviso!', 'Nenhum dado de usuário encontrado.');
         }
+
         loadingDialog.close();
       },
       error: (err) => {
@@ -83,7 +88,7 @@ export class MyProfileComponent implements OnInit {
 
       const reader = new FileReader();
       reader.onload = () => {
-        this.previewUrl = reader.result as string;
+        this.photoUrl = reader.result as string;
       };
       reader.readAsDataURL(this.selectedFile);
     }
@@ -102,7 +107,7 @@ export class MyProfileComponent implements OnInit {
       next: (res) => {
         console.log('Upload feito com sucesso', res);
 
-        this.previewUrl = res.photo_url;
+        this.photoUrl = res.photo_url;
         this.authService.setUser(res.user);
         this.user = res.user;
 
@@ -132,7 +137,6 @@ export class MyProfileComponent implements OnInit {
       if (result) this.getAll();
     });
   }
-
 
 
 }

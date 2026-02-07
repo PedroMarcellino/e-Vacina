@@ -1,5 +1,16 @@
+
+<ng-template #noLeads>
+  <div class="no-content">
+    <img src="assets/img/lead.svg" alt="No Data" class="no-data-image" style="max-width: 270px;">
+    <h2 class="title">Nenhum lead cadastrado</h2>
+
+    <p class="small">Verifica se os leads foi enviados corretamente.</p>
+  </div>
+</ng-template>
+
+
 <div class="my-vacine-container p-4">
-  <div class="section mb-4">
+  <div class="section mb-4" *ngIf="leads.length > 0; else noLeads">
     <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
       <div>
         <h4 class="section-title">
