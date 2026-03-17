@@ -1,0 +1,64 @@
+<div class="vertical-nav-wrapper d-flex flex-column justify-content-between h-100">
+  <div class="nav-top h-100">
+    <div class="nav-section mt-4">
+      <div *ngFor="let menu of menus" class="menu-group">
+        <div class="menu-title">{{ menu.title }}</div>
+        <span class="small"> {{ menu.subtitle }}</span>
+
+        <div *ngFor="let submenu of menu.contentMenus" class="submenu-item">
+          <!-- Item com rota e sem children -->
+          <a *ngIf="submenu.route && !submenu.children" [routerLink]="submenu.route" routerLinkActive="active">
+            <span class="me-2">
+              <i [class]="submenu.icon"></i>
+            </span>
+            {{ submenu.label }}
+          </a>
+
+          <!-- Item com handler (ex: logout) -->
+          <a *ngIf="submenu.handler" (click)="submenu.handler()" style="color: #fff">
+            <span class="me-2">
+              <i [class]="submenu.icon"></i>
+            </span> {{ submenu.label }}
+          </a>
+
+          <div *ngIf="submenu.children?.length" class="submenu-children-wrapper">
+
+            <div class="submenu-toggle d-flex align-items-center" (click)="submenu.open = !submenu.open"
+              style="cursor: pointer;">
+              <span class="me-2">
+                <i [class]="submenu.icon"></i>
+              </span>
+
+              {{ submenu.label }}
+
+              <i class="bi ms-auto" [ngClass]="{
+        'bi-caret-down': !submenu.open,
+        'bi-caret-up': submenu.open
+      }"></i>
+            </div>
+
+            <ul *ngIf="submenu.open" class="submenu-children">
+              <li *ngFor="let child of submenu.children">
+                <a [routerLink]="child.route" routerLinkActive="active">
+                  <span class="me-2">
+                    <i [class]="child.icon || 'bi bi-dot'"></i>
+                  </span>
+                  {{ child.label }}
+                </a>
+              </li>
+            </ul>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-footer text-center py-3">
+    <div class="credits">
+      Desenvolvido por
+      <a href=""><strong>Skyware Solutions</strong></a>
+    </div>
+  </div>

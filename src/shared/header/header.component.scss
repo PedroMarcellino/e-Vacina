@@ -1,0 +1,97 @@
+
+.info-header-person {
+  font-size: 14px;
+  background: #111F36; 
+  color: #e5e7eb; 
+}
+
+.logo-site {
+  border-radius: 50%;
+}
+
+.info-header-person a {
+  text-decoration: none;
+  color: #e5e7eb;
+  transition: color 0.2s ease;
+}
+
+.info-header-person a:hover {
+  color: #3abff8; 
+}
+
+.info-header-person i {
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+
+.navbar {
+  background: #111F36;
+  padding: 10px 0;
+}
+
+.navbar #logo {
+  height: 45px;
+  transition: transform 0.2s ease;
+}
+
+.navbar #logo:hover {
+  transform: scale(1.03);
+}
+
+
+.navbar .nav-link {
+  font-size: 15px;
+  font-weight: 500;
+  color: #e5e7eb; 
+  transition: color 0.2s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #3abff8; 
+}
+
+.navbar .btn-primary {
+  background: #3abff8;
+  border: none;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 6px 14px;
+  transition: background 0.2s ease;
+}
+
+.navbar .btn-primary:hover {
+  background: #289ecb;
+}
+
+
+.navbar .btn-outline-primary {
+  border-radius: 6px;
+  font-weight: 500;
+  color: #3abff8;
+  border: 1px solid #3abff8;
+  transition: all 0.2s ease;
+}
+
+.navbar .btn-outline-primary:hover {
+  background: #3abff8;
+  color: #fff;
+}
+
+.offcanvas {
+  background: #111F36;
+  color: #fff;
+}
+
+.offcanvas .offcanvas-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.offcanvas .nav-link {
+  color: #e5e7eb;
+}
+
+.offcanvas .nav-link:hover {
+  color: #3abff8;
+}

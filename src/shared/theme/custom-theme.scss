@@ -1,0 +1,18 @@
+@use "@angular/material" as mat;
+@use "sass:map";
+@use "sass:color";
+
+$primary-color: #3abff8;
+$accent-color: #ff4081;
+$warn-color: #f44336;
+$background-color: #f5f5f5;
+$foreground-color: #212121;
+$hover-color: color.scale($primary-color, $lightness: -10%);
+$disabled-color: color.scale($foreground-color, $alpha: -50%);
+$border-radius: 8px;
+$font-family: "Roboto", sans-serif;
+$font-size-base: 16px;
+$spacing-unit: 8px;
+
+@include mat.core();
+@include mat.all-component-themes($my-theme);

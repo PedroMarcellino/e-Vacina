@@ -1,0 +1,189 @@
+.vertical-nav-wrapper {
+  background: rgba(4, 70, 136, 0.85);
+  backdrop-filter: blur(12px);
+  color: white;
+  width: 285px;
+  transition: width 0.3s ease;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  // min-height: 100vh;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+
+  &.collapsed {
+    width: 80px;
+    .menu-title,
+    .footer-text,
+    .logout-label {
+      display: none;
+    }
+  }
+
+  .nav-section {
+    padding: 1.5rem 1rem;
+
+    .menu-group {
+      margin-bottom: 1.7rem;
+
+      .submenu-toggle {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px;
+        border-radius: 12px;
+        color: #eaf2fa;
+        font-size: 0.95rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.15);
+          color: #fff;
+          transform: translateX(6px);
+        }
+      }
+
+      .submenu-children {
+        list-style: none;
+        padding: 0;
+        margin: 8px 0 0 0;
+        margin-bottom: 7px;
+
+        li {
+          a {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px;
+            border-radius: 12px;
+            color: #eaf2fa;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+
+            &:hover,
+            &.active {
+              background: rgba(255, 255, 255, 0.15);
+              color: #fff;
+              transform: translateX(6px);
+            }
+
+            i {
+              font-size: 18px;
+              background: rgba(255, 255, 255, 0.15);
+              padding: 6px;
+              border-radius: 8px;
+            }
+          }
+        }
+      }
+
+      .menu-title {
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #e9ecff;
+        margin-bottom: 0.8rem;
+        margin-left: 10px;
+        font-family: "Poppins", sans-serif;
+        letter-spacing: 1.1px;
+      }
+
+      .submenu-item {
+        a {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          padding: 12px;
+          border-radius: 12px;
+          color: #eaf2fa;
+          font-size: 0.95rem;
+          font-weight: 500;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          position: relative;
+
+          &:hover,
+          &.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            transform: translateX(6px);
+          }
+
+          mat-icon {
+            font-size: 22px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 6px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+
+            &:hover {
+              background: rgba(255, 255, 255, 0.3);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .nav-footer {
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+
+    .logout-button {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+      color: #ff6666;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 12px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      background: rgba(255, 77, 77, 0.08);
+
+      &:hover {
+        background: rgba(255, 77, 77, 0.2);
+        transform: scale(1.05);
+      }
+
+      .logout-label {
+        transition: opacity 0.3s ease;
+      }
+    }
+
+    .footer-text {
+      color: #aac4e0;
+      font-size: 0.75rem;
+      margin-top: 1.5rem;
+      text-align: center;
+      opacity: 0.8;
+    }
+  }
+
+  .credits {
+    font-size: 0.85rem;
+    color: #aac4e0;
+    margin-bottom: 0.5rem;
+
+    a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .small {
+    margin-left: 10px;
+    margin-bottom: 25px;
+  }
+}

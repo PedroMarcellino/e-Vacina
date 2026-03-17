@@ -1,0 +1,50 @@
+<section id="contact" class="contact">
+   <div class="container text-center">
+      <h3>Entre em Contato</h3>
+      <p>Para mais informações ou suporte, envie sua mensagem.</p>
+
+      <form (ngSubmit)="sendContactMessage()" [formGroup]="form">
+         <div class="row">
+            <div class="col-md-6 form-group">
+               <input type="text" name="full_name" class="form-control" formControlName="full_name"
+                  placeholder="Digite seu nome completo" />
+               <div class="error-message" *ngIf="form.get('full_name')?.errors?.['required'] &&
+               (form.get('full_name')?.touched)">
+                  Campo obrigatório!
+               </div>
+            </div>
+
+            <div class="col-md-6 form-group mt-3 mt-md-0">
+               <input type="email" name="email" class="form-control" required placeholder="Digite seu e-mail"
+                  formControlName="email" />
+               <div class="error-message" *ngIf="form.get('email')?.errors?.['required'] &&
+               (form.get('email')?.touched)">
+                  Campo obrigatório!
+               </div>
+            </div>
+
+            <div class="col-md-12 form-group mt-3 mt-md-0">
+               <input type="text" name="phone" class="form-control" placeholder="Digite seu telefone"
+                  mask="(00) 0000-0000||(00) 00000-0000" formControlName="phone" />
+               <div class="error-message" *ngIf="form.get('phone')?.errors?.['required'] &&
+               (form.get('phone')?.touched)">
+                  Campo obrigatório!
+               </div>
+            </div>
+         </div>
+
+         <div class="form-group mt-3">
+            <textarea class="form-control" name="message" rows="5" placeholder="Mensagem" formControlName="message"></textarea>
+            <div class="error-message" *ngIf="form.get('message')?.errors?.['required'] &&
+               (form.get('message')?.touched)">
+               Campo obrigatório!
+            </div>
+         </div>
+
+         <div class="text-center mt-3">
+            <button type="submit" class="btn btn-primary" (click)="sendContactMessage()">Enviar Mensagem</button>
+         </div>
+      </form>
+      <br />
+   </div>
+</section>

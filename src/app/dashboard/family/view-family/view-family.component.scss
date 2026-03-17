@@ -1,0 +1,110 @@
+::ng-deep .mat-dialog-container {
+  border-radius: 16px;
+  padding: 24px;
+  background-color: #e9f1f5;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  max-width: 500px;
+  width: 100%; 
+}
+
+mat-dialog-content {
+  border-radius: 60px;
+}
+
+mat-dialog-actions {
+  display: flex;
+  gap: 12px; 
+  margin-right: 40px;
+}
+
+
+button[mat-button] {
+  background-color: #08152A;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 20px;
+  padding: 6px 18px;
+  text-transform: none;
+  gap: 40px;
+  display: flex;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px; 
+}
+
+.title {
+  color: #08152A;
+  font-size: 0.95rem;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+}
+
+.content {
+  font-size: 17px;
+  font-family: 'Poppins', sans-serif;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  background-color: #e9f1f5;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+}
+
+.info {
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  color: #555;
+  flex: 1;
+}
+
+h2{ 
+    color: #08152A ;
+    margin-top: 15px;
+    margin-left: 22px;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.button-close {
+  background-color: red;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 20px;
+  padding: 6px 18px;
+  text-transform: none;
+  gap: 40px;
+  display: flex;
+}
+
+ .status-a-tomar {
+    background-color: #dc2626;
+    border-radius: 10px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+  }
+   .status-vacinado {
+    background-color: #09af00;
+    border-radius: 10px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+  }
+   .status-aguardando-aplicacao {
+    background-color: #fff70c;
+    border-radius: 10px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: black;
+  }

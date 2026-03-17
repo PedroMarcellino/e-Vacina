@@ -1,0 +1,189 @@
+<ng-template #noVaccines>
+  <div class="no-content">
+    <img src="assets/img/vaccine.svg" alt="No Data" class="no-data-image" style="max-width: 270px;">
+    <h2 class="title">Nenhuma vacina cadastrada</h2>
+
+    <p class="small">Adicione suas vacinas para acompanhar seu histórico de imunização.</p>
+    <button mat-raised-button class="btn-gold mt-3" (click)="openDialog()">
+      <i class="bi bi-plus-square icon-add"></i>
+      Vacina
+    </button>
+  </div>
+</ng-template>
+
+<div class="my-vacine-container p-4">
+  <div class="section mb-4" *ngIf="vaccines.length > 0; else noVaccines">
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap">
+      <div>
+        <h4 class="section-title">
+          <i class="bi bi-people-fill me-2"></i> Minhas Vacinas
+        </h4>
+        <p class="section-subtitle">Cadastre suas vacinas aqui</p>
+      </div>
+
+      <div class="d-flex align-items-center gap-2">
+        <div class="filter position-relative">
+
+          <button class="btn btn-outline-light btn-action" (click)="toggleFilter()" title="Filtros">
+            <i class="bi bi-funnel"></i>
+          </button>
+
+          <!-- PAINEL DE FILTROS -->
+          <div class="filter-panel card shadow-sm p-3" *ngIf="buttonFilters">
+
+            <div class="row g-2">
+
+              <div class="col-md-4">
+                <label class="form-label">Buscar</label>
+                <input type="text" class="form-control" [(ngModel)]="filters.name" placeholder="Nome da vacina">
+              </div>
+
+              <div class="col-md-4">
+                <label class="form-label">Status</label>
+                <select class="form-select" [(ngModel)]="filters.status">
+                  <option value="">Todos</option>
+                  <option value="pending">Pendentes</option>
+                  <option value="done">Tomadas</option>
+                </select>
+              </div>
+
+              <div class="col-md-4">
+                <label class="form-label">Data</label>
+                <input type="date" class="form-control" [(ngModel)]="filters.date">
+              </div>
+
+            </div>
+
+            <div class="d-flex justify-content-end gap-2 mt-3">
+              <button class="btn btn-sm btn-secondary" (click)="clearFilters()">Limpar</button>
+              <button class="btn btn-sm btn-primary" (click)="applyFilters()">Aplicar</button>
+            </div>
+
+          </div>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-outline-light btn-action" [class.active]="viewMode === 'cards'"
+            (click)="viewMode = 'cards'" title="Modo Cards">
+            <i class="bi bi-grid-3x3-gap-fill"></i>
+          </button>
+          <button type="button" class="btn btn-outline-light btn-action" [class.active]="viewMode === 'table'"
+            (click)="viewMode = 'table'" title="Modo Tabela">
+            <i class="bi bi-table"></i>
+          </button>
+        </div>
+
+        <button mat-raised-button class="btn-gold" (click)="downloadVaccinesPdf()">
+          <mat-icon>picture_as_pdf</mat-icon>
+          Gerar Relatório
+        </button>
+
+        <button mat-raised-button class="btn-gold" (click)="openDialog()">
+          <i class="bi bi-plus-square icon-add"></i>
+          Vacina
+        </button>
+      </div>
+    </div>
+
+    <div class="card-style p-3">
+
+      <mat-tab-group (selectedTabChange)="filterByTab($event)" [(selectedIndex)]="selectedTabIndex">
+        <mat-tab label="A Tomar"></mat-tab>
+        <mat-tab label="Aguardando Aplicação"></mat-tab>
+        <mat-tab label="Aplicadas"></mat-tab>
+      </mat-tab-group>
+
+      <!-- === VISUALIZAÇÃO EM CARDS === -->
+      <div *ngIf="viewMode === 'cards'" class="vaccine-cards mt-4">
+        <div *ngFor="let vacine of filteredVaccines" class="vaccine-card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="fw-bold mb-0">{{ vacine.name }}</h5>
+            <span class="badge" [ngClass]="{
+                'status-a-tomar': vacine.status === 'A Tomar',
+                'status-aguardando-aplicacao': vacine.status === 'Aguardando Aplicação',
+                'status-aplicada': vacine.status === 'Aplicada'
+              }">
+              {{ vacine.status }}
+            </span>
+          </div>
+
+          <div class="card-body mt-2">
+            <p class="text-muted mb-1">
+              <i class="btn-action bi bi-person-badge me-2"></i>Faixa etária: {{ vacine.age_range }}
+            </p>
+            <p class="text-muted mb-1">
+              <i class="btn-action bi bi-calendar-event me-2"></i>Data da aplicação:
+              {{ vacine.application_date || '—' }}
+            </p>
+
+            <div class="actions mt-3">
+              <button class="btn btn-action" (click)="openDialog(vacine)" title="Editar">
+                <i class="bi bi-pencil-fill"></i>
+              </button>
+              <button class="btn btn-action" (click)="openViewDialog(vacine)" title="Visualizar">
+                <i class="bi bi-eye"></i>
+              </button>
+              <button class="btn btn-action" (click)="forceDeleteUser(vacine)" title="Excluir">
+                <i class="bi bi-trash-fill"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="viewMode === 'table'" class="table-responsive mt-2">
+        <table class="vacina-table table-striped align-middle text-center">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Status</th>
+              <th>Faixa Etária</th>
+              <th>Data da Aplicação</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of vaccines; track item.id) {
+            <tr *ngFor="let item of filteredVaccines">
+              <td>{{ item.name }}</td>
+              <td>
+                <span class="badge" [ngClass]="{
+              'status-a-tomar': item.status === 'A Tomar',
+              'status-aguardando-aplicacao': item.status === 'Aguardando Aplicação',
+              'status-aplicada': item.status === 'Aplicada'
+            }">
+                  {{ item.status }}
+                </span>
+              </td>
+              <td>{{ item.age_range }}</td>
+              <td>{{ item.application_date || '—' }}</td>
+              <td>
+                <button mat-icon-button [matMenuTriggerFor]="actionMenu" matTooltip="Ações">
+                  <i class="bi bi-three-dots-vertical"></i>
+                </button>
+
+                <mat-menu #actionMenu="matMenu">
+                  <button mat-menu-item (click)="openDialog(item)">
+                    <mat-icon color="primary">edit</mat-icon>
+                    <span>Editar</span>
+                  </button>
+                  <button mat-menu-item (click)="openViewDialog(item)">
+                    <mat-icon color="primary">visibility</mat-icon>
+                    <span>Visualizar</span>
+                  </button>
+                  <button mat-menu-item (click)="forceDeleteUser(item)">
+                    <mat-icon color="primary">delete</mat-icon>
+                    <span>Excluir</span>
+                  </button>
+                </mat-menu>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <mat-paginator [length]="length" [pageIndex]="pageIndex" [pageSize]="pageSize"
+        [pageSizeOptions]="[10, 25, 50, 100]" showFirstLastButtons (page)="handlePageEvent($event)">
+      </mat-paginator>
+    </div>
+  </div>
+</div>
