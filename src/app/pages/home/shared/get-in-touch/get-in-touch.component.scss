@@ -1,89 +1,169 @@
-.php-email-form {
-  width: 100%;
-  color: #193a85;
+.contact-section {
+  padding: 1rem 0 5rem;
 }
 
-.text-center {
-  text-align: center !important;
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+  gap: 1.5rem;
+  align-items: stretch;
 }
 
-.php-email-form button[type="submit"] {
-  background: white;
-  border: 0;
-  padding: 10px 35px;
-  color: white;
-  border-radius: 50px;
-  transition: 0.3s cubic-bezier(0.65, 0, 0.35, 1);
-
-  &:hover {
-    background-color: red;
-    color: white;
-  }
+.contact-copy {
+  padding: 2rem;
+  border-radius: 2rem;
+  background:
+    radial-gradient(circle at top right, rgba(116, 241, 224, 0.16), transparent 28%),
+    linear-gradient(180deg, #12324d, #0c2639);
+  color: #f4fbff;
+  box-shadow: 0 28px 52px rgba(9, 36, 57, 0.24);
 }
 
-.form-group {
-  padding-bottom: 3px;
-  color: #193a85;
+.contact-copy .section-kicker {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  color: #84efdf;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
-.form-group {
+.contact-copy h2 {
   margin-bottom: 1rem;
-  color: #193a85;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  line-height: 1.08;
 }
 
-#contact {
-  background-color: #111f36;
-  color: white;
-  padding: 60px 0;
-  text-align: center;
+.contact-copy p {
+  max-width: 48ch;
+  color: rgba(242, 248, 252, 0.8);
+  line-height: 1.8;
+}
 
-  h3 {
-    font-weight: bold;
-    font-size: 23px;
-    margin-bottom: 10px;
+.contact-points {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.contact-points article {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.85rem;
+  padding: 1rem 1.1rem;
+  border-radius: 1.3rem;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.contact-points i {
+  color: #84efdf;
+  font-size: 1.2rem;
+}
+
+.contact-points strong {
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.contact-points span {
+  color: rgba(242, 248, 252, 0.76);
+  line-height: 1.65;
+}
+
+.contact-form-shell {
+  padding: 2rem;
+  border: 1px solid rgba(16, 68, 101, 0.08);
+  border-radius: 2rem;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 24px 50px rgba(18, 71, 109, 0.08);
+  backdrop-filter: blur(16px);
+}
+
+.form-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-header strong {
+  color: #13324c;
+  font-size: 1.2rem;
+}
+
+.form-header span {
+  color: #617b8f;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.form-group {
+  margin-bottom: 0;
+}
+
+.form-group-full {
+  grid-column: 1 / -1;
+}
+
+.form-control {
+  border: 1px solid rgba(20, 76, 112, 0.12);
+  border-radius: 1rem;
+  background: #f9fcfe;
+  box-shadow: none;
+}
+
+.form-control:focus {
+  border-color: #2aa8d8;
+  box-shadow: 0 0 0 3px rgba(42, 168, 216, 0.14);
+}
+
+.submit-button {
+  width: 100%;
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #69d5d0, #23a6dc);
+  color: #08243b;
+  font-weight: 800;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 28px rgba(35, 166, 220, 0.2);
+}
+
+.error-message {
+  margin-top: 0.4rem;
+}
+
+@media (max-width: 991px) {
+  .contact-grid,
+  .form-grid {
+    grid-template-columns: 1fr;
   }
 
-  p {
-    font-size: 16px;
-    color: #dcdcdc;
-    margin-bottom: 30px;
-    padding: 12px;
+  .form-group-full {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .contact-section {
+    padding-bottom: 4rem;
   }
 
-  form {
-    max-width: 600px;
-    width: 100%;
-    margin: 0 auto;
-
-    .form-control {
-      border-radius: 8px;
-      border: none;
-      padding: 10px;
-      margin-top: 8px;
-    }
-
-    label {
-      display: block;
-      margin-top: 16px;
-      color: #dcdcdc;
-      font-weight: 500;
-      text-align: left;
-    }
-
-    .btn-primary {
-      background-color: #08152a;
-      border: none;
-      border-radius: 8px;
-      padding: 10px 20px;
-    }
-  }
-
-  .error {
-    color: red;
-    font-size: 100px;
-  }
-
-  .error-message {
-    text-align: left;
+  .contact-copy,
+  .contact-form-shell {
+    padding: 1.3rem;
   }
 }

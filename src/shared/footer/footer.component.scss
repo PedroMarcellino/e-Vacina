@@ -1,81 +1,84 @@
 #footer {
-  color: #111F36;
-  font-size: 14px;
-  background-color: #f5faff;
+  padding: 2rem 0 2.5rem;
+  background: #091d2f;
+  color: rgba(240, 247, 251, 0.76);
 }
 
-.footer-top {
-  padding: 60px 0 30px 0;
-  background: white;
-  box-shadow: 0px 2px 15px #111F36(25, 119, 204, 0.1);
+.footer-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) auto auto;
+  align-items: start;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.footer-contact {
-  margin-bottom: 30px;
+.footer-brand {
+  max-width: 34ch;
 }
 
-a {
-  color: #111F36;
-  text-decoration: none;
+.footer-shell strong {
+  color: #ffffff;
 }
 
-.img-fluid {
-  max-width: 60%;
-  height: auto;
-}
-
-.footer-contact p {
-  font-size: 14px;
-  line-height: 24px;
-  margin-bottom: 0;
-  font-family: "Raleway", sans-serif;
-  color:#111F36;
+.footer-links,
+.footer-shell p,
+.footer-meta {
+  margin: 0;
+  line-height: 1.7;
 }
 
 .footer-links {
-  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
 }
 
-.footer-top h4 {
-  font-size: 16px;
-  font-weight: bold;
-  color: #111F36;
-  position: relative;
-  padding-bottom: 12px;
+.footer-links a,
+.footer-cta {
+  color: rgba(240, 247, 251, 0.76);
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
 }
 
-.footer-links ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.footer-links a:hover {
+  color: #84efdf;
 }
 
-.footer-links ul a {
-  color: #111F36;
-  transition: 0.3s;
-  display: inline-block;
-  line-height: 1;
+.footer-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  text-align: right;
 }
 
-.credits {
-  padding-top: 5px;
-  font-size: 13px;
-  color: #111F36;
-  background-color: white;
+.footer-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.05rem;
+  border-radius: 999px;
+  background: rgba(132, 239, 223, 0.12);
+  color: #84efdf;
+  font-weight: 700;
 }
 
-a {
-   color: #111F36;
-   text-decoration: none;
+.footer-cta:hover {
+  background: rgba(132, 239, 223, 0.22);
 }
 
-.copyright {
-  padding-top: 5px;
-  font-size: 13px;
-  color: #111F36;
-  background-color: #f5faff;
+@media (max-width: 767px) {
+  .footer-links,
+  .footer-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .footer-shell {
+    grid-template-columns: 1fr;
+  }
 }
-
-
-
-

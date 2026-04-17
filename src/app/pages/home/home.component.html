@@ -1,13 +1,111 @@
 <app-header></app-header>
 
-<section id="hero" class="initial-section d-flex align-items-center">
-  <div class="div-title-evacina container">
-    <h1 class="title-initial"></h1>
-  </div>
-</section>
+<main class="home-page">
+  <section id="hero" class="hero-section">
+    <div class="hero-backdrop"></div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="hero-kicker">Gestao vacinal com foco em prevencao</span>
+        <h1>
+          Sua carteira de vacinas com mais clareza, organizacao e acompanhamento
+          inteligente.
+        </h1>
+        <p class="hero-description">
+          O eVacina centraliza historicos, facilita o acompanhamento da familia e
+          ajuda equipes de saude a manterem o controle vacinal em dia.
+        </p>
 
-<app-about></app-about>
-<app-information></app-information>
-<app-get-in-touch></app-get-in-touch>
+        <div class="hero-actions">
+          <a class="btn btn-hero-primary" href="/login">Entrar na plataforma</a>
+          <a class="btn btn-hero-secondary" href="#about">Conhecer a solucao</a>
+        </div>
+
+        <div class="hero-metrics">
+          <article class="metric-card">
+            <strong>Carteira digital</strong>
+            <span>Historico centralizado e facil de consultar.</span>
+          </article>
+          <article class="metric-card">
+            <strong>Lembretes claros</strong>
+            <span>Mais previsibilidade para doses e reforcos.</span>
+          </article>
+          <article class="metric-card">
+            <strong>Visao por familia</strong>
+            <span>Acompanhamento completo em um unico ambiente.</span>
+          </article>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="visual-shell">
+          <div class="visual-card visual-card-main">
+            <span class="visual-label">Painel em destaque</span>
+            <h2>Uma jornada mais simples para cuidar da imunizacao.</h2>
+            <p>
+              Organize dados, acompanhe doses aplicadas e transforme a rotina de
+              cuidado em um fluxo mais seguro.
+            </p>
+
+            <div class="visual-checklist">
+              <div>
+                <i class="bi bi-shield-check"></i>
+                <span>Dados organizados</span>
+              </div>
+              <div>
+                <i class="bi bi-bell"></i>
+                <span>Alertas de proximidade</span>
+              </div>
+              <div>
+                <i class="bi bi-people"></i>
+                <span>Controle para toda a familia</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="visual-card visual-card-floating top">
+            <i class="bi bi-heart-pulse"></i>
+            <div>
+              <strong>Prevencao ativa</strong>
+              <span>Acompanhe o que importa antes do atraso.</span>
+            </div>
+          </div>
+
+          <div class="visual-card visual-card-floating bottom">
+            <strong>Fluxo mais humano</strong>
+            <span>Menos planilhas, mais visibilidade e confianca.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-band">
+    <div class="container trust-grid">
+      <div>
+        <span class="trust-label">Pensado para rotinas reais</span>
+        <h2>Uma plataforma feita para familias, profissionais e equipes de apoio.</h2>
+      </div>
+
+      <div class="trust-points">
+        <article>
+          <i class="bi bi-calendar2-week"></i>
+          <span>Agenda e historico no mesmo fluxo</span>
+        </article>
+        <article>
+          <i class="bi bi-lock"></i>
+          <span>Controle com mais seguranca e confiabilidade</span>
+        </article>
+        <article>
+          <i class="bi bi-graph-up-arrow"></i>
+          <span>Decisoes mais rapidas com informacao organizada</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <app-about></app-about>
+  <app-information></app-information>
+  <app-get-in-touch></app-get-in-touch>
+</main>
 
 <app-footer></app-footer>

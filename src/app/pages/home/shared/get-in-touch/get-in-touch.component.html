@@ -1,50 +1,122 @@
-<section id="contact" class="contact">
-   <div class="container text-center">
-      <h3>Entre em Contato</h3>
-      <p>Para mais informações ou suporte, envie sua mensagem.</p>
+<section id="contact" class="contact-section">
+  <div class="container contact-grid">
+    <div class="contact-copy">
+      <span class="section-kicker">Contato</span>
+      <h2>Quer entender como o eVacina pode apoiar sua operacao?</h2>
+      <p>
+        Envie sua mensagem e retornaremos para apresentar a plataforma, alinhar
+        necessidades e mostrar como simplificar o acompanhamento vacinal.
+      </p>
 
+      <div class="contact-points">
+        <article>
+          <i class="bi bi-chat-dots"></i>
+          <div>
+            <strong>Conversa objetiva</strong>
+            <span>Entendemos o seu contexto antes de propor qualquer fluxo.</span>
+          </div>
+        </article>
+        <article>
+          <i class="bi bi-clipboard2-pulse"></i>
+          <div>
+            <strong>Rotina mais clara</strong>
+            <span>Mapeamos gargalos de controle e acompanhamento.</span>
+          </div>
+        </article>
+        <article>
+          <i class="bi bi-headset"></i>
+          <div>
+            <strong>Suporte proximo</strong>
+            <span>Contato direto para tirar duvidas e orientar os proximos passos.</span>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="contact-form-shell">
       <form (ngSubmit)="sendContactMessage()" [formGroup]="form">
-         <div class="row">
-            <div class="col-md-6 form-group">
-               <input type="text" name="full_name" class="form-control" formControlName="full_name"
-                  placeholder="Digite seu nome completo" />
-               <div class="error-message" *ngIf="form.get('full_name')?.errors?.['required'] &&
-               (form.get('full_name')?.touched)">
-                  Campo obrigatório!
-               </div>
-            </div>
+        <div class="form-header">
+          <strong>Fale com a equipe</strong>
+          <span>Preencha os dados abaixo para receber nosso retorno.</span>
+        </div>
 
-            <div class="col-md-6 form-group mt-3 mt-md-0">
-               <input type="email" name="email" class="form-control" required placeholder="Digite seu e-mail"
-                  formControlName="email" />
-               <div class="error-message" *ngIf="form.get('email')?.errors?.['required'] &&
-               (form.get('email')?.touched)">
-                  Campo obrigatório!
-               </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="full_name">Nome completo</label>
+            <input
+              id="full_name"
+              type="text"
+              name="full_name"
+              class="form-control"
+              formControlName="full_name"
+              placeholder="Digite seu nome completo"
+            />
+            <div
+              class="error-message"
+              *ngIf="form.get('full_name')?.errors?.['required'] && form.get('full_name')?.touched"
+            >
+              Campo obrigatorio.
             </div>
+          </div>
 
-            <div class="col-md-12 form-group mt-3 mt-md-0">
-               <input type="text" name="phone" class="form-control" placeholder="Digite seu telefone"
-                  mask="(00) 0000-0000||(00) 00000-0000" formControlName="phone" />
-               <div class="error-message" *ngIf="form.get('phone')?.errors?.['required'] &&
-               (form.get('phone')?.touched)">
-                  Campo obrigatório!
-               </div>
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              class="form-control"
+              formControlName="email"
+              placeholder="Digite seu e-mail"
+            />
+            <div
+              class="error-message"
+              *ngIf="form.get('email')?.errors?.['required'] && form.get('email')?.touched"
+            >
+              Campo obrigatorio.
             </div>
-         </div>
+          </div>
 
-         <div class="form-group mt-3">
-            <textarea class="form-control" name="message" rows="5" placeholder="Mensagem" formControlName="message"></textarea>
-            <div class="error-message" *ngIf="form.get('message')?.errors?.['required'] &&
-               (form.get('message')?.touched)">
-               Campo obrigatório!
+          <div class="form-group form-group-full">
+            <label for="phone">Telefone</label>
+            <input
+              id="phone"
+              type="text"
+              name="phone"
+              class="form-control"
+              formControlName="phone"
+              mask="(00) 0000-0000||(00) 00000-0000"
+              placeholder="Digite seu telefone"
+            />
+            <div
+              class="error-message"
+              *ngIf="form.get('phone')?.errors?.['required'] && form.get('phone')?.touched"
+            >
+              Campo obrigatorio.
             </div>
-         </div>
+          </div>
 
-         <div class="text-center mt-3">
-            <button type="submit" class="btn btn-primary" (click)="sendContactMessage()">Enviar Mensagem</button>
-         </div>
+          <div class="form-group form-group-full">
+            <label for="message">Mensagem</label>
+            <textarea
+              id="message"
+              class="form-control"
+              name="message"
+              rows="5"
+              formControlName="message"
+              placeholder="Conte brevemente o que voce precisa"
+            ></textarea>
+            <div
+              class="error-message"
+              *ngIf="form.get('message')?.errors?.['required'] && form.get('message')?.touched"
+            >
+              Campo obrigatorio.
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-button">Enviar mensagem</button>
       </form>
-      <br />
-   </div>
+    </div>
+  </div>
 </section>
